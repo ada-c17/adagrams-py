@@ -1,21 +1,21 @@
 import copy
 import random
-from hand import *
+from adagrams.hand import Hand
 
 class Adagrams:
-    def __init__(self, letter_pool, letter_scores):
+    def __init__(self, letter_pool, letter_values):
         self.letter_pool = letter_pool
-        self.letter_scores = letter_scores
+        self.letter_values = letter_values
         self.hand = Hand()
         self.word_list = []
 
-    def draw_letters(self, hand):
+    def draw_letters(self):
         letter_pool_copy = copy.deepcopy(self.letter_pool)
 
-        while len(hand.letter_bank) < 10:
+        while len(self.hand.letter_bank) < 10:
             letter = random.choice(list(letter_pool_copy.keys()))
             if letter_pool_copy[letter] > 0:
-                hand.letter_bank.append(letter)
+                self.hand.letter_bank.append(letter)
                 letter_pool_copy[letter] -= 1
 
     def score_word(self, word):
@@ -28,8 +28,8 @@ class Adagrams:
 
         return score
 
-    def make_word(self, word):
-        if self.hand.use_available_letters(word):
+    def add_valid_word_to_list(self, word):
+        if self.hand.uses_available_letters(word):
             self.word_list.append(word)
             print(f"Nice {len(word)} letter word!")
         else:
