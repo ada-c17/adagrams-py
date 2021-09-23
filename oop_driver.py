@@ -65,20 +65,17 @@ adagrams = Adagrams(LETTER_POOL, LETTER_VALUES)
 
 print("Welcome to Adagrams!")
 print("Let's draw some letters!")
-adagrams.draw_letters()
 print(f"Here is the letter bank: {adagrams.hand.letter_bank}")
 
 while play:
     word = input("Give me a word with the letters: ")
     adagrams.add_valid_word_to_list(word)
     another = input("Would you like to input another word, enter Y or N.")
-    if another == "N":
+    if another.upper() == "N":
         play = False
 
 print(f"The words are: {adagrams.word_list}")
-
 winning_word = adagrams.get_highest_word_score()
-
 print(f"The winning word is {winning_word}")
 
 

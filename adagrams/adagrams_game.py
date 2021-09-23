@@ -4,19 +4,9 @@ from adagrams.hand import Hand
 
 class Adagrams:
     def __init__(self, letter_pool, letter_values):
-        self.letter_pool = letter_pool
         self.letter_values = letter_values
-        self.hand = Hand()
+        self.hand = Hand(letter_pool)
         self.word_list = []
-
-    def draw_letters(self):
-        letter_pool_copy = copy.deepcopy(self.letter_pool)
-
-        while len(self.hand.letter_bank) < 10:
-            letter = random.choice(list(letter_pool_copy.keys()))
-            if letter_pool_copy[letter] > 0:
-                self.hand.letter_bank.append(letter)
-                letter_pool_copy[letter] -= 1
 
     def score_word(self, word):
         score = 0
