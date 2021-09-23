@@ -1,8 +1,9 @@
 import copy
+import random
 
 class Hand:
-    def __init__(self, letter_bank):
-        self.letter_banks = letter_bank
+    def __init__(self):
+        self.letter_bank = []
 
     def uses_available_letters(self, word):
         letter_bank_copy = copy.deepcopy(self.letter_bank)
