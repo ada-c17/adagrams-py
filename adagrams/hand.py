@@ -3,18 +3,20 @@ import random
 
 class Hand:
     def __init__(self, letter_pool):
-        self.letter_pool = letter_pool
-        self.letter_bank = []
-        self.draw_letters()
+        self.letter_bank = self.draw_letters(letter_pool)
+        
 
-    def draw_letters(self):
-        letter_pool_copy = copy.deepcopy(self.letter_pool)
+    def draw_letters(self, letter_pool):
+        letter_bank = []
+        letter_pool_copy = copy.deepcopy(letter_pool)
 
-        while len(self.letter_bank) < 10:
+        while len(letter_bank) < 10:
             letter = random.choice(list(letter_pool_copy.keys()))
             if letter_pool_copy[letter] > 0:
-                self.letter_bank.append(letter)
+                letter_bank.append(letter)
                 letter_pool_copy[letter] -= 1
+        
+        return letter_bank
 
     def uses_available_letters(self, word):
         letter_bank_copy = copy.deepcopy(self.letter_bank)
