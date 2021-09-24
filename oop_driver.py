@@ -1,5 +1,4 @@
-from adagrams.hand import Hand
-from adagrams.adagrams_game import Adagrams
+from adagrams.adagrams import Adagrams
 
 LETTER_POOL = {
     'A': 9, 

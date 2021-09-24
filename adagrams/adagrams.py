@@ -1,5 +1,3 @@
-import copy
-import random
 from adagrams.hand import Hand
 
 class Adagrams:
@@ -27,6 +25,9 @@ class Adagrams:
 
 
     def get_highest_word_score(self):
+        if not self.word_list:
+            return None
+            
         highest = (self.word_list[0],0)
         for word in self.word_list:
             score = self.score_word(word)
