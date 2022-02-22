@@ -17,7 +17,7 @@ def display_score(score):
 
 def display_retry_instructions():
     print("Should we play another round?")
-    print("Enter y to replay")
+    print("Enter y to replay and q to quit")
 
 
 def display_goodbye_message():
