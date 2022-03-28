@@ -36,7 +36,7 @@ def draw_letters():
     letter_bank = [] 
     while len(letter_bank)< 10: 
         draw = random.choice(list(user_pool))
-        for letter, count in user_pool.items():
+        for letter in user_pool.keys():
             if user_pool[letter] == 0:
                 continue 
             if letter == draw: 
@@ -48,9 +48,13 @@ def draw_letters():
 
 def uses_available_letters(word, letter_bank):
     '''
-    word = 'some word'
+    word = word.upper()
+
     letter_bank = draw_letters()
     return TRUE or FALSE 
+
+    ## make sure that case doesn't matter for word input 
+    ## do not change the letter_bank (no remove from list! only compare to list)
 
     for letter in word: 
         if letter not in letter_bank: 
