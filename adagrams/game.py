@@ -1,4 +1,5 @@
 import random
+from collections import Counter
 
 LETTER_POOL = {
     'A': 9, 
@@ -45,7 +46,18 @@ def draw_letters():
     pass
 
 def uses_available_letters(word, letter_bank):
-    pass
+    letter_dict = Counter(letter_bank)
+
+    for letter in word.upper():
+        try:
+            if letter in letter_dict.keys() and letter_dict[letter] > 0:
+                letter_dict[letter] -= 1
+            else:
+                return False
+        except KeyError:
+            return False
+    
+    return True
 
 def score_word(word):
     pass
