@@ -30,6 +30,16 @@ LETTER_POOL = {
     'Z': 1
 }
 
+SCORE_DICT = {
+    1: ['A', 'E', 'I', 'O', 'U', 'L', 'N', 'R', 'S', 'T'],
+    2: ['D', 'G'],
+    3: ['B', 'C', 'M', 'P'],
+    4: ['F', 'H', 'V', 'W', 'Y'],
+    5: ['K'],
+    8: ['J', 'X'],
+    10: ['Q', 'Z'],
+}
+
 def draw_letters():
     # generate list containing all letters
     # in corresponding frequency
@@ -64,7 +74,15 @@ def uses_available_letters(word, letter_bank):
 
 
 def score_word(word):
-    pass
+    total = 0
+    #look at each letter in word
+    #add value associated with letter in dictionary to total
+    for letter in word:
+        for value, letter_list in SCORE_DICT.items():
+            if letter in letter_list:
+                total += value
+
+    return total
 
 def get_highest_word_score(word_list):
     pass
