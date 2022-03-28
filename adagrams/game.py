@@ -1,6 +1,5 @@
-import random
-
 # from tests.test_wave_01 import LETTER_POOL
+import random
 LETTER_POOL = {
     'A': 9, 
     'B': 2, 
@@ -32,21 +31,41 @@ LETTER_POOL = {
 
 def draw_letters():
     '''
-    1) importing the random module
-    2) make each letter-value pair an element in a tuple/list?
-        put values of the letters in a list (Like 9 A's in a list, 2 B's)
-    3) a method from the random module to shuffle the list
-    4) list comprehension
+    1) import the random module and make LETTER_POOL a global variable
+    2) how should we iterate through the LETTER_POOL?
+        a) make each letter-value pair a dictionary as an element in a tuple/list?
+        B) put values of the letters in a list (Like nine A elements, two B elements, etc.)
+    3) use a method from the random module to shuffle the list
+    4) return the first 10 elements in the shuffled list
     '''
-    letters = []
-    for letter, number in LETTER_POOL.items():
-        for i in range(number):
-            letters.append(letter)
+    # letters = []
+    # for letter, number in LETTER_POOL.items():
+    #     for i in range(number):
+    #         letters.append(letter)
+
+    letters = [letter for letter, letter_frequency in LETTER_POOL.items() for number in range(letter_frequency)]
+
     random.shuffle(letters)
+
     return letters[:10]
 
 def uses_available_letters(word, letter_bank):
-    pass
+    '''
+    1) How do get the right quanities in letter_bank?
+        A) Use a helper function?
+        B) Iterate over the list, make a new list, and subtract?
+        C) Set subtraction? NO
+        D) Use letter_bank to determine frequency
+    2) 
+    3) 
+    '''
+    # word_list = list(word)
+    # new_list = []
+    # for letter in word:
+    #     for i in range(len(letter_bank) - 1):
+    #         if 
+            
+    # print(word_list)
 
 def score_word(word):
     pass
