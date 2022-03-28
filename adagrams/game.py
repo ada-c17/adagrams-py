@@ -56,7 +56,17 @@ def draw_letters():
     return hand
 
 def uses_available_letters(word, letter_bank):
-    pass
+    anagram_attempt = word.upper()
+    letters = set(anagram_attempt)
+
+    for letter in letters:
+        if letter_bank.count(letter) < anagram_attempt.count(letter):
+            #should I print something here so the user knows what they did wrong?
+            return False
+        elif letter not in letter_bank:
+            return False
+    
+    return True
 
 def score_word(word):
 
