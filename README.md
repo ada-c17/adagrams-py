@@ -201,7 +201,6 @@ Take time to read through the Wave 1 implementation requirements and the tests f
 If, after you and your pair have taken some time to think through the problem and would like direction for how to dissect the problem, or if you need clarity on the terms/vocabulary we used in this project, you can check out [a small hint we've provided](./project_docs/hints.md).
 
 ### Wave 1: draw_letters
-
 Your first task is to build a hand of 10 letters for the user. To do so, implement the function `draw_letters` in `game.py`. This method should have the following properties:
 
 - No parameters
