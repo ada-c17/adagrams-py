@@ -67,8 +67,48 @@ def uses_available_letters(word, letter_bank):
     
     pass
 
+""" ### Wave 3: score_word
+
+Now you need a function returns the score of a given word as defined by the Adagrams game.
+
+Implement the function `score_word` in `game.py`. This method should have the following properties:
+
+- Has one parameter: `word`, which is a string of characters
+- Returns an integer representing the number of points
+- Each letter within `word` has a point value. The number of points of each letter is summed up to represent the total score of `word`
+- Each letter's point value is described in the table below
+- If the length of the word is 7, 8, 9, or 10, then the word gets an additional 8 points
+
+#### Score chart
+
+|Letter                        | Value|
+|:----------------------------:|:----:|
+|A, E, I, O, U, L, N, R, S, T  |   1  |
+|D, G                          |   2  |
+|B, C, M, P                    |   3  |
+|F, H, V, W, Y                 |   4  |
+|K                             |   5  |
+|J, X                          |   8  |
+|Q, Z                          |   10 | """
+
 def score_word(word):
     pass
 
+
+"""### Wave 4: get_highest_word_score
+
+After several hands have been drawn, words have been submitted, checked, scored, and played, you need a way to find the highest scoring word. This function looks at the list of `word_list` and calculates which of these words has the highest score, applies any tie-breaking logic, and returns the winning word in a special data structure.
+
+Implement a function called `get_highest_word_score` in `game.py`. This method should have the following properties:
+
+- Has one parameter: `word_list`, which is a list of strings
+- Returns a tuple that represents the data of a winning word and it's score.  The tuple must contain the following elements:
+  - index 0 ([0]): a string of a word
+  - index 1 ([1]): the score of that word
+- In the case of tie in scores, use these tie-breaking rules:
+    - prefer the word with the fewest letters...
+    - ...unless one word has 10 letters. If the top score is tied between multiple words and one is 10 letters long, choose the one with 10 letters over the one with fewer tiles
+    - If the there are multiple words that are the same score and the same length, pick the first one in the supplied list"""
+    
 def get_highest_word_score(word_list):
     pass
