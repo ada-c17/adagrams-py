@@ -97,6 +97,17 @@ def draw_letters():
         
     return player_hand
 
+    # COPY_LETTER_POOL = copy.deepcopy(LETTER_POOL)
+    # player_hand_list = []
+    # while len(player_hand_list) < 10:
+    #     random_letter = random.choice(list(COPY_LETTER_POOL))
+    #     # print(COPY_LETTER_POOL[random_letter])
+    #     if COPY_LETTER_POOL[random_letter] > 0:
+    #         player_hand_list.append(random_letter)
+    #         COPY_LETTER_POOL[random_letter] -= 1
+    #         print(COPY_LETTER_POOL[random_letter])
+    #     else:
+    #         continue
 print(draw_letters())
 
 def uses_available_letters(word, letter_bank):
