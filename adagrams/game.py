@@ -1,7 +1,70 @@
+'''
+Your first task is to build a hand of 10 letters for the user. 
+To do so, implement the function `draw_letters` in `game.py`. 
+This method should have the following properties:
+
+- No parameters
+- Returns an array of ten strings
+  - Each string should contain exactly one letter
+  - These represent the hand of letters that the player has drawn
+- The letters should be randomly drawn from a pool of letters
+  - This letter pool should reflect the distribution of letters as described in the table below
+  - There are only 2 available `C` letters, so `draw_letters` cannot ever return more than 2 `C`s
+  - Since there are 12 `E`s but only 1 `Z`, it should be 12 times as likely for the 
+  user to draw an `E` as a `Z`
+- Invoking this function should **not** change the pool of letters
+  - Imagine that the user returns their hand to the pool before drawing new letters
+
+'''
+
+# Set Distribution of Letters to Global Variables (Dictionary)
+# Letter as key, Quantity as value
+
 def draw_letters():
+    # output: list of ten letters
+    
+    # create an empty list
+
+    # option 1 
+    # use helper function (involving loop thru dictionary to get a value)
+    # - add all the qty of letters to get the total counter
+    # - loop through all the letters (key), the value of the key will be divided by the total counter
+    # - return the probability to back to the main function
+    # have a separate dictionary of keys as letters and probability as the value
+    # import random to assist
+    # helper function will go into the random function to help draw out the letters
+
+    # option 2
+    # put all the letters in a big list (i.e. like multiple A's)
+    # use random to generate a letter
+    # append letter to the empty list 
+    # remove that letter once added to the big list
+    # after reaching 10th letter in the list, return the list
     pass
 
+'''
+Next, you need a way to check if an input word (a word a player submits) 
+only uses characters that are contained within a collection (or hand) of drawn letters. 
+Essentially, you need a way to check if the word is an anagram of some or all of the given 
+letters in the hand.
+
+To do so, implement the function called `uses_available_letters` in `game.py`. 
+This function should have the following properties:
+
+- Has two parameters:
+   - `word`, the first parameter, describes some input word, and is a string
+   - `letter_bank`, the second parameter, describes an array of drawn letters in a hand. 
+   You can expect this to be an array of ten strings, with each string representing a letter
+- Returns either `True` or `False`
+- Returns `True` if every letter in the `input` word is available (in the right quantities) 
+in the `letter_bank`
+- Returns `False` if not; if there is a letter in `input` that is not present in the 
+`letter_bank` or has too much of compared to the `letter_bank`
+'''
+
 def uses_available_letters(word, letter_bank):
+    
+    
     pass
 
 def score_word(word):
