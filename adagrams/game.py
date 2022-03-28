@@ -88,15 +88,18 @@ def draw_letters():
 def uses_available_letters(word, letter_bank):
     word = word.upper()
     
-    letter_bank_dict = {}
-    word_dict = {}
     # Dictionary of letters in user's hand
+    letter_bank_dict = {}
     for letter in letter_bank:
         if letter not in letter_bank_dict:
             letter_bank_dict[letter] = 1
         else:
             letter_bank_dict[letter] +=1
     
+    # Dictionary of letter in users input word
+    word_dict = {}
+    # For loop will return False when the letter in user's word is not in their hand
+    # Or if they don't have enough letters in their hand to spell the word
     for letter in word:
         if letter not in letter_bank_dict:
             return False
@@ -106,6 +109,16 @@ def uses_available_letters(word, letter_bank):
             word_dict[letter] += 1
         if word_dict[letter] > letter_bank_dict[letter]:
             return False
+
+    # Megan's solution/update not using word_dict
+    # for letter in word:
+    #     if letter not in letter_bank_dict:
+    #         return False
+    #     else:
+    #         letter_bank_dict[letter] -= 1
+    #         if letter_bank_dict[letter] < 0:
+    #             return False
+    
     return True
 
 
