@@ -33,14 +33,14 @@ LETTER_POOL = {
 
 def test_draw_letters_draws_ten():
     # Arrange/Act
-    letters = draw_letters()
+    letters = draw_letters(LETTER_POOL)
 
     # Assert
     assert len(letters) == 10
 
 def test_draw_letters_is_list_of_letter_strings():
     # Arrange/Act
-    letters = draw_letters()
+    letters = draw_letters(LETTER_POOL)
 
     # Assert
     assert len(letters) == 10
@@ -53,7 +53,7 @@ def test_letter_not_selected_too_many_times():
 
     for i in range(1000):
         # Arrange/Act
-        letters = draw_letters()
+        letters = draw_letters(LETTER_POOL)
 
         letter_freq = {}
         for letter in letters:
