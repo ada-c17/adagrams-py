@@ -59,7 +59,28 @@ def draw_letters():
     return result
 
 def uses_available_letters(word, letter_bank):
-    pass
+    word = word.upper()
+    
+    letter_bank_dict = {}
+    word_dict = {}
+    # Dictionary of letters in user's hand
+    for letter in letter_bank:
+        if letter not in letter_bank_dict:
+            letter_bank_dict[letter] = 1
+        else:
+            letter_bank_dict[letter] +=1
+    
+    for letter in word:
+        if letter not in letter_bank_dict:
+            return False
+        if letter not in word_dict:
+            word_dict[letter] = 1
+        else:
+            word_dict[letter] += 1
+        if word_dict[letter] > letter_bank_dict[letter]:
+            return False
+    return True
+
 
 def score_word(word):
     pass
