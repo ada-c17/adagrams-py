@@ -33,17 +33,17 @@ letter_pool = {
 
 def draw_letters():
     user_pool = copy.deepcopy(letter_pool)
-    letters = [] 
-    while len(letters)< 10: 
+    letter_bank = [] 
+    while len(letter_bank)< 10: 
         draw = random.choice(list(user_pool))
         for letter, count in user_pool.items():
             if user_pool[letter] == 0:
                 continue 
             if letter == draw: 
-                letters.append(draw) 
+                letter_bank.append(draw) 
                 user_pool[letter] -= 1 
                 
-    return letters 
+    return letter_bank 
 
 
 def uses_available_letters(word, letter_bank):
