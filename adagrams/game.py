@@ -10,7 +10,7 @@ def draw_letters():
     for i in range(10):
         letter = random.choice(letters)
         for key, value in letter_pool.items():
-            if letter == key and value>0:
+            if letter == key and value > 0:
                 letter_pool[key] -= 1
                 hand.append(letter)
     return hand
