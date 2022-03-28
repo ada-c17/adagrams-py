@@ -1,5 +1,6 @@
 #from tests.test_wave_01 import LETTER_POOL
 import random
+import copy
 LETTER_POOL = {
     'A': 9, 
     'B': 2, 
@@ -49,7 +50,18 @@ def draw_letters():
     return hand
 
 def uses_available_letters(word, letter_bank):
-    pass
+    word_bank = copy.deepcopy(letter_bank)
+    caps_word = word.upper()
+    for letter in caps_word:
+        if letter not in word_bank:
+            return False    
+        else: 
+            word_bank.remove(letter)    
+    else:
+    
+        return True
+
+
 
 def score_word(word):
     pass
