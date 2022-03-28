@@ -1,3 +1,12 @@
+import random
+
+# get a random num between 0-25
+# use random number to locate letter from letter pool - where the letter corresponds w/index
+# add letter to hand and update letter pool minus letter from letter pool
+# repeat process 10x (or until letter hand has 10)- while
+
+
+
 def draw_letters():
 
     letter_pool = [
