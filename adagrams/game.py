@@ -42,10 +42,43 @@ def draw_letters():
     return ten_letters
 
 def uses_available_letters(word, letter_bank):
-    pass
+    letter_count = 0
+    letter_copy = letter_bank[:]
+    for letter in word:
+        if letter.upper() in letter_copy:
+            letter_copy.remove(letter.upper())
+            letter_count += 1
+    return letter_count == len(word)
+            
+ 
 
 def score_word(word):
-    pass
+    sum = 0
+    for char in word:
+        if len(char) >= 7 and len(char) <= 10:
+            sum += 8
+    return sum
+          
+          
+          
+          
+            # if "A" or "E" or "I" or "O" or "U" or "L" or "N" or "R" or "S" or "T" == char:
+            #     sum += 1
+            # elif "D" or "G" == char:
+            #     sum += 2
+            # elif "B" or "C" or "M" or "P" == char:
+            #     sum += 3
+            # elif "F" or "H" or "V" or "W" or "Y" == char:
+            #     sum += 4
+            # elif "K" == char:
+            #     sum += 5
+            # elif "J" or "X" == char:
+            #     sum += 8
+            # else:
+            #     sum += 10
+
+
+
 
 def get_highest_word_score(word_list):
     pass
