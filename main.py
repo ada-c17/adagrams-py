@@ -50,7 +50,7 @@ def wave_2_run_game():
     game_continue = True
     while game_continue:
         print("Let's draw 10 letters from the letter pool...")
-        letter_bank = draw_letters()
+        letter_bank = draw_letters(LETTER_POOL)
         display_drawn_letters(letter_bank)
         display_game_instructions()
         user_input_word = input()

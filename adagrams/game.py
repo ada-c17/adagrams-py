@@ -33,17 +33,27 @@ LETTER_POOL = {
 def draw_letters(LETTER_POOL):
     letter_list = []
     copy_dict = copy.copy(LETTER_POOL)
+
     for i in range(10):
         letter = random.choice(list(copy_dict))
         copy_dict[letter] -= 1
         letter_list.append(letter)
         if copy_dict[letter] < 1:
             copy_dict.pop(letter)
-    print(letter_list)
+
     return letter_list
 
 def uses_available_letters(word, letter_bank):
-    pass
+    list_copy = letter_bank.copy()
+
+    for character in word:
+        character = character.capitalize()
+        if character in list_copy:
+            list_copy.remove(character)
+        else:
+            return False
+    
+    return True
 
 def score_word(word):
     pass
