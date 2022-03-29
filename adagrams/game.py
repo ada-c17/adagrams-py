@@ -78,10 +78,41 @@ def uses_available_letters(word, letter_bank):
     #if scenario for value at letter bank dict == 0, return false 
     #return true at end if all works
 
-print(uses_available_letters("bac", ["a", "b", "c", "d", "e", "o", "g", "a", "f", "m"]))
+# print(uses_available_letters("bac", ["a", "b", "c", "d", "e", "o", "g", "a", "f", "m"]))
 
 
 def score_word(word):
+    word = word.upper()
+    score_chart = {
+        1: ["A", "E", "I", "O", "U", "L", "N", "R", "S", "T"],
+        2: ["D", "G"],
+        3: ["B", "C", "M", "P"],
+        4: ["F", "H", "V", "W", "Y"],
+        5: ["K"],
+        8: ["J", "X"],
+        10: ["Q", "Z"]		
+    }
+    print(score_chart)
+    score = 0
+
+    if len(word) >= 7:
+        score += 8
+    
+    for letter in word:
+        # print(letter)
+        for key, value in score_chart.items():
+            # print(type(key))
+            # print(key)
+            for available_letter in value:
+                # print(letter)
+                # print(available_letter)
+                if letter == available_letter:
+                    print("made into if")
+                    score += key 
+    
+    return score 
+
+
     #dictioanry where point score are keys and letter in array as values
     #initialize variable to keep track of score
     #if word is greater than 7 in length, add 10 points 
@@ -89,7 +120,6 @@ def score_word(word):
     #for loop to loop through dicitonary 
     #the scores will be in str so need to convert to int
     #if statement for if letter in letter array - talley total points
-    pass
 
 def get_highest_word_score(word_list):
     #initialize max_score list - will tuple of word, score
@@ -105,3 +135,5 @@ def get_highest_word_score(word_list):
 
 
 
+# print(score_word("dog"))
+print(score_word("XXXXXXX"))
