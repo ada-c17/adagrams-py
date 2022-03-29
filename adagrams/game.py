@@ -92,4 +92,12 @@ def score_word(word):
 
 
 def get_highest_word_score(word_list):
-    pass
+    word_and_score = {}
+    for word in word_list:
+        word_score = score_word(word)
+        word_and_score[word]=word_score
+
+    highest_score = word_and_score[
+    for word in word_and_score:
+        if word > highest_score:
+            highest_score 
