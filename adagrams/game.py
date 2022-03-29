@@ -1,4 +1,5 @@
 import random
+import copy
 
 def draw_letters():
     letters = random.sample(create_letter_pool_list(), 10)
@@ -39,9 +40,19 @@ def create_letter_pool_list():
             letter_pool_list.append(letter)
     return letter_pool_list
 
+#check if letter is in letter bank
+#if not, return false
+#otherwise remove letter from letter bank and keep looping through letters in the word
 
 def uses_available_letters(word, letter_bank):
-    pass
+    word = word.upper()
+    letter_bank_copy = copy.copy(letter_bank)
+    for letter in word:
+        if letter in letter_bank_copy:
+            letter_bank_copy.remove(letter)
+        else:
+            return False
+    return True
 
 def score_word(word):
     letter_point_table = {
