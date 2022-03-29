@@ -137,14 +137,14 @@ def get_highest_word_score(word_list):
             highest_scoring_word = word
             high_score = word_score
 
-        elif word_score == high_score:
+        elif word_score == high_score and len(highest_scoring_word) != 10: #in case of tie
 
-            if len(word) == 10 and len(highest_scoring_word) != 10:
+            if len(word) == 10:
                 
                 highest_scoring_word = word
                 high_score = word_score
 
-            elif len(word) < len(highest_scoring_word) and len(highest_scoring_word) != 10:
+            elif len(word) < len(highest_scoring_word):
 
                 highest_scoring_word = word
                 high_score = word_score
