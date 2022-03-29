@@ -1,3 +1,6 @@
+import random
+
+
 
 LETTER_POOL = {
     'A': 9, 
@@ -28,7 +31,7 @@ LETTER_POOL = {
     'Z': 1
 }
 
-letter_point ={
+LETTER_POINT ={
     ("A", "E", "I", "O", "U", "L", "N", "R", "S", "T"): 1,
     ("D", "G"): 2,
     ("B", "C", "M", "P"): 3,
@@ -37,8 +40,6 @@ letter_point ={
     ("J", "X"): 8,
     ("Q", "Z"): 10
 }
-
-import random
 
 
 def draw_letters():
@@ -98,7 +99,7 @@ def score_word(word):
     # otherwise, sum score when it matches below conditon
     else:
         # loop over char_point dictionary to get key and value for comparing
-        for letter, point in letter_point.items():
+        for letter, point in LETTER_POINT.items():
             # loop over the word to get each character and check whether is it in the key of char_point
             for char in word:
                 # get point value from char_point dictionary to sum if character of word is string and it is in tuple key of dictionary
@@ -114,36 +115,28 @@ def score_word(word):
 
 
 def get_highest_word_score(word_list):
-    word_dict = {}
-    max_score = 0
-    best_word = []
-    for word in word_list:
-        score = score_word(word)
-        word_dict[word] = score
-        if score >= max_score:
-            max_score = score
-    for key, value in word_dict.items():
-        if value == max_score:
-            best_word.append(key)
 
-    if len(best_word) == 1:
-        best_word.append(max_score)
-        return tuple(best_word)
-    else:
-        max_len = len(best_word[0])
-        win_word = ""
-        for i in range(len(best_word) - 1):              
-            if len(best_word[i+1]) == max_len:
-                best_word.remove(best_word[i+1])
-            elif len(best_word[i]) == 10:
-                win_word = best_word[i]
-                best_word.clear()
-                best_word.append(win_word)
-            else: 
-                if len(best_word[i+1]) != 10 and len(best_word[i+1]) > max_len:
-                    best_word.remove(best_word[i+1])
-                else:
-                    best_word.remove(best_word[i])
-                    
-    best_word.append(max_score)
-    return tuple(best_word)
+    max_score = max([score_word(word) for word in word_list])
+
+    best_scoring_words = [word for word in word_list if max_score == score_word(word)]
+
+    '''
+    The next three clauses refer to the three possible end cases for scores & ties.
+    1. If there are no ties, return the best scoring word.
+    2. If there is a tie and at least one of the words is ten letters, return the first word with ten letters.
+    3. If there is a tie and no words are ten letters long, then return the shortest word.
+    '''
+    if len(best_scoring_words) == 1:
+        best_scoring_word = best_scoring_words[0]
+        return (best_scoring_word, max_score)
+
+    for word in best_scoring_words:
+        if len(word) == 10:
+            best_scoring_word = word
+            return (best_scoring_word, max_score)
+
+    smallest_length = min([len(word) for word in best_scoring_words])
+    for word in best_scoring_words:
+        if len(word) == smallest_length:
+            best_scoring_word = word
+            return (best_scoring_word, max_score)
