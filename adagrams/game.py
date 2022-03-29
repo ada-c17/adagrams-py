@@ -1,9 +1,19 @@
+from random import randint
+
 def draw_letters():
     #define list of available letters
-    #take 10 random rolls each with one less number
-    #pop each out between rolls and store in list
+    letter_bank = ['A','A','A','A','A','A','A','A','A','B','B','C','C','D','D','D','D','E','E','E','E','E','E','E','E','E','E','E','E','F','F','G','G','G','H','H','I','I','I','I','I','I','I','I','I','J','K','L','L','L','L','M','M','N','N','N','N','N','N','O','O','O','O','O','O','O','O','P','P','Q','R','R','R','R','R','R','S','S','S','S','T','T','T','T','T','T','U','U','U','U','V','V','W','W','X','Y','Y','Z']
+    letter_list = []
+    for roll in range(0,10):
+        #take 10 random rolls each with one less number
+        
+        remove_letter = randint(0, len(letter_bank)-1)
+        
+        #pop each out between rolls and store in list
+        letter = letter_bank.pop(remove_letter)
+        letter_list.append(letter)
     #return list of rolled letters
-    pass
+    return letter_list
 
 def uses_available_letters(word, letter_bank):
     #make input uppercase
