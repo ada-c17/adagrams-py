@@ -98,7 +98,7 @@ def get_highest_word_score(word_list):
         word_score = score_word(word)
         word_dict[word] = word_score
     
-    highest_scoring_word = max(word_dict)
+    highest_scoring_word = max(word_dict, key=word_dict.get)
     high_score = word_dict[highest_scoring_word]
 
     for word,score in word_dict.items():
