@@ -1,4 +1,5 @@
 import random
+import copy
 
 LETTER_POOL = {
     'A': 9, 
@@ -31,17 +32,15 @@ LETTER_POOL = {
 
 def draw_letters():
     '''This function returns 10 random letter tiles. Frequency of letters determined by LETTER_POOL'''
-    # letter_freq = {}
     letters = []
-    letter_pool_copy = LETTER_POOL.deepcopy()
+    letter_pool_copy = copy.deepcopy(LETTER_POOL)
     while len(letters) < 10:
-        for letter in letter_pool_copy:
-            if letter_pool_copy[letter] == 0:
-                letter_pool_copy.remove(letter)
-            else:
-                random_letter = random.choice(letter_pool_copy)
-                letters.append(random.choice(random_letter))
-                letter_pool_copy[random_letter] = letter_pool_copy[random_letter]-1
+        random_letter = random.choice(list(letter_pool_copy))
+        if letter_pool_copy[random_letter] == 0:
+            continue
+        else:
+            letters.append(random_letter)
+            letter_pool_copy[random_letter] = letter_pool_copy[random_letter]-1
     return letters
 
 
