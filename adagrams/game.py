@@ -130,20 +130,6 @@ def score_word(word):
 
 def get_highest_word_score(word_list):
     """
-    The tuple must contain the following elements:
-
-    In the case of tie in scores, use these tie-breaking rules:
-    prefer the word with the fewest letters...
-    ...unless one word has 10 letters. 
-    If the top score is tied between multiple words and one is 10 letters long, 
-    choose the one with 10 letters over the one with fewer tiles
-    If the there are multiple words that are the same score and the same length, 
-    pick the first one in the supplied list
-    
-    --Establish key variables : word score, word_length = len(word) 
-
-    --initiate empty empty highest_score tuple
-
     --for loop iterating word in word_list:
         -- if word_score > highest_word_score
             highest_score = (word, score)
@@ -156,55 +142,97 @@ def get_highest_word_score(word_list):
             for word in word_list:
                 word_length = len(word)
                 
-        --
-    
-    
     """
 
+    word_list_scores = []
+    highest_score = 0
+
+    for word in word_list:
+        word_length= len(word)
+        word_score = score_word(word)
+        word_list_scores.append(word_score)
+
+    for word_score in word_list_scores: 
+        word_score_frequency = word_list_scores.count(word_score)
+        print(f"THIS IS THE WORD SCORE FREQUENCY{word_score_frequency=}")
+        if word_score == max(word_list_scores): 
+            if word_score_frequency > 1: 
+                if word_length == 10: 
+                    
+                    highest_score = word_score
+                    highest_score_tuple = (word, highest_score)
+
+                    return highest_score_tuple
+                # highest_score.append(word_score)
+            # if word_score > highest_word_score: 
+
+        
+
+        # score = score_word(word)
+        # score_list.append(score)
+        # highest_score = max(score_list)
+        # for score in score_list: 
+        #     if score == highest_score: 
+        #         highest_scores.append(score)
+        #         print(f' THIS SHOULD BE A LIST OF TUPLES{highest_scores=}')
+
     
 
-    score_list = []
-    user_scores = ()
-    winners = []
-    best_score = []
-    
-    for word in word_list: 
-        score = score_word(word)
-        score_list.append(score)
-        max_score = max(score_list)
-        if score == max_score: 
-            best_score.append(word, score)
-        if len(best_score) > 1: 
+
+    #     # score_list.append(score)
+    #     #[a word, 3 another,6,10,4,10]
+    # highest_score = highest_score.append(word, score)
+    # best_score = highest_score[0]
+    # for word_info in highest_score:
+    #     if word_info[1] > best_score[1]: 
 
 
-                user_scores = (word, score)
-                score_list.append(user_scores)
+
+    #     max_score = max(score_list)
+    #     if score == max_score: 
+    #         best_score.append(word, score)
+    #     if len(best_score) > 1: 
+
+
+    # user_scores = (word, score)
+    # score_list.append(user_scores)
     
-    max_score = max(score_list)
-    for user in score_list: 
-        if user[1] > max_score: 
-            user[1] = max_score
+    # max_score = max(score_list)
+    # for user in score_list: 
+    #     if user[1] > max_score: 
+    #         user[1] = max_score
+    pass 
         
 
 
 
-        
 
-        """
-        Wave 4: get_highest_word_score
-        After several hands have been drawn, words have been submitted, checked, scored, and played, 
-        you need a way to find the highest scoring word. 
 
-        This function looks at the list of word_list and calculates which of these words has the highest 
-        score, applies any tie-breaking logic, and returns the winning word in a special data structure.
+    """
+Wave 4: get_highest_word_score
+After several hands have been drawn, words have been submitted, checked, scored, and played, 
+you need a way to find the highest scoring word. 
 
-        Implement a function called get_highest_word_score in game.py. 
+This function looks at the list of word_list and calculates which of these words has the highest 
+score, applies any tie-breaking logic, and returns the winning word in a special data structure.
 
-        This method should have the following properties:
+Implement a function called get_highest_word_score in game.py. 
 
-        Has one parameter: word_list, which is a list of strings
-        Returns a tuple that represents the data of a winning word and it's score. 
-"""
+This method should have the following properties:
 
-        
+Has one parameter: word_list, which is a list of strings
+Returns a tuple that represents the data of a winning word and it's score. 
+
+The tuple must contain the following elements:
+index 0 ([0]): a string of a word
+index 1 ([1]): the score of that word
+In the case of tie in scores, use these tie-breaking rules:
+prefer the word with the fewest letters...
+...unless one word has 10 letters. 
+If the top score is tied between multiple words and one is 10 letters long, 
+choose the one with 10 letters over the one with fewer tiles
+If the there are multiple words that are the same score and the same length, 
+pick the first one in the supplied list"""
+
+
 
