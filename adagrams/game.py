@@ -101,20 +101,18 @@ def uses_available_letters(word, letter_bank):
     #      
     # return True 
 """
-    letter_bank = draw_letters()
-    return TRUE or FALSE 
+Wave 3: score_word
+Now you need a function returns the score of a given word as defined by the Adagrams game.
 
-    ## make sure that case doesn't matter for word input 
-    ## do not change the letter_bank (no remove from list! only compare to list)
+Implement the function score_word in game.py. This method should have the following properties:
 
-    for letter in word: 
-        if letter not in letter_bank: 
-            return FALSE
-        else: 
-            if letter in letter_bank: 
-                if word has same letter more than once, letter_bank must also! 
-    """
+Has one parameter: word, which is a string of characters
+Returns an integer representing the number of points
+Each letter within word has a point value. The number of points of each letter is summed up to represent the total score of word
+Each letter's point value is described in the table below
+If the length of the word is 7, 8, 9, or 10, then the word gets an additional 8 points
 
+"""
 def score_word(word):
     input_word = word.upper()
     word_score = 0
@@ -126,33 +124,28 @@ def score_word(word):
         word_score = 8
     for letter in input_word:
         word_score += SCORE_CHART[letter]
-        # if word_length >= 7:
-        #     # word_score = word_score + 8
-        #     word_score + 8 
       
     return word_score
     
-    """
-    Wave 3: score_word
-    Now you need a function returns the score of a given word as defined by the Adagrams game.
-
-    Implement the function score_word in game.py. This method should have the following properties:
-
-    Has one parameter: word, which is a string of characters
-    Returns an integer representing the number of points
-    Each letter within word has a point value. The number of points of each letter is summed up to represent the total score of word
-    Each letter's point value is described in the table below
-    If the length of the word is 7, 8, 9, or 10, then the word gets an additional 8 points
-
-    """
-
-
-  
 
 def get_highest_word_score(word_list):
+    """
+    --for loop iterating word in word_list:
+        -- if word_score > highest_word_score
+            highest_score = (word, score)
+        --if word_score == highest_word_score
+            
+            if word_length == 10
+            highest_score = (word, score)
+
+            elif word_length == highest_word_length
+            for word in word_list:
+                word_length = len(word)
+                
+    """
+
     word_list_scores = []
     highest_score = 0
-    
 
 
 
@@ -162,40 +155,30 @@ def get_highest_word_score(word_list):
         word_length= len(word)
         word_score = score_word(word)
         word_list_scores.append(word_score)
-        for word_score in word_list_scores: 
-            word_score_frequency = word_list_scores.count(word_score)
-            if word_score == max(word_list_scores): 
-                if word_score_frequency > 1: 
-                    if word_length == 10: 
+
+    for word_score in word_list_scores: 
+        word_score_frequency = word_list_scores.count(word_score)
+        print(f"THIS IS THE WORD SCORE FREQUENCY{word_score_frequency=}")
+        if word_score == max(word_list_scores): 
+            if word_score_frequency > 1: 
+                if word_length == 10: 
                     
+                    highest_score = word_score
+                    highest_score_tuple = (word, highest_score)
 
-                        highest_score = word_score
-                        highest_score_tuple = (word, highest_score)
-
-        if word_length == 10: 
-            if word_length
-
-
+                    return highest_score_tuple
                 # highest_score.append(word_score)
             # if word_score > highest_word_score: 
 
         
 
-
-
-
-
-
-
-
-
-        score = score_word(word)
-        score_list.append(score)
-        highest_score = max(score_list)
-        for score in score_list: 
-            if score == highest_score: 
-                highest_scores.append(score)
-                print(f' THIS SHOULD BE A LIST OF TUPLES{highest_scores=}')
+        # score = score_word(word)
+        # score_list.append(score)
+        # highest_score = max(score_list)
+        # for score in score_list: 
+        #     if score == highest_score: 
+        #         highest_scores.append(score)
+        #         print(f' THIS SHOULD BE A LIST OF TUPLES{highest_scores=}')
 
     
 
@@ -229,7 +212,7 @@ def get_highest_word_score(word_list):
 
 
 
-"""
+    """
 Wave 4: get_highest_word_score
 After several hands have been drawn, words have been submitted, checked, scored, and played, 
 you need a way to find the highest scoring word. 
@@ -254,3 +237,6 @@ If the top score is tied between multiple words and one is 10 letters long,
 choose the one with 10 letters over the one with fewer tiles
 If the there are multiple words that are the same score and the same length, 
 pick the first one in the supplied list"""
+
+
+
