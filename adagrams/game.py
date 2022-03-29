@@ -30,8 +30,6 @@ LETTER_POOL = {
 }
 
 def draw_letters():
-    print(LETTER_POOL)
-    print("----------------------")
     a_z_list = [key for key in LETTER_POOL]
     
     letter_frequency = copy.deepcopy(LETTER_POOL)
@@ -45,10 +43,6 @@ def draw_letters():
         letter_bank.append(letter)
 
     return letter_bank
-    print(letter_bank)
-    print(letter_frequency)
-    print("----------------------")
-
 
 
         
