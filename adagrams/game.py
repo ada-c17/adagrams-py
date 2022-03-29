@@ -94,5 +94,29 @@ def score_word(word):
         total_score += 8
     return total_score
 
+def break_tie(word_list):
+    shortest = 11
+    winner = None
+    for word in word_list:
+        if len(word) == 10:
+            winner = word
+            break
+        elif len(word) < shortest:
+            shortest = len(word)
+            winner = word
+    
+    return winner, score_word(winner)
+
 def get_highest_word_score(word_list):
-    pass
+    top_score = 0
+    winners = []
+    for word in word_list:
+        score = score_word(word)
+        if score > top_score:
+            top_score = score
+            winners = [word]
+        elif score == top_score:
+            winners.append(word)
+    if len(winners) > 1:
+        return break_tie(winners)
+    return winners[0],top_score
