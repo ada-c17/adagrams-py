@@ -112,13 +112,15 @@ def uses_available_letters(word, letter_bank):
             letter_bank_dict[letter] = 1
 
     for letter in word:
+        print(letter)
         if letter in letter_bank_dict:
             letter_bank_dict[letter] -= 1
             if letter_bank_dict[letter] < 0:
                 return False
-            return True
-
-
+        
+        else:
+            return False
+        return True
 
 def score_word(word):
     """
