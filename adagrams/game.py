@@ -67,7 +67,7 @@ def draw_letters():
     letter_pool_list = list(LETTER_POOL.keys())
 
     while len(player_hand) < 10:
-        letter = (random.choices(letter_pool_list, weights= (letter_weights)))
+        letter = (random.choices(letter_pool_list, weights = (letter_weights)))
 
         if letter_pool_copy[letter[0]] == 0:
             continue
@@ -96,12 +96,12 @@ def uses_available_letters(word, letter_bank):
             return False
     
     return True
-
+    
 def score_word(word):
     
     word_score = 0
-    converted_string = word.upper()
-    for letter in converted_string:
+    converted_word = word.upper()
+    for letter in converted_word:
         if letter in SCORE_DICTIONARY:
             word_score += SCORE_DICTIONARY[letter]
     if len(word) >= 7:
@@ -110,26 +110,18 @@ def score_word(word):
     return word_score
     
 def get_highest_word_score(word_list):
-    pass
 
-    
+    best_word = [word_list[0], score_word(word_list[0])]
+
     for word in word_list:
-        score = score_word
-
-    # best_word = [word_list[0], 0]
-    # for i in range(len(word_list)):
-    #     score = score_word(word_list[i])
-    #     if score > best_word[1]:
-    #         best_word = [word_list[i], score]
-    #     elif score == best_word[1]:
-    #         if len(word_list[i]) == len(best_word[0]):
-    #             best_word = [best_word[0], score]
-    #         elif len(word_list[i]) == 10:
-    #             best_word = [word_list[i], score]
-    #         elif len(best_word[0]) == 10:
-    #             continue
-    #         elif len(word_list[i]) < len(best_word[0]):
-    #             best_word = [word_list[i], score]
-
-    # return best_word
+        if score_word(word) > best_word[1]:
+            best_word[0] = word
+            best_word[1] = score_word(word)
+        elif score_word(word) == best_word[1]:
+            if len(best_word[0]) == 10:
+                continue
+            elif len(word) == 10 or len(word) < len(best_word[0]):
+                best_word[0] = word
+    
+    return tuple(best_word)
 
