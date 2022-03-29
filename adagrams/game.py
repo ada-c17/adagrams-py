@@ -102,7 +102,7 @@ def score_word(word):
     score = 0
     number_of_letters = 0 #track number of letters because punctuation can be in the string
 
-    for letter in word:
+    for letter in word.upper():
 
         try: 
             score += score_chart[letter]
