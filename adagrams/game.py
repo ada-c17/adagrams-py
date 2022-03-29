@@ -58,10 +58,42 @@ def draw_letters():
     return current_hand    
 
 def uses_available_letters(word, letter_bank):
-    pass
+    #loop through word and check if letter contain in letter_bank
+    #if it is return True, if not return false
+    #letter_bank[:] letter_bank.copy()
+    bank_copy = letter_bank.copy()
+    for letter in word.upper():
+        if letter not in bank_copy:
+            return False
+        else: 
+            bank_copy.remove(letter)
+    return True
+
+
+
 
 def score_word(word):
-    pass
+    #create a dictionary with these point values
+    '''Create a dictionary score_board with key-value pairs 
+    that are letter and corresponding value.
+    Initialize the result to 0
+    Loop through the characters in the word
+    Check if the character is in the letter_vals dictionary
+    If it is, add the value of the letter to the result
+    Return the result'''
+
+    result = 0
+    extra_point = [7,8,9,10]
+    
+    score_board = {key: 1 for key in letter.split(", ")}
+
+    for char in word:
+        if char in score_board:
+            if len(word) in extra_point:
+                
+
+
+
 
 def get_highest_word_score(word_list):
     pass
