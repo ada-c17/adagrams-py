@@ -153,3 +153,12 @@ def score_word(word):
 
 def get_highest_word_score(word_list):
     # create empty tuple
+    # list_of_tuples = [("DOG", 5), ("BANANA", 10)]
+    # max_score = 0
+    # winner_word = ""
+    # for word in word_list
+        # implament score_word(word) to get the score
+        # if score >= max_score
+            # if len(word) == 10 
+            # if len(word)< winner_word
+    pass
