@@ -65,7 +65,7 @@ def draw_letters():
     """
     ten_letters = [] 
     #create a deep copy:
-    LETTER_POOL_02 = {}
+    LETTER_POOL_02 = {}  #make a deep copy
     for key, value in LETTER_POOL.items():
         LETTER_POOL_02[key] = value
     
@@ -78,7 +78,7 @@ def draw_letters():
                 LETTER_POOL_02.pop(selection)
             ten_letters.append(selection)
     return ten_letters
-
+print(LETTER_POOL)
 
 
 def uses_available_letters(word, letter_bank):
@@ -102,6 +102,26 @@ def uses_available_letters(word, letter_bank):
             else: 
                 return True        
     """
+    letter_bank = draw_letters()
+    letter_bank_dict = {}
+    for letter in letter_bank:
+        if letter in letter_bank_dict:
+            letter_bank_dict[letter] += 1
+        else:
+            letter_bank_dict[letter] = 1
+    
+    for letter in word:
+        if letter in letter_bank_dict:
+            letter_bank_dict[letter] -= 1
+            if letter_bank_dict[letter] < 1:
+                return False
+            else:
+                return True    
+
+
+
+
+
 
 def score_word(word):
     """
