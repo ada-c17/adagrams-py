@@ -64,12 +64,10 @@ def draw_letters():
         new_pool.extend([letter] * count)
     
     letters = []
-    already_drawn = []
     while len(letters) < 10:
-        draw = random.randint(0,len(new_pool)-1)
-        if draw not in already_drawn:
-            letters.append(new_pool[draw])
-            already_drawn.append(draw)
+        draw = random.randrange(0, len(new_pool))
+        letter = new_pool.pop(draw)
+        letters.append(letter)
 
     return letters
 
@@ -94,29 +92,22 @@ def score_word(word):
         total_score += 8
     return total_score
 
-def break_tie(word_list):
-    shortest = 11
-    winner = None
-    for word in word_list:
-        if len(word) == 10:
-            winner = word
-            break
-        elif len(word) < shortest:
-            shortest = len(word)
-            winner = word
-    
-    return winner, score_word(winner)
+def wins_tie(word, winner):
+    if len(word) == len(winner) or len(winner) == 10:
+        return False
+
+    return len(word) < len(winner) or len(word) == 10
+
 
 def get_highest_word_score(word_list):
     top_score = 0
-    winners = []
+    winner = ''
     for word in word_list:
         score = score_word(word)
         if score > top_score:
             top_score = score
-            winners = [word]
-        elif score == top_score:
-            winners.append(word)
-    if len(winners) > 1:
-        return break_tie(winners)
-    return winners[0],top_score
+            winner = word
+        elif score == top_score and wins_tie(word, winner):
+            winner = word
+
+    return winner, top_score
