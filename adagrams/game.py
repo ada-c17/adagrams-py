@@ -45,26 +45,45 @@ def draw_letters():
                 
     return letter_bank 
 
+from collections import Counter 
 
 def uses_available_letters(word, letter_bank):
-    '''
-    word = word.upper()
-
-    letter_bank = draw_letters()
-    return TRUE or FALSE 
-
-    ## make sure that case doesn't matter for word input 
-    ## do not change the letter_bank (no remove from list! only compare to list)
-
-    for letter in word: 
-        if letter not in letter_bank: 
-            return FALSE
-        else: 
-            if letter in letter_bank: 
-                if word has same letter more than once, letter_bank must also! 
+    input_word = word.upper()
+    word_counter = Counter(input_word)
+    letter_bank_counter = Counter(letter_bank)
     
-    '''
-    pass
+    for letter in input_word: 
+        if letter not in letter_bank:
+            return False 
+        
+    for (k,v), (k2,v2)  in  zip(word_counter.items(), letter_bank_counter.items()): 
+        if k == k2 and v <= v2: 
+            return True
+        else: 
+            return False 
+
+
+
+
+
+            '''
+            word = word.upper()
+
+            letter_bank = draw_letters()
+            return TRUE or FALSE 
+
+            ## make sure that case doesn't matter for word input 
+            ## do not change the letter_bank (no remove from list! only compare to list)
+
+            for letter in word: 
+                if letter not in letter_bank: 
+                    return FALSE
+                else: 
+                    if letter in letter_bank: 
+                        if word has same letter more than once, letter_bank must also! 
+
+            '''
+   
 
 def score_word(word):
     pass
