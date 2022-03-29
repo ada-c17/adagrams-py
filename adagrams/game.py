@@ -109,19 +109,14 @@ def get_highest_word_score(word_list):
     for word in word_list:
         word_score = score_word(word)
         if word_score > max_score:
-            max_word = word
-            max_score = word_score
+            max_word, max_score = word, word_score
         elif word_score == max_score:
             if type(max_word) != list:
                 max_word = list(max_word)
-                max_word.append(word)
-            else:
-                max_word.append(word)
+            max_word.append(word)
     if type(max_word) == str:
         return (max_word, max_score)
-
-    min_len = 100
-    min_word = None
+    min_len, min_word = 100, None
     for word in word_list:
         if len(word) == 10:
             return (word,score_word(word))
