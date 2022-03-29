@@ -10,7 +10,6 @@ POINT_VALUES = {
     "Q": 10, "Z": 10
 }
 
-
 def draw_letters():
     pool_of_letters = ['A'] * 9 + ['B'] * 2 + ['C'] * 2 + ['D'] * 4 + ['E'] * 12 + ['F'] * 2\
     + ['G'] * 3 + ['H'] * 2 + ['I'] * 9 + ['J'] * 1 + ['K'] * 1 + ['L'] * 4 + ['M'] * 2\
@@ -18,9 +17,6 @@ def draw_letters():
     + ['U'] * 4 + ['V'] * 2 + ['W'] * 2 + ['X'] * 1 + ['Y'] * 2 + ['Z'] * 1
 
     return random.sample(pool_of_letters, 10)
-
-
-
 
 def convert_word_to_upper(word):
     """
@@ -34,10 +30,10 @@ def convert_word_to_upper(word):
 
 def uses_available_letters(word, letter_bank):
     upper_word = convert_word_to_upper(word)
-    letter_bank_copy = copy.deepcopy(letter_bank)
+    hand_copy = copy.deepcopy(letter_bank)
     for letter in upper_word:
-        if letter in letter_bank_copy:
-            letter_bank_copy.remove(letter)
+        if letter in hand_copy:
+            hand_copy.remove(letter)
         else:
             return False
     return True
