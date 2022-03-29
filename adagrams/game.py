@@ -1,4 +1,5 @@
 import random
+import copy
 
 LETTER_POOL = {
     'A': 9, 
@@ -40,7 +41,14 @@ def draw_letters():
     return(hand)
 
 def uses_available_letters(word, letter_bank):
-    pass
+    available_letters = letter_bank.copy()
+    for letter in word:
+        letter = letter.upper()
+        if letter in available_letters:
+            available_letters.remove(letter)
+        else:
+            return False
+    return True
 
 def score_word(word):
     pass
