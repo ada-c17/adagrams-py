@@ -1,3 +1,4 @@
+from multiprocessing.sharedctypes import Value
 import random
 
 '''
@@ -47,18 +48,19 @@ LETTER_QUANTITY_DICT = {'A' : 9, 'N' : 6 ,
 'K' : 1, 'X' : 1, 
 'L' : 4, 'Y' : 2,
 'M' : 2, 'Z' : 1}
-# Set Distribution of Letters to Global Variables (Dictionary)
-# Letter as key, Quantity as value
 
 def draw_letters():
     letter_list = []
 
+    # changes the dictionary into a list
+    # the counter to ensure the distribution of letters
     for letter, quantity in LETTER_QUANTITY_DICT.items():
-      counter = 0
-      while counter < quantity:
-          letter_list.append(letter)
-          counter += 1
+        counter = 0
+        while counter < quantity:
+            letter_list.append(letter)
+            counter += 1
     
+    # draws 10 letters from the letter_list
     letter_bank = random.sample(letter_list, 10)
 
     return letter_bank
@@ -146,46 +148,39 @@ word gets an additional 8 points
 |Q, Z                          |   10 | """
 
 def score_word(word):
-    # Output: Total points from the word made from the letter_bank
-    # check if the word is valid. if word is not valid, return none.
-    # loop through the word and put each letter in a list
-    # make variable called total points
-    # make a dictionary that has the score chart
-    # - with score value as 'key' and the letters are in a list as values
-    # make a for loop with scoring conditions...
-    # example: if the "a" is in dictionary's value, add 1 point to the points
-    # check length of word with conditionals of extra points
+    score_chart = {
+        1:["A","B","I","O","U","L","N","R","S","T"],
+        2:["D","G"],
+        3:["B","C","M","P"],
+        4:["F","H","V","W","Y"],
+        5:["K"],
+        8:["J","X"],
+        10:["Q","Z"]
+    }
+    extra_score_chart = [7, 8, 9, 10]
     total_score = 0
     letter_list = []
 
-    score_chart = {
-      1:["A","B","I","O","U","L","N","R","S","T"],
-      2:["D","G"],
-      3:["B","C","M","P"],
-      4:["F","H","V","W","Y"],
-      5:["K"],
-      8:["J","X"],
-      10:["Q","Z"]
-    }
-    extra_score_chart = [7, 8, 9, 10]
-
+    # initalize check to see if the word is empty
     if word == "":
         return total_score
 
-    for letter in word:
+    # adds each letter in word to the letter_list
+    for letter in word.upper():
         letter_list.append(letter)
 
+    # loops through the letter_list
+    # checks each letter against the score_chart dictionary
     for letter in letter_list:
-        if letter in score_chart.values():
-            pass
-    
+        for point, letters in score_chart.items():
+            if letter in letters:
+                total_score += point
+
+    # final check for extra points! 
     if len(word) in extra_score_chart:
         total_score += 8
-    
-    return letter_list
 
-print(score_word("dog"))
-
+    return total_score
 
 
 """### Wave 4: get_highest_word_score
