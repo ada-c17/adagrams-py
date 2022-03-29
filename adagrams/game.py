@@ -53,37 +53,21 @@ def draw_letters():
         6) append letter to letters[]
     7) Return letters[]'''
 
-
-    # # Generate 10 random letters
-    # for letter in LETTER_POOL:
-    #     letter_pool_keys.append(letter)
-    # for i in range(10):
-    #     letters.append(random.choice(letter_pool_keys))
-    # print(f"Debug: letters = {letters}")
-    
-    # # Create frequency map of letters
-    # for letter in letters:
-    #     if letter in letter_freq:
-    #         letter_freq[letter] += 1
-    #     else:
-    #         letter_freq[letter] = 1
-    # print(f"Debug: letter_freq = {letter_freq}")
-    
-    # # Check letter_freq against LETTER_POOL freq & replace as necessary
-    # for letter in letters:        
-    #     if letter_freq[letter] > LETTER_POOL[letter]: # <-- CHECK THIS LINE
-    #         print(letter_freq[letter])
-    #         print(LETTER_POOL[letter])
-    #         letters.remove(letter)
-    # print(f"Debug: letters = {letters}")
-    # while len(letters) != 10:    
-    #     letters.append(random.choice(letter_pool_keys))
-            
-    # print(f"DEBUG: letters = {letters}")
-    # return letters
-
 def uses_available_letters(word, letter_bank):
-    pass
+    '''This function checks if all letters in a word are also available in the letter_bank'''
+    valid_letters = []
+    word = word.upper()
+    letter_bank_copy =copy.deepcopy(letter_bank)
+    for letter in word:
+        if letter in letter_bank_copy:
+            valid_letters.append(letter)
+            letter_bank_copy.remove(letter)
+    if len(valid_letters) == len(word):
+        letter_bank_copy = letter_bank
+        return True
+    else:
+        letter_bank_copy = letter_bank
+        return False
 
 def score_word(word):
     pass
