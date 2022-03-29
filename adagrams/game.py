@@ -58,12 +58,6 @@ def draw_letters():
     return letter_bank
             
 
-# check if word is a str and all uppercase 
-# if each letter in letter_bank
-# for each letter found subtract count or check frequency
-# if all letters are in the letter_bank with correct frequency return True
-# else return false
-
 def uses_available_letters(word, letter_bank):
     if isinstance(word, str) and len(word) <= 10:
         word_up = word.upper()
@@ -92,8 +86,45 @@ def uses_available_letters(word, letter_bank):
     return False
 
 
+#List1 all of the letters for each point
+# for letter in word if in list
+
+
+
 def score_word(word):
-    pass
+    score = 0
+
+    one_point = ["A", "E", "I", "O", "U", "L", "N", "R", "S", "T"]
+    two_points = ["D", "G"]
+    three_points = ["B", "C", "M", "P"]
+    four_points = ["F", "H", "V", "W", "Y"]
+    five_points = ["K"]
+    eight_points = ["J", "X"]
+    ten_points = ["Q", "Z"]
+    long_word_bonus = [7, 8, 9, 10]
+
+    word_up = word.upper()
+    
+    if len(word_up) in long_word_bonus:
+        score += 8
+
+    for letter in word_up:
+        if letter in one_point:
+            score += 1
+        elif letter in two_points:
+            score += 2
+        elif letter in three_points:
+            score += 3
+        elif letter in four_points:
+            score += 4
+        elif letter in five_points:
+            score += 5
+        elif letter in eight_points:
+            score += 8
+        elif letter in ten_points:
+            score += 10
+
+    return score
 
 def get_highest_word_score(word_list):
     pass
