@@ -30,53 +30,7 @@ LETTER_POOL = {
     'Z': 1
 }
 
-def draw_letters():
-
-    letter_pool_copy = copy.deepcopy(LETTER_POOL)
-    player_hand = []
-    letter_weights = list(LETTER_POOL.values())
-    letter_pool_list = list(LETTER_POOL.keys())
-
-    while len(player_hand) < 10:
-        letter = (random.choices(letter_pool_list, weights= (letter_weights)))
-
-        if letter_pool_copy[letter[0]] == 0:
-            continue
-        else:
-            letter_pool_copy[letter[0]] -= 1
-
-        player_hand.append(letter[0])
-
-    return player_hand
-
-
-def uses_available_letters(word, letter_bank):
-    letter_bank_dict = {}
-    word = word.upper()
-    #convert letter_bank (list) to a dictionary with key (letter) and value (count of letter)
-    for letter in letter_bank:
-        if letter in letter_bank_dict:
-            letter_bank_dict[letter] += 1
-        else:
-            letter_bank_dict[letter] = 1
-    #make word all uppercase 
-    #loop through letters of word, subtract the value
-    for character in word:
-        if character in letter_bank_dict and letter_bank_dict[character] > 0:
-            letter_bank_dict[character] -= 1
-        else:
-            return False
-    
-    return True
-        
-        #if value is 0 in dictionary OR key doesn't exist, return False
-        #else, return True 
-    
-
-def score_word(word):
-    
-    #score of letter in word corresponds to letter pool
-    score_dictionary = {
+SCORE_DICTIONARY = {
         "A": 1,
         "E": 1,
         "I": 1,
@@ -104,15 +58,55 @@ def score_word(word):
         "Q": 10,
         "Z": 10,
     }
+
+def draw_letters():
+
+    letter_pool_copy = copy.deepcopy(LETTER_POOL)
+    player_hand = []
+    letter_weights = list(LETTER_POOL.values())
+    letter_pool_list = list(LETTER_POOL.keys())
+
+    while len(player_hand) < 10:
+        letter = (random.choices(letter_pool_list, weights= (letter_weights)))
+
+        if letter_pool_copy[letter[0]] == 0:
+            continue
+        else:
+            letter_pool_copy[letter[0]] -= 1
+
+        player_hand.append(letter[0])
+
+    return player_hand
+
+
+def uses_available_letters(word, letter_bank):
+    letter_bank_dict = {}
+    word = word.upper()
+
+    for letter in letter_bank:
+        if letter in letter_bank_dict:
+            letter_bank_dict[letter] += 1
+        else:
+            letter_bank_dict[letter] = 1
+
+    for character in word:
+        if character in letter_bank_dict and letter_bank_dict[character] > 0:
+            letter_bank_dict[character] -= 1
+        else:
+            return False
+    
+    return True
+
+def score_word(word):
     
     word_score = 0
     converted_string = word.upper()
     for letter in converted_string:
-        if letter in score_dictionary:
-            word_score += score_dictionary[letter]
+        if letter in SCORE_DICTIONARY:
+            word_score += SCORE_DICTIONARY[letter]
     if len(word) >= 7:
-        word_score += 8
-    print(word_score)
+        word_score += 8  
+        
     return word_score
     
 def get_highest_word_score(word_list):
