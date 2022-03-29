@@ -57,18 +57,7 @@ def draw_letters():
 
         hand.append(random_letter)
     
-    return hand
-
-
-
-    
-    # Empty list = hand
-    # For loop to iterate over letter pool
-        # Iterate 10 times
-        # Append letter to list (hand)
-        # Append letter and count to dictionary 
-        # E.g. "a", "b", "e", "f", "a"
-        # a: 2, b: 1       
+    return hand   
 
 def uses_available_letters(word, letter_bank):
     pass
