@@ -89,28 +89,20 @@ def score_word(word):
     """
     # create a variable to sum score for all valid input
     total_score = 0
-    # return 0 when input is integer or float
-    if isinstance(word, int) or isinstance(word, float):
+    if (len(word) == 0) or (type(word) != str):
         return 0
-    
-    # return 0 when input is empty
-    elif len(word) == 0:
-        return 0
-    # otherwise, sum score when it matches below conditon
-    else:
-        # loop over char_point dictionary to get key and value for comparing
-        for letter, point in LETTER_POINT.items():
-            # loop over the word to get each character and check whether is it in the key of char_point
-            for char in word:
-                # get point value from char_point dictionary to sum if character of word is string and it is in tuple key of dictionary
-                if isinstance(char, str) and char.upper() in letter:
-                    total_score += point
-                # otherwise, the point value of special character will assign 0 then sum
-                else:
-                    total_score += 0
-        # if length of word is from 7 to 10, add additional 8 point
-        if len(word) > 6 and len(word) < 11:
-            total_score += 8
+
+    # loop over char_point dictionary to get key and value for comparing
+    for letter, point in LETTER_POINT.items():
+        # loop over the word to get each character and check whether is it in the key of char_point
+        for char in word:
+            # get point value from char_point dictionary to sum if character of word is string and it is in tuple key of dictionary
+            if char.upper() in letter:
+                total_score += point
+
+    # if length of word is from 7 to 10, add additional 8 point
+    if len(word) > 6:
+        total_score += 8
     return total_score
 
 
