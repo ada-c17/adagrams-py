@@ -1,9 +1,9 @@
+import random
 def draw_letters():
-    # import random
-    # letters = [list of letters]
-    # loop through key, value in dictionary of letters
-    # append key to the list, repeat this value number of times
-    # use random.sample(letters, 10) to get 10 non-repeating letters from the list
+
+    letters = ['A','A','A','A','A','A','A','A','A','B','B','C','C','D','D','D','D','E','E','E','E','E','E','E','E','E','E','E','E','F','F','G','G','G','H','H','I','I','I','I','I','I','I','I','I','J','K','L','L','L','L','M','M','N','N','N','N','N','N','O','O','O','O','O','O','O','O','P','P','Q','R','R','R','R','R','R','S','S','S','S','T','T','T','T','T','T','U','U','U','U','V','V','W','W','X','Y','Y','Z']
+    
+    return random.sample(letters, 10)
 
 
 def uses_available_letters(word, letter_bank):
