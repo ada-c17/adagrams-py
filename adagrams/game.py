@@ -31,7 +31,6 @@ LETTER_POOL = {
     'Z': 1
 }
 # dictionary of letters and their points values
-
 SCORES = {
     ("A", "E", "I", "O", "U", "L", "N", "R", "S", "T"): 1,
     ("D", "G"): 2,
@@ -44,7 +43,6 @@ SCORES = {
 
 
 def draw_letters():
-
     # build the letter bank
     letter_bank = []
     for letter in LETTER_POOL:
@@ -66,7 +64,6 @@ def uses_available_letters(word, letter_bank):
 
 
 def score_word(word):
-
     sum = 0
     word = word.upper()
     if len(word) > 6:
