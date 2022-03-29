@@ -1,5 +1,8 @@
 
+from operator import is_
 import random
+
+
 LETTER_POOL = {
     'A': 9, 
     'B': 2, 
@@ -26,16 +29,17 @@ LETTER_POOL = {
     'W': 2, 
     'X': 1, 
     'Y': 2, 
-    'Z': 1
-}
+    'Z': 1}
+
+
 def draw_letters():
-    lst_pool = []
-    for key, value in LETTER_POOL.items():
-        for i in range(value):
-            lst_pool.append(key)
+    pool_list = []
+    for letter, frequency in LETTER_POOL.items():
+        for i in range(frequency):
+            pool_list.append(letter)
     
-    lst2 = random.sample(lst_pool, 10)
-    return lst2
+    random_letters_list = random.sample(pool_list, 10)
+    return random_letters_list
 
 def uses_available_letters(word, letter_bank):
     pass
