@@ -62,38 +62,45 @@ def draw_letters():
         
 
 # iterate over each letter in the word
-
-#option 1
-# check if letter in is the hand
-# if letter is in the hand check it's not been used too many times return True
-# if any letter is not in the hand return False
-
-# option 2
 # check if letter is in the hand
+# if letter is in the hand remove a copy of that letter from the hand
 # if letter is not in the hand return False
-# if letter is in the hand set that letter in hand to None 
 # move to the next letter
 
 
-# word = "AAPW"
-# hand = ["A", "A", "P", "X", "X", "X", "X", "X", "X", "X"]
-
 def uses_available_letters(word, hand):
-    word_as_list = [char for char in word]
-    print(word_as_list)
-
+    '''
+    input: word (a string) and hand (a list of strings, one char each)
+    output: Returns True if each char is uniquely in hand. Returns
+    False otherwise or if char in word is not in hand.
+    '''
+    word = word.upper()
     for letter in word:
         if letter in hand:
-            print("great letter")
+            hand.remove(letter)
         elif letter not in hand:
-            print("this was a bad word")
             return False
-    print("success")
-    print(hand)
     return True
 
 
-# uses_available_letters(word, hand)
+def uses_available_letters(word, hand):
+    '''
+    input: word (a string) and hand (a list of strings, one char each)
+    output: Returns True if the frequency of each char in the word does
+    not exceed the frequency of that same char in the hand. Returns
+    False otherwise or if char in word is not in hand.
+    '''
+    word = word.upper()
+    letters_dict = {elem : hand.count(elem) for elem in set(hand)}
+    for letter in word:
+        if letter in hand:
+            if letters_dict[letter] > 0:
+                letters_dict[letter] += -1
+            elif letters_dict[letter] <= 0:
+                return False
+        else:
+            return False
+    return True
 
 
 def score_word(word):

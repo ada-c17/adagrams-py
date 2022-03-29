@@ -38,27 +38,27 @@ def test_uses_available_letters_false_word_overuses_letter():
     # Assert
     assert is_valid == False
 
-# # Test 7
-# def test_uses_available_letters_does_not_change_letter_bank():
-#     # Arrange
-#     letters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"]
-#     letters_copy = letters[:]
-#     word = "ABCD"
+# Test 7
+def test_uses_available_letters_does_not_change_letter_bank():
+    # Arrange
+    letters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"]
+    letters_copy = letters[:]
+    word = "ABCD"
 
-#     # ACT
-#     is_valid = uses_available_letters(word, letters)
+    # ACT
+    is_valid = uses_available_letters(word, letters)
 
-#     # Assert
-#     assert is_valid == True
-#     assert letters == letters_copy
+    # Assert
+    assert is_valid == True
+    assert letters == letters_copy
 
-# # Test 8
-# def test_uses_available_letters_ignores_case():
-#     # Arrange
-#     letters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"]
+# Test 8
+def test_uses_available_letters_ignores_case():
+    # Arrange
+    letters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"]
 
-#     # Act/Assert
-#     assert uses_available_letters("bEd", letters)
-#     assert uses_available_letters("fad", letters)
-#     assert uses_available_letters("a", letters)
-#     assert not uses_available_letters("aA", letters)
+    # Act/Assert
+    assert uses_available_letters("bEd", letters)
+    assert uses_available_letters("fad", letters)
+    assert uses_available_letters("a", letters)
+    assert not uses_available_letters("aA", letters)
