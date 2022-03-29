@@ -75,16 +75,51 @@ def score_word(word):
     Check if the character is in the letter_vals dictionary
     If it is, add the value of the letter to the result
     Return the result'''
-
+    # score_board = {key: 1 for key in letter.split(", ")}
     result = 0
     extra_point = [7,8,9,10]
     
-    score_board = {key: 1 for key in letter.split(", ")}
+    values_dict = {
+        'A': 1, 
+        'B': 3, 
+        'C': 3, 
+        'D': 2, 
+        'E': 1, 
+        'F': 4, 
+        'G': 2, 
+        'H': 4, 
+        'I': 1, 
+        'J': 8, 
+        'K': 5, 
+        'L': 1, 
+        'M': 3, 
+        'N': 1, 
+        'O': 1, 
+        'P': 3, 
+        'Q': 10, 
+        'R': 1, 
+        'S': 1, 
+        'T': 1, 
+        'U': 1, 
+        'V': 4, 
+        'W': 4, 
+        'X': 8, 
+        'Y': 4, 
+        'Z': 10
+    }
 
-    for char in word:
-        if char in score_board:
-            if len(word) in extra_point:
+    # for char in word:
+    #     if  in values_dict:
+    #         if len(word) in extra_point:
 
+    for letter in word:
+        if letter.isalpha():
+            result += values_dict[letter.upper()]
+        else:
+            continue
+    if len(word) in extra_point:
+        result += 8
+    return result
 
 
 
