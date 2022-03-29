@@ -1,3 +1,4 @@
+from importlib.metadata import distribution
 import random
 
 def generate_random_letter(x,y):
@@ -40,15 +41,16 @@ def draw_letter():
     count = 1
     while count <= 10:
         random_letter = generate_random_letter("A", "Z")
+        # temp_key = random_letter
         # generates random letter from a-z
          # compares letter against distribution dictionary
-        if pool_of_letters[random_letter] == 0:
-            random_letter = " "
-        else:
-            letters.append(random_letter)
-            count += 1
-            pool_of_letters[random_letter] -= 1
-       
+        # if pool_of_letters[temp_key] == 0:
+        #     temp_key = " "
+        # else:
+        letters.append(random_letter)
+        count += 1
+        pool_of_letters[random_letter] -= 1
+        print(letters)
 
         
         # for letter in  letters:
@@ -62,8 +64,7 @@ def draw_letter():
         # problem- no vowels generated
         # letters.append(random_letter)
         # count += 1
-    print(letters)
-    print(pool_of_letters)
+    
 draw_letter()
 
 
