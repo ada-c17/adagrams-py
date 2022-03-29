@@ -82,7 +82,9 @@ def draw_letters():
             drawn_letters[letter] += 1
         
         if drawn_letters[letter] > LETTER_POOL[letter]:
-            result.remove(letter)        
+            result.remove(letter)  
+        # if drawn_letters[letter] <= LETTER_POOL[letter]:
+        #     result.append(letter)
     return result
 
 def uses_available_letters(word, letter_bank):
@@ -96,10 +98,10 @@ def uses_available_letters(word, letter_bank):
         else:
             letter_bank_dict[letter] +=1
     
-    # Dictionary of letter in users input word
+    # Dictionary of letters in users input word
     word_dict = {}
-    # For loop will return False when the letter in user's word is not in their hand
-    # Or if they don't have enough letters in their hand to spell the word
+    # For loop will create a dictionary based on the user word
+    # At the same time it will return false if they don't have enough letters or the right letters
     for letter in word:
         if letter not in letter_bank_dict:
             return False
@@ -134,12 +136,36 @@ def score_word(word):
     return points
 
 def get_highest_word_score(word_list):
-    hightest_score = 0
-    hightest_word = ""
+    # hightest_score = 0
+    # hightest_word = ""
 
+    # for word in word_list:
+    #     score = score_word(word)
+    #     if score > hightest_score:
+    #         hightest_score = score
+    #         hightest_word = word
+    #return (hightest_word,hightest_score)
+    highest_score = 0
+    highest_word_list = []
     for word in word_list:
         score = score_word(word)
-        if score > hightest_score:
-            hightest_score = score
-            hightest_word = word
-    return (hightest_word,hightest_score)
+        if score > highest_score:
+            highest_score = score
+            highest_word_list.clear()
+            highest_word_list.append(word)
+        elif score == highest_score:
+            highest_word_list.append(word)
+
+    if len(highest_word_list) == 1:
+        return (highest_word_list[0], highest_score)
+    else:
+        shortest_word_len = 10
+        shortest_word = ""
+        for word in highest_word_list:
+            if len(word) == 10:
+                return(word, score_word(word))
+            elif len(word) < shortest_word_len:
+                shortest_word_len = len(word)
+                shortest_word = word
+        
+        return (shortest_word, score_word(shortest_word))
