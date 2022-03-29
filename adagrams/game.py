@@ -1,7 +1,7 @@
 
 import random
 LETTER_POOL = {
-    'A': 9, 
+    'A': 9,
     'B': 2, 
     'C': 2, 
     'D': 4, 
@@ -40,7 +40,7 @@ score_chart = {
     10: ["Q", "Z"],
 }
 
-print(score_chart.keys())
+
 # result = random.choice(list(LETTER_POOL))
 # print(result)
 
@@ -107,20 +107,25 @@ def score_word(word):
     """
     input: word
     output: total score of the word: sum of letters' point value + bonus of lenth value 8 (if lenth >= 7)
-            
+    score= 0
+    for letter in word:
+        for key, value in score_chart:
+            if letter in value:
+                score += key
+
+    if lenth > 7 and lenth < 11:
+        score += 8
+
     """
 
-    score_chart = {
-        1 : ["A", "E", "I", "O", "U", "L", "N", "R", "S", "T"],
-        2 : ["D", "G"],
-        3 : ["B", "C", "M", "P"],
-        4 : ["F", "H", "V", "W", "Y"],
-        5 : ["K"],
-        8 : ["J", "X"],
-        10: ["Q", "Z"],
-    }
+    
 
     
 def get_highest_word_score(word_list):
+    """
+    input: word_list
+    output: (winning word, score)
+    tie-break rules: 10 letters > fewer letters  or  1st one if lenth is same
+    """
     pass
 
