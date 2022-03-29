@@ -92,22 +92,15 @@ def score_word(word):
         8: ["J", "X"],
         10: ["Q", "Z"]		
     }
-    print(score_chart)
     score = 0
 
     if len(word) >= 7:
         score += 8
     
     for letter in word:
-        # print(letter)
         for key, value in score_chart.items():
-            # print(type(key))
-            # print(key)
             for available_letter in value:
-                # print(letter)
-                # print(available_letter)
                 if letter == available_letter:
-                    print("made into if")
                     score += key 
     
     return score 
@@ -122,6 +115,43 @@ def score_word(word):
     #if statement for if letter in letter array - talley total points
 
 def get_highest_word_score(word_list):
+    max_score_list = []
+
+    for word in word_list:
+        word_score = score_word(word)
+        max_score_list.append((word, word_score))
+    # print(max_score_list)
+
+    max_score = 0
+    min_length = 0
+    max_pair = None
+    for pair in max_score_list:
+        print(pair)
+        print(max_score)
+        print(min_length)
+        print("")
+        if pair[1] > max_score:
+            max_score = pair[1]
+            min_length = len(pair[0])
+            max_pair = pair
+        elif pair[1] == max_score:
+            if len(pair[0]) == min_length:
+                print("made in first if statement")
+            elif len(pair[0]) == 10 and len(max_pair[0]) != min_length:
+                print("made it in first elif statemnet")
+                max_pair = pair
+            elif len(pair[0]) < min_length and min_length != 10:
+                print("made it in last elif statement")
+                max_pair = pair
+        print("")
+        print(max_score)
+        print(min_length)
+        print(max_pair)
+        print("")
+    return max_pair
+    
+
+
     #initialize max_score list - will tuple of word, score
     #####
     #variable for length of the word
@@ -131,9 +161,13 @@ def get_highest_word_score(word_list):
     #call score_word() function -- append word & score to max_score_list
     #for loop to loop through max_score_list to meet requirements
 
-    pass
+    #for tie breaker:
+    #if statement current score is equal to max store 
+        #
 
+    
+print(get_highest_word_score(["AAAAAAAAAA", "BBBBBB"]))
 
 
 # print(score_word("dog"))
-print(score_word("XXXXXXX"))
+# print(score_word("XXXXXXX"))
