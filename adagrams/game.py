@@ -1,6 +1,6 @@
 import random
 import string
-from tokenize import blank_re
+# from tokenize import blank_re
 
 letters_dict = {
     "A": 9,
@@ -29,6 +29,16 @@ letters_dict = {
     "X": 1,
     "Y": 2,
     "Z": 1
+}
+
+score_dict = {
+    1: ["A", "E", "I", "O", "U", "L", "N", "R", "S", "T"],
+    2: ["D", "G"],
+    3: ["B", "C", "M", "P"],
+    4: ["F", "H", "V", "W", "Y"],
+    5: ["K"],
+    8: ["J", "X"],
+    10: ["Q", "Z"]
 }
 def draw_letters():
     """
@@ -80,7 +90,22 @@ def uses_available_letters(word, letter_bank):
     return True
 
 def score_word(word):
-    pass
+    """
+    input: word (string)
+    output: integer (number of points scored)
+    function will add points assciated w/each letter
+    8 bonus points will be awarded if length of word >= 7
+    """
+    score = 0
+    
+    if len(word) >= 7:
+        score += 8
+    for letter in word.upper():
+        for key, value in score_dict.items():
+            if letter in value:
+                score += key
+
+    return score            
 
 def get_highest_word_score(word_list):
     pass
