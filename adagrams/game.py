@@ -41,8 +41,19 @@ def draw_letters():
    
     return letters
 
+# iterate through the word
+# see if the current letter in the LETTER_BANK
+# then remove it from the letter bank
+# if not return False
+
 def uses_available_letters(word, letter_bank):
-    pass
+    letter_bank_copy = letter_bank[:]
+    for letter in word:
+        if letter in letter_bank_copy:
+            letter_bank_copy.remove(letter)
+        else:
+            return False
+    return True
 
 def score_word(word):
     pass
