@@ -48,13 +48,14 @@ def draw_letters():
 from collections import Counter 
 
 def uses_available_letters(word, letter_bank):
-    input_word = word.upper()
+    if word.isalpha():
+        input_word = word.upper()
     print(f"This is the value of {input_word=}")
-    word_counter = Counter(input_word)   
-    print(f"Thisis the data type of word_counter: {type(word_counter)=}")
-    print(f"This is the value of {word_counter=}")
-    letter_bank_counter = Counter(letter_bank)    
-    print(f"This is the value of letter_bank_counter: {letter_bank_counter}")
+    # word_counter = Counter(input_word)   
+    # print(f"Thisis the data type of word_counter: {type(word_counter)=}")
+    # print(f"This is the value of {word_counter=}")
+    # # letter_bank_counter = Counter(letter_bank)    
+    # print(f"This is the value of letter_bank_counter: {letter_bank_counter}")
  
     for letter in input_word:  
         if letter not in letter_bank:
@@ -65,12 +66,10 @@ def uses_available_letters(word, letter_bank):
             letter_bank_frequency = letter_bank.count(letter)
             if word_letter_frequency > letter_bank_frequency:
                 return False
+            # elif word_letter_frequency < letter_bank_frequency:
+            #     return False
             elif word_letter_frequency == letter_bank_frequency:
                 return True
-
-    # for letter in input_word:
-    #     if letter not in letter_bank:
-    #         return False
 
     # for (k, v), (k2, v2)  in  zip(word_counter.items(), letter_bank_counter.items()): 
     #     # for (letter, letter_frequency), (letter, letter_frequency)  in  zip(word_counter.items(), letter_bank_counter.items()): 
@@ -95,6 +94,50 @@ def uses_available_letters(word, letter_bank):
     """
 
 def score_word(word):
+    input_word = word.upper()
+    score = 0
+    # score_chart = {
+    #     (A, E, I, O, U, L, N, R, S, T)
+    # }
+    # score_chart = {
+    # "A", "E", "I", "O", "U", "L", "N", "R", "S", "T": 1,
+    # "D","G": 2,
+
+    # }
+    score_chart = {
+    'A': 1, 
+    'B': 3, 
+    'C': 3, 
+    'D': 1, 
+    'E': 1, 
+    'F': 4, 
+    'G': 1, 
+    'H': 4, 
+    'I': 1, 
+    'J': 8, 
+    'K': 5, 
+    'L': 1, 
+    'M': 3, 
+    'N': 1, 
+    'O': 1, 
+    'P': 3, 
+    'Q': 10, 
+    'R': 1, 
+    'S': 1, 
+    'T': 1, 
+    'U': 1, 
+    'V': 4, 
+    'W': 4, 
+    'X': 8, 
+    'Y': 4, 
+    'Z': 10
+
+
+    }
+    
+    for letter in input_word:
+        word_score += letter_value 
+        pass
     """
     Wave 3: score_word
     Now you need a function returns the score of a given word as defined by the Adagrams game.
@@ -108,6 +151,8 @@ def score_word(word):
     If the length of the word is 7, 8, 9, or 10, then the word gets an additional 8 points
 
     """
+
+
     pass
 
 def get_highest_word_score(word_list):
