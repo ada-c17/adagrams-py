@@ -108,4 +108,32 @@ def score_word(word):
     return score            
 
 def get_highest_word_score(word_list):
-    pass
+    """
+    input: list of strings
+    output: returns tuple winning_word (string), score (int)
+    in case of tie:
+    word with fewest letters will win
+    if multiple words have same length, winner is first one in list
+    exception: in case of tie, if one of the words has len(10),
+    that word wins
+    """
+    # for finding max score
+    score_list = []
+    tuple_list = []
+    for word in word_list:
+        word_tuple = word, score_word(word)
+        tuple_list.append(word_tuple)
+        score_list.append(score_word(word))
+
+    max_score = max(score_list)
+    max_index_list = [i for i, score in enumerate(score_list) \
+        if score == max_score]
+
+    if len(max_index_list) == 1:
+        return word_tuple[max_index_list[0]]
+    else:
+        for word, score in word_tuple:
+            if score == max_score and len(word) == 10:
+                return word, score
+        else:
+            pass
