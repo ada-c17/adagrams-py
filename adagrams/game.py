@@ -1,11 +1,6 @@
 from random import shuffle
-<<<<<<< HEAD
-from adagrams import LETTER_POOL
-=======
 from adagrams import LETTER_POOL, SCORE_CHART
 from copy import deepcopy
-
->>>>>>> 8e6776c8ff9236bcbc8fbbbdb6161d92b2a12237
 
 def create_letter_pool():
     letter_pool = []
@@ -42,9 +37,7 @@ def uses_available_letters(word, letter_bank):
 
 
 def score_word(word):
-<<<<<<< HEAD
-    pass
-=======
+
     score = 0
 
     if 7 <= len(word) <= 10:
@@ -55,11 +48,7 @@ def score_word(word):
             score += SCORE_CHART[char]
 
     return score
-<<<<<<< HEAD
->>>>>>> b89d66e8969f96fcb6a428cb5fb2208269ca4077
->>>>>>> b39618dab30c8c13a3c23667ac0487c77f01b74b
-=======
->>>>>>> 8e6776c8ff9236bcbc8fbbbdb6161d92b2a12237
+
 
 def get_highest_word_score(word_list):
     high_scores = [] # [("XXXX", 10), ("XX", 10),]
