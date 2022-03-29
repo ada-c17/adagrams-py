@@ -135,5 +135,10 @@ def get_highest_word_score(word_list):
         for word, score in word_tuple:
             if score == max_score and len(word) == 10:
                 return word, score
-        else:
-            pass
+            else:
+                small_word_length = 9
+                for index in max_index_list:
+                    if len(word) in word_tuple[index] < small_word_length:
+                        small_word_length = len(word)
+                    if small_word_length == len(word):
+                        return word, score
