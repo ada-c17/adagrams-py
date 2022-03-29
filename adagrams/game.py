@@ -86,5 +86,31 @@ def score_word(word):
         total += 8
     return total
 
+def get_highest_dict(word_list):
+    score_word_dict = {}
+    for word in word_list:
+        score = score_word(word)
+        if score not in score_word_dict.keys():
+            score_word_dict[score] = []
+        score_word_dict[score].append(word)
+    return score_word_dict
+
+
+#print(get_highest_dict(["cat", "dog", "elf"]))
+
+
+
 def get_highest_word_score(word_list):
-    pass
+    score_word_dict = get_highest_dict(word_list)
+    max_score = max(score_word_dict.keys())
+    max_words = score_word_dict[max_score]
+    winner_word = max_words[0]
+    
+    return (winner_word, max_score)
+    #dict w/ scores as key and list of words as values
+    
+
+
+
+
+    #use max() function to get highset word
