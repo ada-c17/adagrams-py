@@ -30,6 +30,17 @@ LETTER_POOL = {
     'Z': 1
 }
 
+score_chart = {
+    1 : ["A", "E", "I", "O", "U", "L", "N", "R", "S", "T"],
+    2 : ["D", "G"],
+    3 : ["B", "C", "M", "P"],
+    4 : ["F", "H", "V", "W", "Y"],
+    5 : ["K"],
+    8 : ["J", "X"],
+    10 : ["Q", "Z"]
+}
+
+
 
 def draw_letters():
     list_of_distribution = []
@@ -45,8 +56,6 @@ def draw_letters():
         letters_in_hand.append(letter)
         list_of_distribution.remove(letter)
     
-    # print("list of distribution: ",list_of_distribution)
-    # print("letters in hand: ",letters_in_hand)
     return letters_in_hand
 
 def uses_available_letters(word, letter_bank):
@@ -85,7 +94,19 @@ def uses_available_letters(word, letter_bank):
 #     return True
 
 def score_word(word):
-    pass
+    word = word.upper()
+    score = 0
+    additional_score = [7, 8, 9, 10]
+
+
+    for letter in word:
+        for key in score_chart:
+            if letter in score_chart[key]:
+                score += key
+
+    if len(word) in additional_score:
+        score += 8
+    return score
 
 def get_highest_word_score(word_list):
     pass
