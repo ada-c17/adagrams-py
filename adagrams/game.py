@@ -45,9 +45,67 @@ def draw_letters():
 
     return user_hand
 
+<<<<<<< HEAD
+# def uses_available_letters(word, letter_bank):
+#     for letter in word.upper():
+#         if letter not in letter_bank or word.upper().count(letter) > letter_bank.count(letter):
+#             return False
+#     return True
+
 
 def score_word(word):
+    # global variable ?
+    score_chart = {
+        1 : ["A", "E", "I", "O", "U", "L", "N", "R", "S", "T"],
+        2 : ["D", "G"],
+        3 : ["B", "C", "M", "P"],
+        4 : ["F", "H", "V", "W", "Y"],
+        5 : ["K"],
+        8 : ["J", "X"],
+        10 : ["Q", "Z"]
+    }
+    points = 0
+    if len(word.upper()) > 6 and len(word.upper()) < 11:
+        points += 8
+    for letter in word.upper():
+        for key, values in score_chart.items():
+            if letter in values:
+                points += key
+    return points
+    
+=======
+
+def score_word(word):
+<<<<<<< HEAD
     pass
+=======
+    score = 0
+
+    if 7 <= len(word) <= 10:
+        score += 8
+
+    for char in word.upper():
+        if char in SCORE_CHART:
+            score += SCORE_CHART[char]
+
+    return score
+>>>>>>> b89d66e8969f96fcb6a428cb5fb2208269ca4077
+>>>>>>> b39618dab30c8c13a3c23667ac0487c77f01b74b
 
 def get_highest_word_score(word_list):
-    pass
+    high_scores = []
+    for word in word_list:
+        word_score = score_word(word)
+        high_scores.append((word, word_score))
+    highest_score = max(high_scores)
+    # if highest_score > 1:
+    #     tied_scores = []
+    #     tied_scores.append(highest_score)
+    #     tied_scores.sort()
+    #     for tiebreaker in tied_scores:
+    #         if highest_score[1] in tied_scores[0] or len(highest_score[0]) == 10:
+    #             highest_score = tiebreaker
+    #             return highest_score
+    #         else:
+    #             return tied_scores[0]
+    return highest_score
