@@ -30,6 +30,35 @@ LETTER_POOL = {
     'Z': 1
 }
 
+SCORE_DICTIONARY = {
+        "A": 1,
+        "E": 1,
+        "I": 1,
+        "O": 1,
+        "U": 1,
+        "L": 1, 
+        "N": 1,
+        "R": 1,
+        "S": 1,
+        "T": 1,
+        "D": 2,
+        "G": 2,
+        "B": 3,
+        "C": 3,
+        "M": 3,
+        "P": 3,
+        "F": 4,
+        "H": 4, 
+        "V": 4,
+        "W": 4,
+        "Y": 4,
+        "K": 5,
+        "J": 8,
+        "X": 8,
+        "Q": 10,
+        "Z": 10,
+    }
+
 def draw_letters():
 
     letter_pool_copy = copy.deepcopy(LETTER_POOL)
@@ -67,9 +96,39 @@ def uses_available_letters(word, letter_bank):
             return False
     
     return True
+<<<<<<< HEAD
     
-def score_word(word):
-    pass
+=======
 
+>>>>>>> eb918346b3ca5ac014203f0fda386d80dff8f4ca
+def score_word(word):
+    
+    word_score = 0
+    converted_string = word.upper()
+    for letter in converted_string:
+        if letter in SCORE_DICTIONARY:
+            word_score += SCORE_DICTIONARY[letter]
+    if len(word) >= 7:
+        word_score += 8  
+        
+    return word_score
+    
 def get_highest_word_score(word_list):
     pass
+    # best_word = [word_list[0], 0]
+    # for i in range(len(word_list)):
+    #     score = score_word(word_list[i])
+    #     if score > best_word[1]:
+    #         best_word = [word_list[i], score]
+    #     elif score == best_word[1]:
+    #         if len(word_list[i]) == len(best_word[0]):
+    #             best_word = [best_word[0], score]
+    #         elif len(word_list[i]) == 10:
+    #             best_word = [word_list[i], score]
+    #         elif len(best_word[0]) == 10:
+    #             continue
+    #         elif len(word_list[i]) < len(best_word[0]):
+    #             best_word = [word_list[i], score]
+
+    # return best_word
+
