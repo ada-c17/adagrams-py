@@ -42,7 +42,6 @@ def draw_letters():
             copied_letters[rand_letter]-=1
     return hand
 
-
 def uses_available_letters(word, letter_bank):
     copied_letter_bank = copy.deepcopy(letter_bank)
     if len(word) > len(copied_letter_bank):
@@ -60,15 +59,9 @@ def score_word(word):
         score += 8
     for letter in word.upper():
         if letter.isalpha():
-            score += SCORE_CHART[letter]
-    
+            score += SCORE_CHART[letter]  
     return score
-
-def get_len_of_highest_score_words(highest_score_words):
-
-    len_of_words = [len(word) for word in highest_score_words]
-    return len_of_words
-
+    
 def get_highest_word_score(word_list):
     highest_score_words = [word_list[0]]
     highest_score = score_word(word_list[0])
@@ -92,6 +85,6 @@ def get_highest_word_score(word_list):
 
     return (highest_score_words[0], highest_score)
 
-
-        
-    
+def get_len_of_highest_score_words(highest_score_words):
+    len_of_words = [len(word) for word in highest_score_words]
+    return len_of_words
