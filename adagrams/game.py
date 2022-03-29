@@ -117,13 +117,16 @@ def uses_available_letters(word, letter_bank):
     #for each letter in word
     #-->if letter is in letter_bank
     #return true
-    #-> else false 
+    #-> else false
+    uppercase_word = word.upper()
+    list_of_letter = copy.deepcopy(letter_bank)
     bool_set = set()
-    for letter in word:
-        if letter in letter_bank:
+    for letter in uppercase_word:
+        if letter in list_of_letter:
             bool_set.add(True)
-    else:
-        bool_set.add(False)
+            list_of_letter.remove(letter)
+        else:
+            bool_set.add(False)
 
 
     result = all(bool_set)
