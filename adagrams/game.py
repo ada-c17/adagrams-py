@@ -41,8 +41,16 @@ def draw_letters():
     random_letters_list = random.sample(pool_list, 10)
     return random_letters_list
 
+import copy
 def uses_available_letters(word, letter_bank):
-    pass
+    letter_bank_copy = copy.deepcopy(letter_bank)
+    for letter in word:
+        letter = letter.upper()
+        if letter in letter_bank_copy:
+            letter_bank_copy.remove(letter)
+        else:
+            return False
+    return True
 
 def score_word(word):
     pass
