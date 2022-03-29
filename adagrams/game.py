@@ -69,7 +69,39 @@ def score_word(word):
 
 
 def get_highest_word_score(word_list):
-    pass
+    word_scores = {}
+    highest_score = 0
+    highest_scoring_words = []
+
+    for word in word_list:
+        word_scores[word] = score_word(word)
+
+    for score in word_scores.values():
+        if score > highest_score:
+            highest_score = score
+
+    for word_key, high_score in word_scores.items():
+        if high_score == highest_score:
+            highest_scoring_words.append(word_key)
+
+    if len(highest_scoring_words) == 1:
+        return highest_scoring_words[0], word_scores[highest_scoring_words[0]]
+    else:
+        if len(highest_scoring_words[0]) == len(highest_scoring_words[1]):
+            if word_list.index(highest_scoring_words[0]) > word_list.index(highest_scoring_words[1]):
+                return highest_scoring_words[1], word_scores[highest_scoring_words[1]]
+            else:
+                return highest_scoring_words[0], word_scores[highest_scoring_words[0]]
+        elif len(highest_scoring_words[0]) == 10:
+            return highest_scoring_words[0], word_scores[highest_scoring_words[0]]
+        elif len(highest_scoring_words[1]) == 10:
+            return highest_scoring_words[1], word_scores[highest_scoring_words[1]]
+        elif len(highest_scoring_words[0]) < len(highest_scoring_words[1]):
+            return highest_scoring_words[0], word_scores[highest_scoring_words[0]]
+        else:
+            return highest_scoring_words[1], word_scores[highest_scoring_words[1]]
+
+    
 
 
 # letters = {
