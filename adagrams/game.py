@@ -106,11 +106,16 @@ def score_word(word):
             word_score += SCORE_DICTIONARY[letter]
     if len(word) >= 7:
         word_score += 8  
-        
+
     return word_score
     
 def get_highest_word_score(word_list):
     pass
+
+    
+    for word in word_list:
+        score = score_word
+
     # best_word = [word_list[0], 0]
     # for i in range(len(word_list)):
     #     score = score_word(word_list[i])
