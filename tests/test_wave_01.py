@@ -59,6 +59,7 @@ def test_letter_not_selected_too_many_times():
         letters = draw_letters()
 
         letter_freq = {}
+        #for each letter in your hand, count how many times it shows up
         for letter in letters:
             if letter in letter_freq:
                 letter_freq[letter] += 1
