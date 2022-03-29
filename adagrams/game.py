@@ -1,4 +1,3 @@
-import copy
 from random import shuffle
 from collections import Counter
 
@@ -37,7 +36,7 @@ LETTER_POOL = {
 
 
 def draw_letters():
- 
+
     letters = []
 
     letter_bag = list(Counter(LETTER_POOL).elements())
@@ -50,7 +49,7 @@ def draw_letters():
 
 def uses_available_letters(word, letter_bank):
 
-    letter_bank_copy = copy.copy(letter_bank)
+    letter_bank_copy = letter_bank.copy()
     for letter in word.upper():
         if letter not in letter_bank_copy:
             return False
@@ -61,7 +60,33 @@ def uses_available_letters(word, letter_bank):
 
 
 def score_word(word):
-    pass
+    score = 0
+    one_point = ['A', 'E', 'I', 'O', 'U', 'L', 'N', 'R', 'S', 'T']
+    two_points = ['D', 'G']
+    three_points = ['B', 'C', 'M', 'P']
+    four_points = ['F', 'H', 'V', 'W', 'Y']
+    five_points = ['K']
+    eight_points = ['J', 'X']
+    ten_points = ['Q', 'Z']
+    for letter in word.upper():
+        if letter in one_point:
+            score += 1
+        elif letter in two_points:
+            score += 2
+        elif letter in three_points:
+            score += 3
+        elif letter in four_points:
+            score += 4
+        elif letter in five_points:
+            score += 5
+        elif letter in eight_points:
+            score += 8
+        elif letter in ten_points:
+            score += 10
+    if len(word) >= 7:
+        score += 8
+    return score 
+
 
 def get_highest_word_score(word_list):
     pass
