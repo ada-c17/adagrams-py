@@ -138,9 +138,9 @@ def uses_available_letters(word, letter_bank):
 #     return total_points
 
 
-# def get_highest_word_score(word_list):
-#     pass
+def get_highest_word_score(word_list):
+    pass
 
->>>>>>> 0a2a7c5d955ff11429e80b4da0df09155e1b17c8
+# >>>>>>> 0a2a7c5d955ff11429e80b4da0df09155e1b17c8
 
 
