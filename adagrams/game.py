@@ -51,21 +51,21 @@ def draw_letters():
 
 def uses_available_letters(word, letter_bank):
     '''
-    1) How do get the right quanities in letter_bank?
-        A) Use a helper function?
-        B) Iterate over the list, make a new list, and subtract?
-        C) Set subtraction? NO
-        D) Use letter_bank to determine frequency
-    2) 
-    3) 
+    1) Iterate over each letter in word
+    2) If the letter is not in letter_bank or the frequency of 
+    the letter in word is greater than the frequency of the 
+    letter in letter_bank...
+    3) is_valid becomes False
+    4) Break the loop
+    5) return is_valid
     '''
-    # word_list = list(word)
-    # new_list = []
-    # for letter in word:
-    #     for i in range(len(letter_bank) - 1):
-    #         if 
-            
-    # print(word_list)
+    is_valid = True
+    for letter in word:
+        if letter not in letter_bank or (word.count(letter) > letter_bank.count(letter)):
+            is_valid = False
+            break
+    return is_valid
+
 
 def score_word(word):
     pass
