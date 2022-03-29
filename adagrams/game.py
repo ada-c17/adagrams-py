@@ -154,23 +154,29 @@ def get_highest_word_score(word_list):
     user_scores = ()
     winners = []
     best_score = []
+    highest_score = ()
     
     for word in word_list: 
         score = score_word(word)
-        score_list.append(score)
+        # score_list.append(score)
+        #[a word, 3 another,6,10,4,10]
+        highest_score.append(word, score)
+
+
         max_score = max(score_list)
         if score == max_score: 
             best_score.append(word, score)
         if len(best_score) > 1: 
 
 
-                user_scores = (word, score)
-                score_list.append(user_scores)
+    # user_scores = (word, score)
+    # score_list.append(user_scores)
     
-    max_score = max(score_list)
-    for user in score_list: 
-        if user[1] > max_score: 
-            user[1] = max_score
+    # max_score = max(score_list)
+    # for user in score_list: 
+    #     if user[1] > max_score: 
+    #         user[1] = max_score
+    pass 
         
 
 
