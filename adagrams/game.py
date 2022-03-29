@@ -76,8 +76,7 @@ def draw_letters():
 from collections import Counter 
 
 def uses_available_letters(word, letter_bank):
-    if word.isalpha():
-        input_word = word.upper()
+    input_word = word.upper()
     print(f"This is the value of {input_word=}")
     # word_counter = Counter(input_word)   
     # print(f"Thisis the data type of word_counter: {type(word_counter)=}")
@@ -88,24 +87,19 @@ def uses_available_letters(word, letter_bank):
     for letter in input_word:  
         if letter not in letter_bank:
             return False
-    for letter in input_word:
-        if letter in letter_bank:
+        elif letter in letter_bank:
             word_letter_frequency = input_word.count(letter)
             letter_bank_frequency = letter_bank.count(letter)
             if word_letter_frequency > letter_bank_frequency:
-                return False
-            # elif word_letter_frequency < letter_bank_frequency:
-            #     return False
-            elif word_letter_frequency <= letter_bank_frequency:
-                return True
+                return False       
+    return True
 
     # for (k, v), (k2, v2)  in  zip(word_counter.items(), letter_bank_counter.items()): 
-    #     # for (letter, letter_frequency), (letter, letter_frequency)  in  zip(word_counter.items(), letter_bank_counter.items()): 
-    #     zip(word_counter.items(), letter_bank_counter.items()) #But this isn't a dictionary ???
-    #     if k == k2 and v <= v2: 
-    #         return True
-    #     else: 
-    #         return False 
+    #     zip(word_counter.items(), letter_bank_counter.items()) 
+    #     if k == k2 and v > v2: 
+    #         return False
+    #      
+    # return True 
 """
     letter_bank = draw_letters()
     return TRUE or FALSE 
@@ -125,7 +119,6 @@ def score_word(word):
     input_word = word.upper()
     word_score = 0
     word_length = len(input_word)
-    letter_bank = draw_letters() 
 
     if input_word == "":
         return 0
