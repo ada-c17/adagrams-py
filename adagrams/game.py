@@ -40,30 +40,35 @@ def create_letter_pool():
     return letter_pool
 
 # thu's suggestion for improving draw_letters():
-# def draw_letters():
-
-#     # it will restart every time this function is invoked
-#     letter_pool = create_letter_pool()
-#     shuffle(letter_pool)
-#     user_hand = letter_pool[0:10]
-
-#     return user_hand
-
 def draw_letters():
-    user_hand = []
+
+    # it will restart every time this function is invoked
+    letter_pool = create_letter_pool()
+    shuffle(letter_pool)
+    user_hand = letter_pool[0:10]
+
+    return user_hand
+
+# tiffini
+def uses_available_letters(word, letter_bank):
+    
+    # make a copy of letter bank list to avoid editing original list
     copy_of_letter_bank = deepcopy(letter_bank)
 
-    for i in range(10):
-        index = randint(0, len(copy_of_letter_bank) - 1)
-        letter = copy_of_letter_bank.pop(index)
-        user_hand.append(letter)
+    # convert all letters in word to uppercase to allow for case insensitivity
+    uppercase_word = word.upper()
 
-#     for i in range(11):
-#         if 
-#         user_hand.append(choice(letter_pool))
+    # check if each letter in upper_case word is in letter_bank
+    # remove the letter if identified to update occurrence frequency in list, letter_bank
+    for letter in uppercase_word:
+        if letter not in copy_of_letter_bank:
+            return False
+        else:
+            copy_of_letter_bank.remove(letter)
+    
+    return True
 
-def uses_available_letters(word, letter_bank):
-    pass
+
 
 def score_word(word):
     pass
