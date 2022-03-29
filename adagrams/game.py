@@ -44,8 +44,6 @@ def draw_letters():
 
     return letter_bank
 
-
-        
     #To get single letter, turn LETTER_POOL keys into list (a-z)
     #random.choice the list
     #make deep copy of LETTER_POOL
@@ -55,13 +53,33 @@ def draw_letters():
     
 
 def uses_available_letters(word, letter_bank):
+    word = word.upper()
+    if len(word) > len(letter_bank):
+        return False
+    letter_frequency = {}
+    for letter in letter_bank:
+        if letter in letter_frequency:
+            letter_frequency[letter] += 1
+        else:
+            letter_frequency[letter] = 1
+    
+    for letter in word:
+        if letter in letter_frequency and letter_frequency[letter] != 0:
+            letter_frequency[letter] -= 1
+        else:
+            return False
+
+    return True
+
     #if statement for word less than len(letter_bank)
     #create letter bank dict w/ talley frequency
     #for loop through word 
     #if statement for letter in letter bank dict, subtract frequency
     #if scenario for value at letter bank dict == 0, return false 
     #return true at end if all works
-    pass
+
+print(uses_available_letters("bac", ["a", "b", "c", "d", "e", "o", "g", "a", "f", "m"]))
+
 
 def score_word(word):
     #dictioanry where point score are keys and letter in array as values
@@ -85,6 +103,5 @@ def get_highest_word_score(word_list):
 
     pass
 
-draw_letters()
 
 
