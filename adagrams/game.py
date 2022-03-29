@@ -2,7 +2,7 @@
 import random
 import copy 
 
-letter_pool = {
+LETTER_POOL = {
     'A': 9, 
     'B': 2, 
     'C': 2, 
@@ -30,9 +30,37 @@ letter_pool = {
     'Y': 2, 
     'Z': 1
 }
+SCORE_CHART = {
+    'A': 1, 
+    'B': 3, 
+    'C': 3, 
+    'D': 2, 
+    'E': 1, 
+    'F': 4, 
+    'G': 2, 
+    'H': 4, 
+    'I': 1, 
+    'J': 8, 
+    'K': 5, 
+    'L': 1, 
+    'M': 3, 
+    'N': 1, 
+    'O': 1, 
+    'P': 3, 
+    'Q': 10, 
+    'R': 1, 
+    'S': 1, 
+    'T': 1, 
+    'U': 1, 
+    'V': 4, 
+    'W': 4, 
+    'X': 8, 
+    'Y': 4, 
+    'Z': 10
 
+    }
 def draw_letters():
-    user_pool = copy.deepcopy(letter_pool)
+    user_pool = copy.deepcopy(LETTER_POOL)
     letter_bank = [] 
     while len(letter_bank)< 10: 
         draw = random.choice(list(user_pool))
@@ -95,49 +123,20 @@ def uses_available_letters(word, letter_bank):
 
 def score_word(word):
     input_word = word.upper()
-    score = 0
-    # score_chart = {
-    #     (A, E, I, O, U, L, N, R, S, T)
-    # }
-    # score_chart = {
-    # "A", "E", "I", "O", "U", "L", "N", "R", "S", "T": 1,
-    # "D","G": 2,
+    word_score = 0
+    word_length = len(input_word)
+    letter_bank = draw_letters() 
 
-    # }
-    score_chart = {
-    'A': 1, 
-    'B': 3, 
-    'C': 3, 
-    'D': 1, 
-    'E': 1, 
-    'F': 4, 
-    'G': 1, 
-    'H': 4, 
-    'I': 1, 
-    'J': 8, 
-    'K': 5, 
-    'L': 1, 
-    'M': 3, 
-    'N': 1, 
-    'O': 1, 
-    'P': 3, 
-    'Q': 10, 
-    'R': 1, 
-    'S': 1, 
-    'T': 1, 
-    'U': 1, 
-    'V': 4, 
-    'W': 4, 
-    'X': 8, 
-    'Y': 4, 
-    'Z': 10
-
-
-    }
-    
+    if input_word == "":
+        return 0
     for letter in input_word:
-        word_score += letter_value 
-        pass
+        if word_length < 7:
+            word_score += SCORE_CHART[letter]
+        elif word_length >= 7:
+            word_score = word_score + 8
+      
+    return word_score
+    
     """
     Wave 3: score_word
     Now you need a function returns the score of a given word as defined by the Adagrams game.
