@@ -43,13 +43,43 @@ def draw_letters():
     return drawn_letters
 
 
-
-
 def uses_available_letters(word, letter_bank):
-    pass
+    letter_bank_copy = deepcopy(letter_bank)
+    word = word.upper()
+    valid_word = True
+
+    for letter in word:
+        if letter not in letter_bank_copy:
+            valid_word = False
+        else:
+            letter_bank_copy.remove(letter)
+    
+    return valid_word
 
 def score_word(word):
-    pass
+    
+    letter_dict = {
+    'A': 1, 'E': 1, 'I': 1, 'O': 1, 'U': 1, 
+    'L': 1, 'N': 1, 'R': 1, 'S': 1, 'T': 1,
+    'D': 2, 'G': 2,
+    'B': 3, 'C': 3, 'M': 3, 'P': 3,
+    'F': 4, 'H': 4, 'V': 4, 'W': 4, 'Y': 4,
+    'K': 5,
+    'J': 8, 'X': 8,
+    'Q': 10, 'Z': 10,
+}
+
+    word_score = 0
+    
+    if word == None:
+        return None
+    else:
+        word = word.upper()
+        for letter in word:
+            word_score += letter_dict[letter]
+        if len(word) >= 7:
+            word_score += 8
+    return word_score
 
 def get_highest_word_score(word_list):
     pass
