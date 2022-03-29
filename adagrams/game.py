@@ -1,3 +1,6 @@
+import random
+import copy
+
 LETTER_POOL = {
     'A': 9, 
     'B': 2, 
@@ -27,9 +30,10 @@ LETTER_POOL = {
     'Z': 1
 }
 
-import random
+
 def draw_letters():
     list_of_distribution = []
+
 
     for key, val in LETTER_POOL.items():
         for i in range(val):
@@ -46,7 +50,39 @@ def draw_letters():
     return letters_in_hand
 
 def uses_available_letters(word, letter_bank):
-    pass
+    word = word.upper()
+    found = True
+    letter_bank_copy = copy.deepcopy(letter_bank)
+    for letter in word:
+        if letter in letter_bank_copy:
+            letter_bank_copy.remove(letter)
+        else:
+            found = False
+    return found
+
+# def uses_available_letters(word, letter_bank):
+#     word = word.upper()
+#     word_dictionary = {}
+#     for letter in word:
+#         if letter not in word_dictionary.keys():
+#             word_dictionary[letter] = 1
+#         else:
+#             word_dictionary[letter] += 1
+    
+#     letter_bank_dictionary = {}
+#     for letter in letter_bank:
+#         if letter not in letter_bank_dictionary.keys():
+#             letter_bank_dictionary[letter] = 1
+#         else:
+#             letter_bank_dictionary[letter] += 1
+#     # print("word_dictionary:", word_dictionary)
+#     # print("letter_bank_dictionary:", letter_bank_dictionary)
+#     for key in word_dictionary.keys():
+#         if key not in letter_bank_dictionary.keys():
+#             return False
+#         elif word_dictionary[key] >= letter_bank_dictionary[key]:
+#             return False
+#     return True
 
 def score_word(word):
     pass
