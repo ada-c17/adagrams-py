@@ -32,7 +32,7 @@ LETTER_POOL = {
 
 SCORE_CHART = {
     ("A", "E", "I", "O", "U", "L", "N", "R", "S", "T"): 1,
-    ("D", "G") : 2,
+    ("D", "G"): 2,
     ("B", "C", "M", "P"): 3,
     ("F", "H", "V", "W", "Y"): 4,
     ("K"): 5,
@@ -69,14 +69,32 @@ def score_word(word):
     word = word.upper()
     for letter in word:
         for char, value in SCORE_CHART.items():
-           if letter in char:
-               score += value
+            if letter in char:
+                score += value
 
-    if len(word)>=7:
+    if len(word) >= 7:
         score += 8
 
     return score
 
 
 def get_highest_word_score(word_list):
-    pass
+
+    words_score = {}
+    words_max_value = []
+
+    for word in word_list:
+        words_score[word] = score_word(word)
+    
+    max_value = max(words_score.values())
+
+    for word, score in words_score.items():
+        if score == max_value:
+            words_max_value.append(word)
+
+    if len(words_max_value) > 1:
+        words_max_value = sorted(words_max_value, key=len)
+        for word in words_max_value:
+            if len(word) == 10:
+                return word, max_value    
+    return words_max_value[0], max_value
