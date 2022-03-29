@@ -1,5 +1,5 @@
 from random import shuffle
-from adagrams import LETTER_POOL
+from adagrams import LETTER_POOL, SCORE_CHART
 
 def create_letter_pool():
     letter_pool = []
@@ -48,7 +48,16 @@ def draw_letters():
 
 
 def score_word(word):
-    pass
+    score = 0
+
+    if 7 <= len(word) <= 10:
+        score += 8
+
+    for char in word.upper():
+        if char in SCORE_CHART:
+            score += SCORE_CHART[char]
+
+    return score
 
 def get_highest_word_score(word_list):
     pass
