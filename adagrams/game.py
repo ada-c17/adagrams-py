@@ -40,6 +40,7 @@ def draw_letters():
             ten_letters.append(random_letter)
             no_change_letters[random_letter] -= 1
     return ten_letters
+     
 
 def uses_available_letters(word, letter_bank):
     letter_count = 0
