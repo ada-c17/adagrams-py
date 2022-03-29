@@ -1,8 +1,6 @@
 import random
 
 def draw_letters():
-# convert dictionary to list
-# in the list, index 0-8 will be A [A, A, A...] - then extract 10 elements from it
     letter_pool =["A", "A", "A", "A", "A", "A", "A", "A", "A", "B", "B", "C", "C", "D", "D", "D", "D", \
         "E", "E", "E", "E", "E", "E", "E", "E", "E", "E", "E", "E", "F", "F", "G", "G", "G", "H", "H", \
         "I", "I", "I", "I", "I", "I", "I", "I", "I", "J", "K", "L", "L", "L", "L", "M", "M", "N", \
@@ -17,10 +15,24 @@ def draw_letters():
     return letter_bank
 
 def uses_available_letters(word, letter_bank):
-    pass
+    is_valid = False
+    user_input_list = []
+    word = word.upper()
+    for letter in word:
+        user_input_list.append(letter)
+    for element in user_input_list:
+        if element in letter_bank:
+            if user_input_list.count(element) <= letter_bank.count(element):
+                is_valid = True
+        else:
+            is_valid = False
+    return is_valid
+
 
 def score_word(word):
     pass
 
 def get_highest_word_score(word_list):
     pass
+
+# print(uses_available_letters("DOG", ["D", "O", "C", "D", "E", "F", "X", "H", "I", "J"]))
