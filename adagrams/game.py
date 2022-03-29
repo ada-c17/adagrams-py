@@ -154,6 +154,10 @@ def get_highest_word_score(word_list):
     highest_score = 0
     
 
+
+
+    
+
     for word in word_list:
         word_length= len(word)
         word_score = score_word(word)
