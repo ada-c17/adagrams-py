@@ -1,5 +1,5 @@
 from random import shuffle
-from adagrams import LETTER_POOL, SCORE_CHART
+from adagrams import LETTER_POOL
 
 def create_letter_pool():
     letter_pool = []
@@ -19,7 +19,6 @@ def draw_letters():
 
     return user_hand
 
-# tiffini
 def uses_available_letters(word, letter_bank):
     
     # make a copy of letter bank list to avoid editing original list
@@ -48,16 +47,7 @@ def draw_letters():
 
 
 def score_word(word):
-    score = 0
-
-    if 7 <= len(word) <= 10:
-        score += 8
-
-    for char in word.upper():
-        if char in SCORE_CHART:
-            score += SCORE_CHART[char]
-
-    return score
+    pass
 
 def get_highest_word_score(word_list):
     pass
