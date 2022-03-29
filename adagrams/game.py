@@ -32,14 +32,6 @@ LETTER_POOL = {
 
 def draw_letters():
     user_hand = []
-    new = copy(LETTER_POOL)
-
-    # while len(user_hand) < 10:
-    #     letter_choice = choice(list(new.keys()))
-    #     if new[letter_choice] >  0:
-    #         user_hand.append(letter_choice)
-    #         new[letter_choice] -= 1
-
     available_letters = []
 
     for letter in LETTER_POOL:
@@ -50,14 +42,6 @@ def draw_letters():
         removed_letter = available_letters.index(letter_choice)
         user_hand.append(available_letters.pop(removed_letter))
     return user_hand
-
-        # if new[letter_choice] >  0:
-        #     user_hand.append(letter_choice)
-        #     new[letter_choice] -= 1
-    
-    # print(len(available_letters))
-    # return user_hand
-
 
 def uses_available_letters(word, letter_bank):
     user_hand = copy(letter_bank)
@@ -72,42 +56,42 @@ def uses_available_letters(word, letter_bank):
 def score_word(word):
     score = 0
     points_dict = {
-        "A" : 1,
-        "B" : 3,
-        "C" : 3,
-        "D" : 2,
-        "E" : 1,
-        "F" : 4,
-        "G" : 2,
-        "H" : 4,
-        "I" : 1,
-        "J" : 8,
-        "K" : 5,
-        "L" : 1,
-        "M" : 3,
-        "N" : 1,
-        "O" : 1,
-        "P" : 3,
-        "Q" : 10,
-        "R" : 1,
-        "S" : 1,
-        "T" : 1,
-        "U" : 1,
-        "V" : 4,
-        "W" : 4,
-        "X" : 8,
-        "Y" : 4,
-        "Z" : 10
+    1 : ["A", "E", "I", "O", "U", "L", "N", "R", "S", "T"], 
+    2: ["D", "G"],
+    3: ["B", "C", "M", "P"],
+    4: ["F", "H", "V", "W", "Y"],
+    5: ["K"],
+    8: ["J", "X"],
+    10: ["Q", "Z"]
     } 
 
     for letter in word.upper():
         for key in points_dict:
-            score += points_dict[key]
+            if letter in points_dict[key]:
+                score += key
     if len(word) >= 7 and len(word) <= 10:
         score += 8
     return score 
 
 def get_highest_word_score(word_list):
-    pass
 
-print(draw_letters())
+    word_dict = {}
+    tie_list = []
+
+    for word in word_list:
+        score = score_word(word)
+        word_dict[word] = score
+        
+    max_score = max(word_dict.values())
+
+    for key in word_dict:
+        if word_dict[key] == max_score:
+            tie_list.append(key)
+
+    for word in tie_list:
+        if len(word) == 10: 
+            return (word, max_score)
+        else: 
+            min_word = min(tie_list, key = len) 
+    
+    return (min_word, max_score)
