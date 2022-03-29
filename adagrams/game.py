@@ -77,11 +77,13 @@ def score_word(word):
     total = 0
     #look at each letter in word
     #add value associated with letter in dictionary to total
-    for letter in word:
+    for letter in word.upper():
         for value, letter_list in SCORE_DICT.items():
             if letter in letter_list:
                 total += value
 
+    if len(word) >= 7:
+        total += 8
     return total
 
 def get_highest_word_score(word_list):
