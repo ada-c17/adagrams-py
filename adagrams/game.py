@@ -1,6 +1,19 @@
-def draw_letters():
-    pass
+import random
 
+def get_letter_frequency(letter_dict, letter):
+    """
+    Takes in a dictionary (letter_dict), and string (letter). 
+    Returns a dictionary where keys are the string, and values are the count.
+    """
+    if letter not in letter_dict:
+        letter_dict[letter] = 1
+    elif letter in letter_dict:
+        letter_dict[letter] += 1
+    
+    return letter_dict
+
+
+def draw_letters():
     LETTER_POOL = {
         'A': 9, 
         'B': 2, 
@@ -31,9 +44,23 @@ def draw_letters():
     }
 
     hand = []
-    for i in range(10):
-        pass
-    print(hand)
+    letters_count = {}
+    letters = list(LETTER_POOL.keys())
+
+    while len(hand) < 10:
+        random_letter = random.choice(letters)
+        letters_count = get_letter_frequency(letters_count, random_letter)
+        letter_limit = LETTER_POOL[random_letter]
+
+        if letters_count[random_letter] > letter_limit:
+            continue
+
+        hand.append(random_letter)
+    
+    return hand
+
+
+
     
     # Empty list = hand
     # For loop to iterate over letter pool
