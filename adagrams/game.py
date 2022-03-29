@@ -27,17 +27,16 @@ LETTER_POOL = {
     'Z': 1
 }
 
-
 def draw_letters():
     import string
     import random
     import copy
-  
+
     user_hand = []
     temp_dict = copy.deepcopy(LETTER_POOL)
- 
+
     while len(user_hand) < 10:
-        letter = random.choice(string.ascii_uppercase)    
+        letter = random.choice(string.ascii_uppercase)
         letter_count = temp_dict[letter]
         if letter_count == 0:
             continue
