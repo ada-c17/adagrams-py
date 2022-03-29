@@ -15,7 +15,15 @@ def draw_letters():
 
 
 def uses_available_letters(word, letter_bank):
-    pass
+    copied_letter_bank = copy.deepcopy(letter_bank)
+    if len(word) > len(copied_letter_bank):
+        return False
+    for letter in word.upper():
+        if letter in copied_letter_bank:
+            copied_letter_bank.remove(letter)
+        else:
+            return False
+    return True
 
 def score_word(word):
     pass
