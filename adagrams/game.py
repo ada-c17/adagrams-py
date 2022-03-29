@@ -48,7 +48,6 @@ def draw_letters():
 from collections import Counter 
 
 def uses_available_letters(word, letter_bank):
-    
     word = word.upper()
     input_word = word.upper()
     word_counter = Counter(input_word)
