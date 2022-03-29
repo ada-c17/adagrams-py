@@ -102,15 +102,17 @@ def get_highest_word_score(word_list):
     for word, score in word_and_score:
         word_and_score_dict[word] = score
 
-    print(word_and_score_dict)
-
     highest_score = 0
     best_word = ""
     for word, score in word_and_score_dict.items():
-        if highest_score > score:
+        if score > highest_score:
             highest_score = score
             best_word = word
 
+    winner_tuple = best_word, highest_score
+    return(winner_tuple)
+
+    
     
 
 
