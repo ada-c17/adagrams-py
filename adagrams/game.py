@@ -3,12 +3,7 @@ import copy
 
 
 def draw_letters():
-    # Return: ["A", "C", "D", "W"]
-    # Import Random
-    # Import dictionary from Test
-    # Write a function  to Create comprehensive list of all letter and their frequency from dictionary
-    # Random Shuffle List
-    # Return First Ten
+    # dictionary of letters and their frequency
     LETTER_POOL = {
         'A': 9,
         'B': 2,
@@ -37,12 +32,13 @@ def draw_letters():
         'Y': 2,
         'Z': 1
     }
-    players_list = []
-
+    # build the letter bank
+    letter_bank = []
     for letter in LETTER_POOL:
-        players_list.extend([letter] * LETTER_POOL[letter])
-    random.shuffle(players_list)
-    return players_list[:10]
+        letter_bank.extend([letter] * LETTER_POOL[letter])
+    # shuffle the letter bank
+    random.shuffle(letter_bank)
+    return letter_bank[:10]
 
 
 def uses_available_letters(word, letter_bank):
