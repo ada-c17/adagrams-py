@@ -41,7 +41,6 @@ SCORES = {
     ("Q", "Z"): 10
 }
 
-
 def draw_letters():
     # build the letter bank
     letter_bank = []
@@ -53,7 +52,7 @@ def draw_letters():
 
 
 def uses_available_letters(word, letter_bank):
-    temp_copy = copy.deepcopy(letter_bank)
+    temp_copy = copy.copy(letter_bank)
     word = word.upper()
     for letter in word:
         if letter in temp_copy:
@@ -61,7 +60,6 @@ def uses_available_letters(word, letter_bank):
         else:
             return False
     return True
-
 
 def score_word(word):
     sum = 0
@@ -75,6 +73,19 @@ def score_word(word):
                     sum += SCORES[key]
     return sum
 
-
 def get_highest_word_score(word_list):
-    pass
+    score=0
+    best_word=""
+    for word in word_list:
+        if score_word(word)> score:
+            score = score_word(word)
+            best_word = word
+        elif score_word(word)== score: 
+            if len(best_word) ==10:
+                pass
+            elif len(word) ==10:
+                best_word = word 
+            elif len(best_word)>len(word):
+                best_word = word
+
+    return best_word, score
