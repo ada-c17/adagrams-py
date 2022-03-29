@@ -93,7 +93,7 @@ def uses_available_letters(word, letter_bank):
 # If letter.count in word <= letter count in list Return True,
 #  If not correct quantity return False
     
-    if not is_in_list(word, letter_bank):
+    if not is_in_list(word,letter_bank):
         return False
     elif is_in_list(word,letter_bank):
         for letter in word.upper(): 
@@ -104,15 +104,12 @@ def uses_available_letters(word, letter_bank):
     
 def is_in_list(word, letter_bank):
     word_set = set()
-    upper_letter = word.upper()
-    if not upper_letter: 
+    if not word.upper(): 
         return False
-    elif upper_letter:
-        for letter in upper_letter: 
+    elif word.upper():
+        for letter in word.upper(): 
             word_set.add(letter)
-
     result = word_set & set(letter_bank)
-
     if len(result) == len(set(word)):
         return True
     else: 
