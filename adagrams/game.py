@@ -70,13 +70,13 @@ def score_word(word):
     cap_letter = word.upper()
     score = 0
     for letter in cap_letter:
-        for letter in SCORE_DICT.values():
-            print(letter)
-            print(key)
-            if letter == value:
+        for key, value in SCORE_DICT.items():
+            if letter in value:
                 score += key
+    if len(word) >= 7:
+        score += 8
             
-    print(score)
+    return score
 
 def get_highest_word_score(word_list):
     pass
