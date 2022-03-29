@@ -1,5 +1,6 @@
 from random import choice
 from copy import copy
+
 LETTER_POOL = {
     'A': 9, 
     'B': 2, 
@@ -71,19 +72,37 @@ def uses_available_letters(word, letter_bank):
 def score_word(word):
     score = 0
     points_dict = {
-        1 : ["A", "E", "I", "O", "U", "L", "N", "R", "S", "T"],
-        2 : ["D", "G"],
-        3 : ["B", "C", "M", "P"],
-        4 : ["F", "H", "V", "W", "Y"],
-        5 : ["K"],
-        8 : ["J", "X"],
-        10 : ["Q", "Z"]
+        "A" : 1,
+        "B" : 3,
+        "C" : 3,
+        "D" : 2,
+        "E" : 1,
+        "F" : 4,
+        "G" : 2,
+        "H" : 4,
+        "I" : 1,
+        "J" : 8,
+        "K" : 5,
+        "L" : 1,
+        "M" : 3,
+        "N" : 1,
+        "O" : 1,
+        "P" : 3,
+        "Q" : 10,
+        "R" : 1,
+        "S" : 1,
+        "T" : 1,
+        "U" : 1,
+        "V" : 4,
+        "W" : 4,
+        "X" : 8,
+        "Y" : 4,
+        "Z" : 10
     } 
 
     for letter in word.upper():
         for key in points_dict:
-            if letter in points_dict[key]:
-                score += key
+            score += points_dict[key]
     if len(word) >= 7 and len(word) <= 10:
         score += 8
     return score 
