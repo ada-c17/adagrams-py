@@ -5,7 +5,7 @@ def generate_random_letter(x,y):
     return  chr(random.randint(ord(x),ord(y)))
 
 letters= []
-LETTER_POOL = {
+pool_of_letters = {
     'A' : 9,
     'B' : 2,
     'C' : 2,
@@ -34,29 +34,39 @@ LETTER_POOL = {
     'Z' : 1,
 }
 
+# print(pool_of_letters)
 
-def draw_letters():
+def draw_letter():
     count = 1
     while count <= 10:
         random_letter = generate_random_letter("A", "Z")
         # generates random letter from a-z
          # compares letter against distribution dictionary
-        if LETTER_POOL[random_letter] == 0:
-            continue
+        if pool_of_letters[random_letter] == 0:
+            random_letter = " "
         else:
             letters.append(random_letter)
             count += 1
-            LETTER_POOL[random_letter] -= 1
-    return letters
+            pool_of_letters[random_letter] -= 1
+       
+
+        
+        # for letter in  letters:
+        #     if letter in pool_of_letters:
+        #         pool_of_letters[letter] += 1]
+        # updates letter count in dictionary
+
+       
+
+        # adds letter to letters []
+        # problem- no vowels generated
+        # letters.append(random_letter)
+        # count += 1
+    print(letters)
+    print(pool_of_letters)
+draw_letter()
 
 
 
 
-def uses_available_letters(word, letter_bank):
-    pass
 
-def score_word(word):
-    pass
-
-def get_highest_word_score(word_list):
-    pass
