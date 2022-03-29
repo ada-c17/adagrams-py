@@ -1,7 +1,7 @@
 #testing commit 
 from copy import deepcopy
-from operator import le
 import random
+
 
 
 def draw_letters():
@@ -82,7 +82,8 @@ def uses_available_letters(word, letter_bank):
 
 
 
-# def uses_available_letters(word, letter_bank):
+def uses_available_letters(word, letter_bank):
+    pass
 #     letter_bank_dict = {}
 #     for letter in letter_bank:
 #         if letter not in letter_bank_dict:
@@ -105,7 +106,8 @@ def uses_available_letters(word, letter_bank):
 #         return False
 
 
-# def score_word(word):
+def score_word(word):
+    pass
 #     list_1 = ["A", "E", "I", "O", "U", "L", "N", "R", "S", "T"]
 #     list_2 = ["D", "G"]
 #     list_3 = ["B", "C", "M", "P"]
@@ -140,7 +142,8 @@ def uses_available_letters(word, letter_bank):
 
 def get_highest_word_score(word_list):
     pass
+#     pass
 
-# >>>>>>> 0a2a7c5d955ff11429e80b4da0df09155e1b17c8
+
 
 
