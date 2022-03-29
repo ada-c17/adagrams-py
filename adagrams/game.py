@@ -56,6 +56,7 @@ def draw_letters():
     return hand
 
 def uses_available_letters(word, letter_bank):
+
     anagram_attempt = word.upper()
     letters = set(anagram_attempt)
 
@@ -63,13 +64,13 @@ def uses_available_letters(word, letter_bank):
         if letter_bank.count(letter) < anagram_attempt.count(letter):
             #should I print something here so the user knows what they did wrong?
             return False
-        elif letter not in letter_bank:
+        elif letter not in letter_bank: 
             return False
     
     return True
 
 def score_word(word):
-
+    #does putting score chart in FN vs as global variable have implications for performance/memory?
     score_chart = {
     'A': 1, 
     'B': 3, 
@@ -99,16 +100,54 @@ def score_word(word):
     'Z': 10}
 
     score = 0
+    number_of_letters = 0 #track number of letters because punctuation can be in the string
 
-    for letter in word.upper():
-        
-        score += score_chart[letter]
+    try: 
+        word =  word.upper()
+    except AttributeError: #Case where word is not a string
+        return score
 
-    if len(word) >= 7 and len(word) <= 10:
+    for letter in word:
+
+        try: 
+            score += score_chart[letter]
+        except KeyError:
+
+            continue
+        else: 
+            number_of_letters += 1
+
+    if number_of_letters >= 7 and number_of_letters <= 10:
 
         score += 8
 
     return score
 
 def get_highest_word_score(word_list):
-    pass
+    
+    high_score = 0
+    
+
+    for word in word_list:
+
+        word_score = score_word(word)
+
+        if word_score > high_score:
+
+            highest_scoring_word = word
+            high_score = word_score
+
+        elif word_score == high_score:
+
+            if len(word) == 10 and len(highest_scoring_word) != 10:
+                
+                highest_scoring_word = word
+                high_score = word_score
+
+            elif len(word) < len(highest_scoring_word) and len(highest_scoring_word) != 10:
+
+                highest_scoring_word = word
+                high_score = word_score
+            
+    
+    return highest_scoring_word, high_score
