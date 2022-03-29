@@ -1,4 +1,5 @@
 import pytest
+import random
 
 from adagrams.game import draw_letters
 
