@@ -61,4 +61,29 @@ def score_word(word):
 # print(score_word("aaaaaax"))
 
 def get_highest_word_score(word_list):
-    pass
+    # words = ["X", "XX", "XXX", "XXXX"]
+    # make empty list of scores
+    # loop through word_list and call score_word and pass in each word
+        #add score of each word to list of scores
+        #max [1, 2, 4, 4, 4] = 4 
+    scores = []
+    for word in word_list:
+        word_score = score_word(word)
+        scores.append(word_score)
+    
+    max_score = max(scores)
+
+    top_scoring_words = []
+
+    for i in range(len(scores)):
+        if scores[i] == max_score:
+            top_scoring_words.append(word_list[i])
+
+    max_word = max(top_scoring_words, key=len)
+    
+    if len(max_word) == 10:
+        return [max_word, max_score]
+    else:
+        # print min(strings, key=len)
+        top_word = min(top_scoring_words, key=len)
+        return [top_word, max_score]
