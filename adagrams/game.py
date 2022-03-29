@@ -1,5 +1,6 @@
 import copy
 import random
+from operator import indexOf
 
 LETTERS = {"A":9, "B":2, "C":2,"D":4, "E":12, "F":2, "G":3, "H":2,"I":9,"J":1,"K":1,"L":4,"M":2,"N":6, "O":8,"P":2,"Q":1,"R":6,"S":4,"T":6, "U":4, "V":2,"W":2,"X":1,"Y":2,"Z":1} 
 SCORE_CHART = {
@@ -63,5 +64,34 @@ def score_word(word):
     
     return score
 
+def get_len_of_highest_score_words(highest_score_words):
+
+    len_of_words = [len(word) for word in highest_score_words]
+    return len_of_words
+
 def get_highest_word_score(word_list):
-    pass
+    highest_score_words = [word_list[0]]
+    highest_score = score_word(word_list[0])
+    for i in range(1,len(word_list)):
+        current_score = score_word(word_list[i])
+        if current_score>highest_score:
+            highest_score = current_score
+            highest_score_words = [word_list[i]]
+        elif current_score == highest_score:
+            highest_score_words.append(word_list[i])
+    
+    if len(highest_score_words)>1:
+        len_of_words = get_len_of_highest_score_words(highest_score_words)
+        if 10 in len_of_words:
+            index = indexOf(len_of_words, 10)
+            return (word_list[index], highest_score)
+        else:
+            min_length = min(len_of_words)
+            index = indexOf(len_of_words, min_length)
+            return (word_list[index], highest_score)
+
+    return (highest_score_words[0], highest_score)
+
+
+        
+    
