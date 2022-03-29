@@ -1,15 +1,13 @@
 import random
 def draw_letters():
-
+    '''returns a list of ten random letters as strings from a letter frequency pool'''
     letters = ['A','A','A','A','A','A','A','A','A','B','B','C','C','D','D','D','D','E','E','E','E','E','E','E','E','E','E','E','E','F','F','G','G','G','H','H','I','I','I','I','I','I','I','I','I','J','K','L','L','L','L','M','M','N','N','N','N','N','N','O','O','O','O','O','O','O','O','P','P','Q','R','R','R','R','R','R','S','S','S','S','T','T','T','T','T','T','U','U','U','U','V','V','W','W','X','Y','Y','Z']
-    
     return random.sample(letters, 10)
 
-
 def uses_available_letters(word, letter_bank):
+    '''takes in word and letter bank and returns true if every letter in word is available in letter_bank, returns false if not'''
     letter_copy = letter_bank[:]
-    for i in range(len(word)):
-        letter = word[i]
+    for letter in word:
         if letter.islower():
             letter = letter.upper()
         if letter in letter_copy:
@@ -18,8 +16,8 @@ def uses_available_letters(word, letter_bank):
             return False
     return True
 
-
 def score_word(word):
+    '''takes in word, returns score of that word'''
     score_dictionary = {
         "A": 1, 
         "E": 1, 
@@ -49,8 +47,7 @@ def score_word(word):
         "Z": 10
     }
     score = 0
-    for i in range(len(word)):
-        char = word[i]
+    for char in word:
         if char.islower():
             char = char.upper()
         if char in score_dictionary:
