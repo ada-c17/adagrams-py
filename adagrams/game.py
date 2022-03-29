@@ -79,7 +79,71 @@ def uses_available_letters(word, letter_bank):
 
 
 def score_word(word):
-    pass
+    """
+    Sum score of each character of input
+        - return 0 if input is empty or number, otherwise:
+        - sum point if the character of input is uppercase or lowercase and it is in table of point value
+        - if input has special character then point value is 0
+        - return total score at the end
+    """
+    # create a variable to sum score for all valid input
+    total_score = 0
+    # return 0 when input is integer or float
+    if isinstance(word, int) or isinstance(word, float):
+        return 0
+    
+    # return 0 when input is empty
+    elif len(word) == 0:
+        return 0
+    # otherwise, sum score when it matches below conditon
+    else:
+        # loop over char_point dictionary to get key and value for comparing
+        for letter, point in letter_point.items():
+            # loop over the word to get each character and check whether is it in the key of char_point
+            for char in word:
+                # get point value from char_point dictionary to sum if character of word is string and it is in tuple key of dictionary
+                if isinstance(char, str) and char.upper() in letter:
+                    total_score += point
+                # otherwise, the point value of special character will assign 0 then sum
+                else:
+                    total_score += 0
+        # if length of word is from 7 to 10, add additional 8 point
+        if len(word) > 6 and len(word) < 11:
+            total_score += 8
+    return total_score
+
 
 def get_highest_word_score(word_list):
-    pass
+    word_dict = {}
+    max_score = 0
+    best_word = []
+    for word in word_list:
+        score = score_word(word)
+        word_dict[word] = score
+        if score >= max_score:
+            max_score = score
+    for key, value in word_dict.items():
+        if value == max_score:
+            best_word.append(key)
+
+    if len(best_word) == 1:
+        best_word.append(max_score)
+        return tuple(best_word)
+    else:
+        max_len = len(best_word[0])
+        win_word = ""
+        for i in range(len(best_word) - 1):              
+            if len(best_word[i+1]) == max_len:
+                best_word.remove(best_word[i+1])
+            elif len(best_word[i]) == 10:
+                win_word = best_word[i]
+                best_word.clear()
+                best_word.append(win_word)
+            else: 
+                if len(best_word[i+1]) != 10 and len(best_word[i+1]) > max_len:
+                    best_word.remove(best_word[i+1])
+                else:
+                    best_word.remove(best_word[i])
+                    
+    best_word.append(max_score)
+    return tuple(best_word)
