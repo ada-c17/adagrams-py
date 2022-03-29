@@ -29,17 +29,33 @@ available_letters = {
 }
 def draw_letters():
     letter_hand = []
-    for i in range (10):
+    while len(letter_hand) < 10:
         picked_letter = random.choice(list(available_letters.keys()))
         # check frequency
         if letter_hand.count(picked_letter) < available_letters[picked_letter]:
             letter_hand.append(picked_letter)
     return letter_hand    
-        
+
 print(draw_letters())
 
 def uses_available_letters(word, letter_bank):
-    pass
+    # create a copy of letter_bank
+    # for letter in word, if letter in letter_bank:
+    # remove letter from letter_bank
+    # else: return false
+    # return True
+    letter_bank_copy = letter_bank[:]
+    word_uppercase = word.upper()
+
+    for letter in word_uppercase:
+        if letter in letter_bank_copy:
+            letter_bank_copy.remove(letter)
+        else:
+            return False
+    return True
+
+# print(uses_available_letters("FED",['E', 'J', 'D', 'W', 'S', 'L', 'C', 'W', 'D', 'F']))
+# print(uses_available_letters("feD",['E', 'J', 'D', 'W', 'S', 'L', 'C', 'W', 'D', 'F']))
 
 def score_word(word):
     pass
