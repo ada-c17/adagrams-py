@@ -35,7 +35,7 @@ SCORE_CHART = {
     ("B", "C", "M", "P") : 3,
     ("F", "H", "V", "W", "Y") : 4,
     ("K") : 5,
-    ("J","K") : 8,
+    ("J","X") : 8,
     ("Q","Z") : 10,
 }
 
@@ -99,9 +99,10 @@ def score_word(word):
     return score
     '''
     score = 0
-    if 7 <= len(word) <= 10: 
+    word_uppercase = word.upper()
+    if len(word_uppercase) >= 7 and len(word_uppercase) <= 10: 
         score += 8
-    for letter in word:
+    for letter in word_uppercase:
         for k in SCORE_CHART:
             if letter in k:
                 score += SCORE_CHART[k]
