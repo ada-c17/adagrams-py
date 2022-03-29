@@ -1,3 +1,4 @@
+import copy
 from random import shuffle
 from collections import Counter
 
@@ -48,11 +49,17 @@ def draw_letters():
 
 
 def uses_available_letters(word, letter_bank):
-    for letter in word:
-        if letter not in letter_bank:
+
+    letter_bank_copy = copy.copy(letter_bank)
+    for letter in word.upper():
+        if letter not in letter_bank_copy:
+            print("false")
             return False
         else:
-            return True 
+            print("letter was found")
+            letter_bank_copy.remove(letter)
+    return True
+ 
 
 
 def score_word(word):
