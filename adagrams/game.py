@@ -109,4 +109,9 @@ def score_word(word):
     return score
 
 def get_highest_word_score(word_list):
+    '''
+    ties: 
+        10 letters > fewest letters > first word
+    '''
+
     pass
