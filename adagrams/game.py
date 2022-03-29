@@ -31,11 +31,8 @@ LETTER_POOL = {
 
 def create_letter_pool_list(LETTER_POOL):
     # helper function
-    
     # make empty letter pool list
-
     # iterate over dictionary to add each letter to the letter pool list however many times its value says to
-
     # return letter_pool_list
     letter_pool_list = []
     for letter, frequency in LETTER_POOL.items():
@@ -58,18 +55,15 @@ def draw_letters():
     return current_hand    
 
 def uses_available_letters(word, letter_bank):
-    #loop through word and check if letter contain in letter_bank
-    #if it is return True, if not return false
-    #letter_bank[:] letter_bank.copy()
+    # make copy of letter_bank that we can change
     bank_copy = letter_bank.copy()
+    # loop through word
     for letter in word.upper():
         if letter not in bank_copy:
             return False
-        else: 
+        else:
             bank_copy.remove(letter)
     return True
-
-
 
 
 def score_word(word):
@@ -90,7 +84,7 @@ def score_word(word):
     for char in word:
         if char in score_board:
             if len(word) in extra_point:
-                
+
 
 
 
