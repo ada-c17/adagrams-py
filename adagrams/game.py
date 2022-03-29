@@ -89,7 +89,19 @@ def score_word(word):
 
 
 def get_highest_word_score(word_list):
-    pass
+    score_list = {}
+    for word in word_list:
+        word_score = score_word(word)
+        score_list[word] = word_score
+
+    highest_score = max(score_list, key=score_list.get)
+    
+
+    print(highest_score)
+
+
+
+
 
 
 #     letter_pool = [
