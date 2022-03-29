@@ -17,12 +17,22 @@ def draw_letters():
 
 def uses_available_letters(word, letter_bank):
     #make input uppercase
+    word = word.upper()
     #make copy of list of letters
+    letter_bank_copy = letter_bank.copy()
     #loop through the word index string
     #loop through letter list and pop found letter
     #if letter not found return false
     #return true
-    pass
+    for letter in word:
+        if letter not in letter_bank_copy:
+            return False
+        for i in range(len(letter_bank_copy) - 1):
+            if letter == letter_bank_copy[i]:
+                letter_bank_copy.pop(i)
+                continue
+
+    return True
 
 
 def score_word(word):
