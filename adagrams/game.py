@@ -83,6 +83,14 @@ def score_word(word):
         "Q": 10,
         "Z": 10
     }
+    points = 0
+    word = word.upper()
+    for letter in word:
+        points += letter_point_table[letter]
+    if len(word) >= 7 and len(word) <= 10:
+        points += 8
+    
+    return points
 
 def get_highest_word_score(word_list):
     pass
