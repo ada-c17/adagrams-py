@@ -96,11 +96,7 @@ def uses_available_letters(word, letter_bank):
             return False
     
     return True
-<<<<<<< HEAD
     
-=======
-
->>>>>>> eb918346b3ca5ac014203f0fda386d80dff8f4ca
 def score_word(word):
     
     word_score = 0
@@ -114,21 +110,20 @@ def score_word(word):
     return word_score
     
 def get_highest_word_score(word_list):
-    pass
-    # best_word = [word_list[0], 0]
-    # for i in range(len(word_list)):
-    #     score = score_word(word_list[i])
-    #     if score > best_word[1]:
-    #         best_word = [word_list[i], score]
-    #     elif score == best_word[1]:
-    #         if len(word_list[i]) == len(best_word[0]):
-    #             best_word = [best_word[0], score]
-    #         elif len(word_list[i]) == 10:
-    #             best_word = [word_list[i], score]
-    #         elif len(best_word[0]) == 10:
-    #             continue
-    #         elif len(word_list[i]) < len(best_word[0]):
-    #             best_word = [word_list[i], score]
 
-    # return best_word
+    best_word = [word_list[0], score_word(word_list[0])]
+
+    for word in word_list:
+        if score_word(word) > best_word[1]:
+            best_word[0] = word
+            best_word[1] = score_word(word)
+        elif score_word(word) == best_word[1]:
+            if len(best_word[0]) == 10:
+                continue
+            elif len(word) == 10:
+                best_word[0] = word
+            elif len(word) < len(best_word[0]):
+                best_word[0] = word
+    
+    return tuple(best_word)
 
