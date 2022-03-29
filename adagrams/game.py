@@ -108,6 +108,16 @@ def get_highest_word_score(word_list):
         if score > highest_score:
             highest_score = score
             best_word = word
+        elif score == highest_score:
+            if len(word) == 10 and len(best_word) != 10:
+                best_word = word
+            elif len(word) == 10 and len(best_word) == 10:
+                continue
+            elif len(word) >= len(best_word):
+                continue
+            elif len(word) < len(best_word) and len(best_word) != 10:
+                best_word = word
+
 
     winner_tuple = best_word, highest_score
     return(winner_tuple)
