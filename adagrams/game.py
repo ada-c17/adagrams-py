@@ -108,11 +108,29 @@ def draw_letters():
     #         print(COPY_LETTER_POOL[random_letter])
     #     else:
     #         continue
+
 print(draw_letters())
 
 def uses_available_letters(word, letter_bank):
-    pass
+    #return a boolean 
+    #use for loop to loop through word
+    #for each letter in word
+    #-->if letter is in letter_bank
+    #return true
+    #-> else false 
+    bool_set = set()
+    for letter in word:
+        if letter in letter_bank:
+            bool_set.add(True)
+    else:
+        bool_set.add(False)
 
+
+    result = all(bool_set)
+    if result:
+        return True
+    else:
+        return False
 
 def score_word(word):
     pass
