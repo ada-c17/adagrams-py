@@ -104,6 +104,7 @@ def uses_available_letters(word, letter_bank):
 
     letter_bank = draw_letters()
     letter_bank_dict = {}
+    word = word.upper()
     for letter in letter_bank:
         if letter in letter_bank_dict:
             letter_bank_dict[letter] += 1
@@ -113,10 +114,9 @@ def uses_available_letters(word, letter_bank):
     for letter in word:
         if letter in letter_bank_dict:
             letter_bank_dict[letter] -= 1
-            if letter_bank_dict[letter] < 1:
+            if letter_bank_dict[letter] < 0:
                 return False
-            else:
-                return True    
+            return True
 
 
 
