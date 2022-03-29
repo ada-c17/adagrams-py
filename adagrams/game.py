@@ -196,15 +196,55 @@ Implement a function called `get_highest_word_score` in `game.py`. This method s
     - If the there are multiple words that are the same score and the same length, pick the first one in the supplied list"""
 
 def get_highest_word_score(word_list):
-    word_scores = {}
-    winning_tuple = ()
-    # Empty dictionary to store highest scoring words
+
+    # Empty dictionary to store word and scores
+    # get key(s) of dictionary with highest score
+    # if length of highest score == 1 --> return 
     # If only
     # If word == 10 letters or min length ---> otherwise first one in length. 
     # returns tuple
+
+
+
+
+
+
+
+
+
+    word_scores = {}
+    highest_score_list = []
+    winning_list = []
+    print("hi")
+    
     for word in word_list: 
-        word_scores[word] = score_word(word)
+        word_scores[word] = score_word(word) 
     for word, score in word_scores.items():
-        if max(score):
-            winning_tuple[word] = score
+        highest = max(word_scores.values())
+        if score == highest:
+            highest_score_list.append(word)
+            # highest_score_list.append(score)
+            return highest_score(word)
+    if len(highest_score_list) == 1:
+        return tuple(highest_score_list)
+    elif len(highest_score_list) > 1:
+        for item in highest_score_list: 
+            if len(item) == 10:
+                # winning_list.append(item)
+                # return tuple(winning_list /)
+                return highest_score(item)
+            # choose minimum 
+            elif len(item) == min(highest_score_list, key=len):
+                # winning_list.append(item)
+                return highest_score(item)
+            else: 
+                winning_list.append(highest_score_list[0])
+                winning_list.append(score_word(highest_score_list[0]))
+                # return tuple(winning_list) 
+            
+def highest_score(word):
+    winning_list=[]
+    winning_list.append(word)
+    winning_list.append(score_word(word))
+    return tuple(winning_list)
 
