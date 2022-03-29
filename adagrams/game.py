@@ -43,16 +43,27 @@ def draw_letters():
      
 
 def uses_available_letters(word, letter_bank):
-    for character in word.upper():
-        if character in letter_bank:
-            # return True
-            if word.isalpha():
-                return True
-            else:
-                return False
+    letter_count = 0
+    letter_copy = letter_bank[:]
+    word = word.upper()
+    for letter in word:
+        if letter in letter_copy:
+            letter_copy.remove(letter)
+            letter_count +=1
+    return letter_count== len(word)
+
+
+    # letter_bank.copy() aka letter_bank[:]
+    # for character in word.upper():
+    #     if character in letter_bank:
+    #         # return True
+    #         if word.isalpha():
+    #             return True
+    #         else:
+    #             return False
 
 def score_word(word):
-    pass
+   pass
 
 def get_highest_word_score(word_list):
     pass
