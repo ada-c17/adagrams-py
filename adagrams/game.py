@@ -58,10 +58,39 @@ def draw_letters():
     return letter_bank
             
 
-print(draw_letters())
+# check if word is a str and all uppercase 
+# if each letter in letter_bank
+# for each letter found subtract count or check frequency
+# if all letters are in the letter_bank with correct frequency return True
+# else return false
 
 def uses_available_letters(word, letter_bank):
-    pass
+    if isinstance(word, str) and len(word) <= 10:
+        word_up = word.upper()
+        bank_dict = {}
+        word_dict = {}
+
+        for letter in letter_bank:
+            if letter in bank_dict:
+                bank_dict[letter] += 1
+            else:
+                bank_dict[letter] = 1
+
+        for letter in word_up:
+            if letter in word_dict:
+                word_dict[letter] += 1
+            else:
+                word_dict[letter] = 1  
+        
+        for letter in word_up:
+            if word_dict[letter] <=  bank_dict[letter]:
+                for letter in word_up:
+                    if letter not in letter_bank:
+                        return False
+                return True
+            return False
+    return False
+
 
 def score_word(word):
     pass
