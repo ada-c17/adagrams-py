@@ -1,4 +1,3 @@
-from ctypes.wintypes import LONG
 import random
 import copy
 
@@ -68,9 +67,8 @@ def uses_available_letters(word, letter_bank):
 # scores word based on letter values, bonus of 8 points added for words 7-10 letters long
 def score_word(word):
     score = 0
-
+    word = word.upper()
     for letter in word:
-        letter = letter.upper()
         if letter in LETTER_VALUES:
             score += LETTER_VALUES[letter]
         else:
@@ -81,10 +79,7 @@ def score_word(word):
     return score
 
 def get_highest_word_score(word_list):
-    word_dict = {}
-    for word in word_list:
-        word_score = score_word(word)
-        word_dict[word] = word_score
+    word_dict = {word:score_word(word) for word in word_list}
 
     highest_scoring_word = max(word_dict, key=word_dict.get)
     high_score = word_dict[highest_scoring_word]
@@ -98,5 +93,3 @@ def get_highest_word_score(word_list):
                 highest_scoring_word = word
 
     return tuple([highest_scoring_word, high_score])
-
-#get_highest_word_score(["X", "XX", "XXX", "XXXX"])
