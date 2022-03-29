@@ -9,7 +9,6 @@ def create_letter_pool():
     
     return letter_pool
 
-<<<<<<< HEAD
 # thu's suggestion for improving draw_letters():
 def draw_letters():
 
@@ -39,7 +38,6 @@ def uses_available_letters(word, letter_bank):
     
     return True
 
-=======
 def draw_letters():
 
     letter_pool = create_letter_pool()
@@ -47,7 +45,6 @@ def draw_letters():
     user_hand = letter_pool[0:10]
 
     return user_hand
->>>>>>> 616b8ff0b3d01995daf5df347fc64eac8389d89a
 
 
 def score_word(word):
