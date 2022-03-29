@@ -103,8 +103,22 @@ def uses_available_letters(word, letter_bank):
     return True
 
 def score_word(word):
-
-    pass
+    # check empty word
+    if len(word) == 0:
+        return 0
+    # make letter in upper case
+    word = word.upper()
+    
+    # create score according dictionary values
+    score = 0
+    for letter in word:
+        if letter in SCORE_DICT:
+            score += SCORE_DICT[letter]
+    
+    # if the length of the word is 7, 8, 9, or 10, then the word gets an additional 8 points
+    if len(word) in [7,8,9,10]:
+        score += 8
+    return score
 
 def get_highest_word_score(word_list):
     pass
