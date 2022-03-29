@@ -1,5 +1,6 @@
 from itertools import repeat
 import random 
+from collections import Counter
 
 def draw_letters():
     # Returns an array of ten strings - letters should be randomly drawn from a pool of letters
@@ -43,7 +44,18 @@ def draw_letters():
     return output
 
 def uses_available_letters(word, letter_bank):
-    pass
+    
+    copy_letter_bank = letter_bank.copy() 
+    for letter in word.upper():
+        if letter not in copy_letter_bank:
+            return False
+            break
+        else: 
+            copy_letter_bank.remove(letter)
+    
+    return True 
+        
+
 
 def score_word(word):
     pass
