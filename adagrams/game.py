@@ -15,8 +15,35 @@ This method should have the following properties:
 - Invoking this function should **not** change the pool of letters
   - Imagine that the user returns their hand to the pool before drawing new letters
 
+| Letter : Qty. | Letter : Qty. |
+|:------:|:-----:|
+| A : 9  | N : 6 |
+| B : 2  | O : 8 |
+| C : 2  | P : 2 |
+| D : 4  | Q : 1 |
+| E : 12 | R : 6 |
+| F : 2  | S : 4 |
+| G : 3  | T : 6 |
+| H : 2  | U : 4 |
+| I : 9  | V : 2 |
+| J : 1  | W : 2 |
+| K : 1  | X : 1 |
+| L : 4  | Y : 2 |
+| M : 2  | Z : 1 |
 '''
-
+LETTER_QUANTITY_DICT = {'A' : 9, 'N' : 6 ,
+'B' : 2, 'O' : 8, 
+'C' : 2, 'P' : 2, 
+'D' : 4, 'Q' : 1, 
+'E' : 12,'R' : 6,
+'F' : 2, 'S' : 4, 
+'G' : 3, 'T' : 6,
+'H' : 2, 'U' : 4,
+'I' : 9, 'V' : 2, 
+'J' : 1, 'W' : 2,
+'K' : 1, 'X' : 1, 
+'L' : 4, 'Y' : 2,
+'M' : 2, 'Z' : 1}
 # Set Distribution of Letters to Global Variables (Dictionary)
 # Letter as key, Quantity as value
 
@@ -42,25 +69,25 @@ def draw_letters():
     # after reaching 10th letter in the list, return the list
     pass 
 
-# '''
-# Next, you need a way to check if an input word (a word a player submits) 
-# only uses characters that are contained within a collection (or hand) of drawn letters. 
-# Essentially, you need a way to check if the word is an anagram of some or all of the given 
-# letters in the hand.
+'''
+Next, you need a way to check if an input word (a word a player submits) 
+only uses characters that are contained within a collection (or hand) of drawn letters. 
+Essentially, you need a way to check if the word is an anagram of some or all of the given 
+letters in the hand.
 
-# To do so, implement the function called `uses_available_letters` in `game.py`. 
-# This function should have the following properties:
+To do so, implement the function called `uses_available_letters` in `game.py`. 
+This function should have the following properties:
 
-# - Has two parameters:
-#    - `word`, the first parameter, describes some input word, and is a string
-#    - `letter_bank`, the second parameter, describes an array of drawn letters in a hand. 
-#    You can expect this to be an array of ten strings, with each string representing a letter
-# - Returns either `True` or `False`
-# - Returns `True` if every letter in the `input` word is available (in the right quantities) 
-# in the `letter_bank`
-# - Returns `False` if not; if there is a letter in `input` that is not present in the 
-# `letter_bank` or has too much of compared to the `letter_bank`
-# '''
+- Has two parameters:
+   - `word`, the first parameter, describes some input word, and is a string
+   - `letter_bank`, the second parameter, describes an array of drawn letters in a hand. 
+   You can expect this to be an array of ten strings, with each string representing a letter
+- Returns either `True` or `False`
+- Returns `True` if every letter in the `input` word is available (in the right quantities) 
+in the `letter_bank`
+- Returns `False` if not; if there is a letter in `input` that is not present in the 
+`letter_bank` or has too much of compared to the `letter_bank`
+'''
 
 def uses_available_letters(word, letter_bank):
 #    return true or false if the word has the correct letter quantities in the word bank
