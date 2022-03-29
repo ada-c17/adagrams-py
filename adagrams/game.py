@@ -95,7 +95,7 @@ def uses_available_letters(word, letter_bank):
 # If letter.count in word <= letter count in list Return True,
 #  If not correct quantity return False
     
-    if not is_in_list(word, letter_bank):
+    if not is_in_list(word,letter_bank):
         return False
     elif is_in_list(word,letter_bank):
         for letter in word.upper(): 
@@ -106,15 +106,12 @@ def uses_available_letters(word, letter_bank):
     
 def is_in_list(word, letter_bank):
     word_set = set()
-    upper_letter = word.upper()
-    if not upper_letter: 
+    if not word.upper(): 
         return False
-    elif upper_letter:
-        for letter in upper_letter: 
+    elif word.upper():
+        for letter in word.upper(): 
             word_set.add(letter)
-
     result = word_set & set(letter_bank)
-
     if len(result) == len(set(word)):
         return True
     else: 
@@ -199,4 +196,15 @@ Implement a function called `get_highest_word_score` in `game.py`. This method s
     - If the there are multiple words that are the same score and the same length, pick the first one in the supplied list"""
 
 def get_highest_word_score(word_list):
-    pass
+    word_scores = {}
+    winning_tuple = ()
+    # Empty dictionary to store highest scoring words
+    # If only
+    # If word == 10 letters or min length ---> otherwise first one in length. 
+    # returns tuple
+    for word in word_list: 
+        word_scores[word] = score_word(word)
+    for word, score in word_scores.items():
+        if max(score):
+            winning_tuple[word] = score
+
