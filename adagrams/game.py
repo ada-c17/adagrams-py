@@ -97,9 +97,32 @@ def uses_available_letters(word, letter_bank):
 # - Return False if not in list
 # If letter.count in word <= letter count in list Return True,
 #  If not correct quantity return False
-
     
-    pass
+    if not is_in_list(word, letter_bank):
+        return False
+    elif is_in_list(word,letter_bank):
+        for letter in word.upper(): 
+            if word.count(letter) <= letter_bank.count(letter):
+                return True
+            else: 
+                return False
+    
+def is_in_list(word, letter_bank):
+    word_set = set()
+    upper_letter = word.upper()
+    if not upper_letter: 
+        return False
+    elif upper_letter:
+        for letter in upper_letter: 
+            word_set.add(letter)
+
+    result = word_set & set(letter_bank)
+
+    if len(result) == len(set(word)):
+        return True
+    else: 
+        return False
+
 
 """ ### Wave 3: score_word
 
