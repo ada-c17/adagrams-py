@@ -48,20 +48,37 @@ def draw_letters():
 from collections import Counter 
 
 def uses_available_letters(word, letter_bank):
-    word = word.upper()
     input_word = word.upper()
-    word_counter = Counter(input_word)
-    letter_bank_counter = Counter(letter_bank)
-
-    for letter in input_word: 
+    print(f"This is the value of {input_word=}")
+    word_counter = Counter(input_word)   
+    print(f"Thisis the data type of word_counter: {type(word_counter)=}")
+    print(f"This is the value of {word_counter=}")
+    letter_bank_counter = Counter(letter_bank)    
+    print(f"This is the value of letter_bank_counter: {letter_bank_counter}")
+ 
+    for letter in input_word:  
         if letter not in letter_bank:
-            return False 
+            return False
+    for letter in input_word:
+        if letter in letter_bank:
+            word_letter_frequency = input_word.count(letter)
+            letter_bank_frequency = letter_bank.count(letter)
+            if word_letter_frequency > letter_bank_frequency:
+                return False
+            elif word_letter_frequency == letter_bank_frequency:
+                return True
 
-    for (k,v), (k2,v2)  in  zip(word_counter.items(), letter_bank_counter.items()): 
-        if k == k2 and v <= v2: 
-            return True
-        else: 
-            return False 
+    # for letter in input_word:
+    #     if letter not in letter_bank:
+    #         return False
+
+    # for (k, v), (k2, v2)  in  zip(word_counter.items(), letter_bank_counter.items()): 
+    #     # for (letter, letter_frequency), (letter, letter_frequency)  in  zip(word_counter.items(), letter_bank_counter.items()): 
+    #     zip(word_counter.items(), letter_bank_counter.items()) #But this isn't a dictionary ???
+    #     if k == k2 and v <= v2: 
+    #         return True
+    #     else: 
+    #         return False 
 """
     letter_bank = draw_letters()
     return TRUE or FALSE 
@@ -77,25 +94,7 @@ def uses_available_letters(word, letter_bank):
                 if word has same letter more than once, letter_bank must also! 
     """
 
-pass
-
-'''
-            word = word.upper()
-            letter_bank = draw_letters()
-            return TRUE or FALSE 
-            ## make sure that case doesn't matter for word input 
-            ## do not change the letter_bank (no remove from list! only compare to list)
-            for letter in word: 
-                if letter not in letter_bank: 
-                    return FALSE
-                else: 
-                    if letter in letter_bank: 
-                        if word has same letter more than once, letter_bank must also! 
-            '''
-
-
 def score_word(word):
-    pass
     """
     Wave 3: score_word
     Now you need a function returns the score of a given word as defined by the Adagrams game.
@@ -109,7 +108,7 @@ def score_word(word):
     If the length of the word is 7, 8, 9, or 10, then the word gets an additional 8 points
 
     """
-    
+    pass
 
 def get_highest_word_score(word_list):
     pass
