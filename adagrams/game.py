@@ -1,16 +1,5 @@
 import random
 
-# Return list of ten strings
-# Each string is one letter
-# Import random
-
-# Create dictionary 
-# Create list
-# Iterate 10 times
-# If the number in the list equal to number in dict, continue without adding
-### If not, append to list
-
-
 def draw_letters():
     LETTER_POOL = {
     'A': 9, 
