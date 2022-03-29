@@ -109,4 +109,29 @@ def score_word(word):
     return score
 
 def get_highest_word_score(word_list):
-    pass
+
+    result_chart = []
+
+    for word in word_list:
+        score = score_word(word)
+        score_tuple = (word, score)
+        result_chart.append(score_tuple)
+    
+
+    highest_word = result_chart[0]
+
+    for item in result_chart:
+        if item[1] > highest_word[1]:
+            highest_word = item
+        elif item[1] == highest_word[1]:
+            if (len(item[0]) == 10) and (len(highest_word[0]) != 10):
+                highest_word = item
+
+            elif (len(highest_word[0]) == 10):
+                continue
+
+            elif len(item[0]) < len(highest_word[0]):
+                highest_word = item
+
+
+    return highest_word
