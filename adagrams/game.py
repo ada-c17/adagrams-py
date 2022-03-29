@@ -45,7 +45,15 @@ def draw_letters():
     return drawn_letters
 
 def uses_available_letters(word, letter_bank):
-    pass
+    letter_bank_copy = copy.deepcopy(letter_bank)
+    for char in word:
+        char = char.capitalize()
+        if char in letter_bank_copy:
+            letter_bank_copy.remove(char)
+        else:
+            return False
+    return True
+
 
 def score_word(word):
     pass
