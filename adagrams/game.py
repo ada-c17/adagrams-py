@@ -63,7 +63,6 @@ def score_word(word):
     pass
 
 def get_highest_word_score(word_list):
-    #test for zero length
     #define word,score tuple
     #loop through passed list
     #  use wave 3 to calculate score
@@ -71,4 +70,20 @@ def get_highest_word_score(word_list):
     #  compare length is same
     #    replace tuple with index word and score
     #return tuple
-    pass
+    highest_score = ["", 0]
+    score = 0
+
+    for word in word_list:
+        score = score_word(word)
+        if score > highest_score[1]:
+            highest_score = [word, score]
+        elif score == highest_score[1]:
+            if len(highest_score[0]) == 10:
+                continue
+            elif len(word) == 10: 
+                highest_score = [word, score]
+            elif len(highest_score[0]) > len(word):
+                highest_score = [word, score]
+
+    return highest_score
+
