@@ -7,6 +7,9 @@ def draw_letters():
 
 
 def uses_available_letters(word, letter_bank):
+    # loop through each letter in the word string and check if the letter is in the letter bank
+    # if any letter is not in the letter bank, function will return false
+    # need a way to check off each letter so word only contains the allotted number of letters in the letter_bank
     pass
 
 def score_word(word):
