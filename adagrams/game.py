@@ -1,3 +1,5 @@
+import random
+
 '''
 Your first task is to build a hand of 10 letters for the user. 
 To do so, implement the function `draw_letters` in `game.py`. 
@@ -31,6 +33,7 @@ This method should have the following properties:
 | L : 4  | Y : 2 |
 | M : 2  | Z : 1 |
 '''
+
 LETTER_QUANTITY_DICT = {'A' : 9, 'N' : 6 ,
 'B' : 2, 'O' : 8, 
 'C' : 2, 'P' : 2, 
@@ -48,26 +51,18 @@ LETTER_QUANTITY_DICT = {'A' : 9, 'N' : 6 ,
 # Letter as key, Quantity as value
 
 def draw_letters():
-    # output: list of ten letters
+    letter_list = []
+
+    for letter, quantity in LETTER_QUANTITY_DICT.items():
+      counter = 0
+      while counter < quantity:
+          letter_list.append(letter)
+          counter += 1
     
-    # create an empty list
+    letter_bank = random.sample(letter_list, 10)
 
-    # option 1 
-    # use helper function (involving loop thru dictionary to get a value)
-    # - add all the qty of letters to get the total counter
-    # - loop through all the letters (key), the value of the key will be divided by the total counter
-    # - return the probability to back to the main function
-    # have a separate dictionary of keys as letters and probability as the value
-    # import random to assist
-    # helper function will go into the random function to help draw out the letters
+    return letter_bank
 
-    # option 2
-    # put all the letters in a big list (i.e. like multiple A's)
-    # use random to generate a letter
-    # append letter to the empty list 
-    # remove that letter once added to the big list
-    # after reaching 10th letter in the list, return the list
-    pass 
 
 '''
 Next, you need a way to check if an input word (a word a player submits) 
@@ -132,9 +127,11 @@ Implement the function `score_word` in `game.py`. This method should have the fo
 
 - Has one parameter: `word`, which is a string of characters
 - Returns an integer representing the number of points
-- Each letter within `word` has a point value. The number of points of each letter is summed up to represent the total score of `word`
+- Each letter within `word` has a point value. The number of points of each 
+letter is summed up to represent the total score of `word`
 - Each letter's point value is described in the table below
-- If the length of the word is 7, 8, 9, or 10, then the word gets an additional 8 points
+- If the length of the word is 7, 8, 9, or 10, then the 
+word gets an additional 8 points
 
 #### Score chart
 
@@ -149,8 +146,46 @@ Implement the function `score_word` in `game.py`. This method should have the fo
 |Q, Z                          |   10 | """
 
 def score_word(word):
-     # Output: Total points from the word made from the letter_bank
-    pass
+    # Output: Total points from the word made from the letter_bank
+    # check if the word is valid. if word is not valid, return none.
+    # loop through the word and put each letter in a list
+    # make variable called total points
+    # make a dictionary that has the score chart
+    # - with score value as 'key' and the letters are in a list as values
+    # make a for loop with scoring conditions...
+    # example: if the "a" is in dictionary's value, add 1 point to the points
+    # check length of word with conditionals of extra points
+    total_score = 0
+    letter_list = []
+
+    score_chart = {
+      1:["A","B","I","O","U","L","N","R","S","T"],
+      2:["D","G"],
+      3:["B","C","M","P"],
+      4:["F","H","V","W","Y"],
+      5:["K"],
+      8:["J","X"],
+      10:["Q","Z"]
+    }
+    extra_score_chart = [7, 8, 9, 10]
+
+    if word == "":
+        return total_score
+
+    for letter in word:
+        letter_list.append(letter)
+
+    for letter in letter_list:
+        if letter in score_chart.values():
+            pass
+    
+    if len(word) in extra_score_chart:
+        total_score += 8
+    
+    return letter_list
+
+print(score_word("dog"))
+
 
 
 """### Wave 4: get_highest_word_score
