@@ -123,9 +123,3 @@ def get_highest_word_score(word_list):
     return(winner_tuple)
 
     
-    
-
-
-# make a conditional branch for a tie
-# if more than one word has 10 letters, return the first one
-# if no word has 10 letters, return the smallest, or the first of the smallest length
