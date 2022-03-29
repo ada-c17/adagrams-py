@@ -121,12 +121,28 @@ def score_word(word):
     return points
 
 def get_highest_word_score(word_list):
-    hightest_score = 0
-    hightest_word = ""
+
+    highest_score = 0
+    highest_word = []
+    shortest = 10
+    shortest_word = ""
+    
 
     for word in word_list:
         score = score_word(word)
-        if score > hightest_score:
-            hightest_score = score
-            hightest_word = word
-    return (hightest_word,hightest_score)
+        if score > highest_score:
+            highest_score = score
+            highest_word.clear() 
+            highest_word.append(word)
+        elif score == highest_score:
+            highest_word.append(word)
+    if len(highest_word) == 1:
+        return (highest_word[0],highest_score)
+    else:
+        for word in highest_word:
+            if len(word) == 10:
+                return(word,score_word(word))
+            elif len(word) < shortest:
+                shortest = len(word)
+                shortest_word = word 
+        return (shortest_word, score_word(shortest_word))
