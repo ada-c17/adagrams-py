@@ -58,12 +58,22 @@ def uses_available_letters(word, letter_bank):
     3) is_valid becomes False
     4) Break the loop
     5) return is_valid
+    6) For the last test: the letters in word can be lower or upper case.
+    7) The letter can only be used as frequent as it is in letter_bank.
     '''
+    # letter_bank_uppercase = list(("".join(letter_bank)).upper())
+    # letter_bank_lowercase = list(("".join(letter_bank)).lower())
+    # letter_bank_diff_cases = tuple(letter_bank_uppercase + letter_bank_lowercase)
+    # print(letter_bank_diff_cases)
+
+    word_uppercase = word.upper()
+    
     is_valid = True
-    for letter in word:
-        if letter not in letter_bank or (word.count(letter) > letter_bank.count(letter)):
+    for letter in word_uppercase:
+        if letter not in letter_bank or (word_uppercase.count(letter) > letter_bank.count(letter)):
             is_valid = False
             break
+        
     return is_valid
 
 
