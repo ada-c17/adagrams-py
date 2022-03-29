@@ -102,7 +102,7 @@ def uses_available_letters(word, letter_bank):
                 return True        
     """
 
-    letter_bank = draw_letters()
+    # letter_bank = draw_letters()
     letter_bank_dict = {}
     word = word.upper()
     for letter in letter_bank:
@@ -110,9 +110,9 @@ def uses_available_letters(word, letter_bank):
             letter_bank_dict[letter] += 1
         else:
             letter_bank_dict[letter] = 1
+ 
 
     for letter in word:
-        print(letter)
         if letter in letter_bank_dict:
             letter_bank_dict[letter] -= 1
             if letter_bank_dict[letter] < 0:
@@ -120,7 +120,7 @@ def uses_available_letters(word, letter_bank):
         
         else:
             return False
-        return True
+    return True
 
 def score_word(word):
     """
