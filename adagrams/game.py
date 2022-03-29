@@ -201,4 +201,15 @@ Implement a function called `get_highest_word_score` in `game.py`. This method s
     - If the there are multiple words that are the same score and the same length, pick the first one in the supplied list"""
 
 def get_highest_word_score(word_list):
-    pass
+    word_scores = {}
+    winning_tuple = ()
+    # Empty dictionary to store highest scoring words
+    # If only
+    # If word == 10 letters or min length ---> otherwise first one in length. 
+    # returns tuple
+    for word in word_list: 
+        word_scores[word] = score_word(word)
+    for word, score in word_scores.items():
+        if max(score):
+            winning_tuple[word] = score
+
