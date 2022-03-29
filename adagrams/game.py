@@ -30,6 +30,16 @@ LETTER_POOL = {
     'Z': 1
 }
 
+SCORE_CHART = {
+    ("A", "E", "I", "O", "U", "L", "N", "R", "S", "T"): 1,
+    ("D", "G") : 2,
+    ("B", "C", "M", "P"): 3,
+    ("F", "H", "V", "W", "Y"): 4,
+    ("K"): 5,
+    ("J", "X"): 8,
+    ("Q", "Z"): 10
+}
+
 def draw_letters():
 
     letter_pool_copy = copy.deepcopy(LETTER_POOL)
@@ -54,9 +64,19 @@ def uses_available_letters(word, letter_bank):
             return False
     return True
 
-
 def score_word(word):
-    pass
+    score = 0
+    word = word.upper()
+    for letter in word:
+        for char, value in SCORE_CHART.items():
+           if letter in char:
+               score += value
+
+    if len(word)>=7:
+        score += 8
+
+    return score
+
 
 def get_highest_word_score(word_list):
     pass
