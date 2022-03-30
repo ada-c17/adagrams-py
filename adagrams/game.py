@@ -17,20 +17,21 @@ def draw_letters():
     return selection
 
     # pass
-
+draw_letters()
 def uses_available_letters(word, letter_bank):
     if not word.isupper():
         word = word.upper()
     counter = 0
     bank = letter_bank.copy()
+    known_letter = []
     for letter in word:
         if letter in bank:
             counter += 1
             bank.remove(letter)
-
+    
     return counter == len(word)
     # pass
-
+uses_available_letters("alex", ["A","B","C","D"])
 def score_word(word):
     if not word.isupper():
         word = word.upper()
@@ -42,7 +43,7 @@ def score_word(word):
                 total_score += score
     if 7 <= len(word) <= 10:
         total_score += 8
-    print (total_score)
+    
     return total_score
 
 def get_highest_word_score(word_list):
@@ -57,37 +58,3 @@ def get_highest_word_score(word_list):
             highest_score = score
     return highest_word, highest_score
 
-    # dic = {}
-    # for wordle in word_list:
-    #     dic[wordle] = score_word(wordle)
-    # a = max(dic.values())
-    # print (dic)
-    
-    # max_keys = []
-
-    # for key,value in dic.items():
-    #     if value == a and value:
-    #         max_keys.append(key)
-    # y = sorted(max_keys, key=len)
-    # for string in max_keys:
-    #     list2 = list(map(lambda x: len(x)  , y))
-    #     if len(string) == 10:
-    #         output = (string,a)
-    #     else:
-    #         output = (y[0],a)
-
-    # print(output)
-    # return output
-    # dic = {}
-    # for wordle in word_list:
-    #     dic[wordle] = score_word(wordle)
-    # print (dic)
-
-    # output = (max(dic, key=dic.get),max(dic.values()))
-    # if len(output) > 2:
-
-    # print (output)
-    # return output
-    # return max(list(map(lambda word: score_word(word)  , word_list)))
-
-    # pass
