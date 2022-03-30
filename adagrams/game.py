@@ -1,6 +1,5 @@
 import random
 import string
-# from tokenize import blank_re
 
 letters_dict = {
     "A": 9,
@@ -45,14 +44,10 @@ def draw_letters():
         output: list of 10 strings
         no parameters
         letters should be randomly drawn from a pool of letters
-        letters should reflect distribution from a table
-        (dictionary, pool_of_letters)
-        drawn letters cannot return more than the allotted amount(?)
-        once something is drawn, will probably have to subtract from the value of that letter by 1
-        if the value is 0, make it no longer accessible
-        possibly make list of dicts if random doesnt work?
-        random.choice()?
-
+        letters should reflect distribution from dictionary (letters_dict)
+        drawn letters cannot return more than the allotted amount
+        once something is drawn, allotment will be subtracted by 1
+        if the value is 0, it is no longer accessible
         """
     hand_list = []
     hand_dict = letters_dict.copy()
@@ -62,16 +57,15 @@ def draw_letters():
             if letter == random_letter:
                 if hand_dict[letter] >= 1:
                     hand_list.append(letter)
-                    hand_dict[letter] -= 1 
-    # print(", ".join(hand_list))  
+                    hand_dict[letter] -= 1  
     return hand_list
 
 def uses_available_letters(word, letter_bank):
     """
-    input: word (string), letter_bank: list of drawn letters
+    input: word (string), letter_bank: (list of drawn letters)
     output: True or False
     True if every letter in word is available in letter_bank
-    False if not above, or if letter in word that is not present in the letter_bank,
+    False if not above, or if there is a letter in word that is not present in the letter_bank,
     or if word is longer than letter_bank
     """
     available_letters = letter_bank.copy()
@@ -114,10 +108,9 @@ def get_highest_word_score(word_list):
     in case of tie:
     word with fewest letters will win
     if multiple words have same length, winner is first one in list
-    exception: in case of tie, if one of the words has len(10),
+    exception: in case of tie, if one of the words has length of 10,
     that word wins
     """
-    # for finding max score
     score_list = []
     tuple_list = []
     for word in word_list:
@@ -125,20 +118,22 @@ def get_highest_word_score(word_list):
         tuple_list.append(word_tuple)
         score_list.append(score_word(word))
 
+    # finding max score
     max_score = max(score_list)
     max_index_list = [i for i, score in enumerate(score_list) \
         if score == max_score]
 
     if len(max_index_list) == 1:
-        return word_tuple[max_index_list[0]]
+        return tuple_list[max_index_list[0]]
     else:
-        for word, score in word_tuple:
-            if score == max_score and len(word) == 10:
-                return word, score
-            else:
-                small_word_length = 9
-                for index in max_index_list:
-                    if len(word) in word_tuple[index] < small_word_length:
+        small_word_length = 10
+        for word, score in tuple_list:
+            if score == max_score:
+                if len(word) == 10:
+                    return word, score
+                else:
+                    if len(word) < small_word_length:
                         small_word_length = len(word)
-                    if small_word_length == len(word):
-                        return word, score
+        for word, score in tuple_list:
+            if small_word_length == len(word):
+                return word, score
