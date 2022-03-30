@@ -43,6 +43,20 @@ def draw_letters():
     new_letter_list = []
     count_dict = {}
 
+    num_letters = 0
+    while num_letters < 10:
+        letter = random.choice(letter_list)
+        if letter in count_dict:
+            if count_dict[letter] < LETTER_POOL[letter]:
+                count_dict[letter] += 1
+                new_letter_list.append(letter)
+                num_letters += 1
+        else:
+            count_dict[letter] = 1
+            new_letter_list.append(letter)
+            num_letters += 1
+    return new_letter_list
+
 
 def uses_available_letters(word, letter_bank):
     letters_valid = True
