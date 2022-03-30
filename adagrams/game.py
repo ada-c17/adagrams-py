@@ -1,5 +1,6 @@
 import random
 import string
+import copy
 def draw_letters():
     #create a list with the pool of letters
     letter_quantity = {"A":9, "B":2, "C":2, "D":4, "E":12 , "F":2, "G":3, "H":2, "I":9, "J":1,
@@ -21,7 +22,7 @@ def draw_letters():
             # decrement the quantity
             # add to list of randomly chosen letters
             # decrement counter
-        if value <= 0:
+        if value == 0:
             continue
         letter_quantity[letter] -=1
         letter_bank.append(letter)
@@ -32,7 +33,7 @@ def draw_letters():
     
 
 def uses_available_letters(word, letter_bank):
-    list_letters = set(letter_bank[:])
+    list_letters =  copy.deepcopy(letter_bank)   #set(letter_bank[:])
     for letter in word:
         if letter.upper() in list_letters:
             list_letters.remove(letter.upper())
@@ -55,9 +56,46 @@ def score_word(word):
     
     if len(word) >= 7 and len(word) <= 10:
             total_points += 8
+            
     return total_points
     
     #total_score = sum(value[letter] for letter in letter_points.keys())
                       
 def get_highest_word_score(word_list):
-    pass
+    # find word or words with max score
+    score_dict = {}
+    
+    for word in word_list:
+        score_dict[word] = score_word(word)
+        
+    max_score_words = []   
+    max_score = max(score_dict.values())
+    for word in word_list:
+        if score_dict[word] == max_score:
+            max_score_words.append(word)
+    
+    
+    # apply tiebreaking logic to determine winning word
+    # rule_01 prefer the word with the fewest letters
+    # rule_02 if a word is ten letters long, it wins
+    # rule_03 if multiple words with same score and same length, pick first in word_list
+    winning_word = []
+    if len(max_score_words) == 1:
+        
+        #winning_word.append(max_score)
+        winning_word = [max_score_words[0], max_score]
+        # return winning_word
+    elif max(max_score_words, key=len) == 10:
+        for word in max_score_words:
+            if len(word) == 10:
+                winning_word = [word, max_score]
+                # return winning_word
+    else:
+        for word in max_score_words:
+            if len(word) == min(max_score_words, key=len):
+                winning_word = [word, max_score]
+                # return winning_word
+                
+
+    #return a tuple with winning word and its score
+    return tuple(winning_word)
