@@ -17,22 +17,11 @@ def draw_letters():
     return random.sample(letter_pool, 10)
 
 
-def convert_word_to_upper(word):
-    """
-    converts all the letters of a word to upper case
-    """
-    upper_word = ""
-    for letter in word:
-        if letter.isalpha(): 
-            upper_word += letter.upper()
-    return upper_word
-
 def uses_available_letters(word, letter_bank):
-    upper_word = convert_word_to_upper(word)
-    letter_bank_copy = copy.deepcopy(letter_bank)
-    for letter in upper_word:
-        if letter in letter_bank_copy:
-            letter_bank_copy.remove(letter)
+    letters_available = copy.deepcopy(letter_bank)
+    for letter in word.upper():
+        if letter in letters_available:
+            letters_available.remove(letter)
         else:
             return False
     return True
