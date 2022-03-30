@@ -1,4 +1,7 @@
 import random
+'''
+We are importing the random module so we can access its .choice() method to randomly select letters
+'''
 
 LETTER_POOL = {
     'A': 9,
