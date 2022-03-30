@@ -56,15 +56,15 @@ def draw_letters():
     return hand
 
 def uses_available_letters(word, letter_bank):
-
-    anagram_attempt = word.upper()
+    try:
+        anagram_attempt = word.upper()
+    except AttributeError: #Case where word is not a string
+        return False
+    
     letters = set(anagram_attempt)
 
     for letter in letters:
-        if letter_bank.count(letter) < anagram_attempt.count(letter):
-            #should I print something here so the user knows what they did wrong?
-            return False
-        elif letter not in letter_bank: 
+        if letter_bank.count(letter) < anagram_attempt.count(letter) or letter not in letter_bank:
             return False
     
     return True
@@ -102,12 +102,7 @@ def score_word(word):
     score = 0
     number_of_letters = 0 #track number of letters because punctuation can be in the string
 
-    try: 
-        word =  word.upper()
-    except AttributeError: #Case where word is not a string
-        return score
-
-    for letter in word:
+    for letter in word.upper():
 
         try: 
             score += score_chart[letter]
