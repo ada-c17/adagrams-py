@@ -51,7 +51,6 @@ def draw_letters():
     return letters
 
 def uses_available_letters(word, letters):
-   
     word_freq = collections.Counter(word.upper())
     letters_freq = collections.Counter(letters)
     for letter in word:
@@ -103,10 +102,8 @@ score_chart = {
 
 
 def score_word(word):
-
-    
     cap_word = word.upper()
- 
+
     total_score = 0
 
     if word == " ":
