@@ -109,7 +109,7 @@ def score_word(word):
     return score
 
 
-def get_tie_break(word_list):
+def get_index_tie_break(word_list):
     pass
 
 
@@ -129,5 +129,16 @@ def get_highest_word_score(word_list):
     10) the a tuple of highest_scoring_words the first element and
     the score
     '''
-
-    pass
+    highest_scoring_words = []
+    high_score = 0
+    high_score_index = 0
+    for word in word_list: 
+        score = score_word(word)
+        if score > high_score:
+            highest_scoring_words = [word]
+            high_score = score
+        elif score == high_score:
+            highest_scoring_words.append(word)
+    if len(highest_scoring_words) > 1:
+        high_score_index = get_index_tie_break(highest_scoring_words)
+    return highest_scoring_words[high_score_index], high_score
