@@ -22,7 +22,7 @@ def test_score_word_accurate():
     # Act/Assert
     assert score_word(word_list[0]) == 1
     assert score_word(word_list[1]) == 5
-    assert score_word(word_list[2]) == 17
+    assert score_word(word_list[2]) == 20
 
 def test_score_word_accurate_ignores_case():
     # Arrange
