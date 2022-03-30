@@ -75,7 +75,7 @@ def score_word(word):
     Check if the character is in the letter_vals dictionary
     If it is, add the value of the letter to the result
     Return the result'''
-    # score_board = {key: 1 for key in letter.split(", ")}
+
     result = 0
     extra_point = [7,8,9,10]
     
@@ -125,4 +125,47 @@ def score_word(word):
 
 
 def get_highest_word_score(word_list):
-    pass
+    """
+    Finds highest scoring word and returns a tuple with winning word and score
+    In case of a tie:
+    - 10 letter word wins
+    - if no 10 letter words, shortest word wins
+    - if two words of same length, whichever comes first in the word list wins
+
+    Parameters: a list of strings
+
+    Returns: a tuple with one string and an integer
+    """
+    word_score_list = []
+    highest_scoring_words = []
+    high_score = 0
+
+    # get scores of each word in list, add to new list, and look for highest score
+    for word in word_list:
+        word_score_list.append(score_word(word))
+        if score_word(word) > high_score:
+            high_score = score_word(word)
+    # if only one highest score, return tuple
+    if word_score_list.count(high_score) == 1:
+        high_score_index = word_score_list.index(high_score)
+        return (word_list[high_score_index], high_score,)
+    else:
+        # if tie by score alone, start making list of words with highest score
+        for i in range(len(word_score_list)):
+            if word_score_list[i] == high_score:
+                # if 10 letter word is found, it wins - doesn't matter if there are multiples, b/c 1st one wins
+                if len(word_list[i]) == 10:
+                    return (word_list[i], high_score,)
+                else:
+                    # create list of tie words that are not 10 characters
+                    highest_scoring_words.append(word_list[i])
+        # now look for shortest word - doesn't matter if there are multiples of same length, b/c 1st one wins
+        shortest_word_length = 10
+        shortest_word = ""
+
+        for word in highest_scoring_words:
+            if len(word) < shortest_word_length:
+                shortest_word_length = len(word)
+                shortest_word = word
+        return (shortest_word, high_score,)
+                
