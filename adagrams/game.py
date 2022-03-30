@@ -142,9 +142,7 @@ def score_word(word):
 
     if lenth > 7 and lenth < 11:
         score += 8
-
-
-
+        
 scores_chart = {"A": 1, "C": 3, "B": 3, "E": 1, "D": 2, "G": 2, 
          "F": 4, "I": 1, "H": 4, "K": 5, "J": 8, "M": 3, 
          "L": 1, "O": 1, "N": 1, "Q": 10, "P": 3, "S": 1, 
@@ -193,18 +191,22 @@ def get_highest_word_score(word_list):
                 winner = winning_words[i]
                 break
             #when return the first word that has a lenth of 10 no matter how many lenth 10 words in the list
-
+            #words = ["MMMM", "WWW"]
+            #words = ["WWW", "MMMM"]
             else:
-                min_lenth = len(winning_words[0])
+                min_length = len(winning_words[0])
+                i = 1
                 for i in range(len(winning_words)):
-                    if len(winning_words[i]) < min_lenth:
-                        min_lenth = len(winning_words[i]) 
-                        # to deside the min leth in the winning_words list
-                        
-                if len(winning_words[i]) == min_lenth:
-                    winner = winning_words[i]
-                    break
-            # return the first min lenth word no matter how many of them in the list
+                    if len(winning_words[i]) < min_length:
+                        min_length = len(winning_words[i]) 
+                        # to deside the min length in the winning_words list 
+                        winner = winning_words[i]  
+                    else:
+                        winner = winning_words[0]
+                    
+
+                
+            # return the first min length word no matter how many of them in the list
     winner_list = [winner, score_word(winner)]
     return tuple(winner_list)    
 
