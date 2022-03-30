@@ -110,7 +110,16 @@ def score_word(word):
 
 
 def get_index_tie_break(word_list):
-    pass
+    '''
+    '''
+    highest_index = 0
+    for i in range(len(word_list)-1): # I would skip the first item but we need to check if it is the shortest or 10 letters long. 
+        if len(word_list[i]) == 10: 
+            # highest_index = i # maybe return i at this point? otherwise, highest_rated will get overwritten by shorter words later.
+            return i
+        elif len(word_list[i]) < len(word_list[highest_index]): # will this work if the first word is 10 letters long?
+            highest_index = i
+    return highest_index
 
 
 def get_highest_word_score(word_list):
