@@ -108,9 +108,8 @@ def is_in_list(word, letter_bank):
     word_set = set()
     if not word.upper(): 
         return False
-    elif word.upper():
-        for letter in word.upper(): 
-            word_set.add(letter)
+    for letter in word.upper(): 
+        word_set.add(letter)
     result = word_set & set(letter_bank)
     if len(result) == len(set(word)):
         return True
@@ -183,40 +182,39 @@ def get_highest_word_score(word_list):
 
 
 
-
-
-
-
-
     word_scores = {}
     highest_score_list = []
     winning_list = []
-    print("hi")
     
     for word in word_list: 
         word_scores[word] = score_word(word) 
+
+
+# Goes thru each word and adds word as key and score as value to dictionary
+    highest = max(word_scores.values())
+
+
     for word, score in word_scores.items():
-        highest = max(word_scores.values())
         if score == highest:
             highest_score_list.append(word)
-            # highest_score_list.append(score)
-            return highest_score(word)
-    if len(highest_score_list) == 1:
-        return tuple(highest_score_list)
+
+    if not highest_score_list:
+        return None
+    elif len(highest_score_list) == 1:
+        the_list = [highest_score_list[0], score_word(highest_score_list[0])]
+        return tuple(the_list)
     elif len(highest_score_list) > 1:
+        shortest = min(highest_score_list, key=len)
         for item in highest_score_list: 
             if len(item) == 10:
-                # winning_list.append(item)
-                # return tuple(winning_list /)
                 return highest_score(item)
-            # choose minimum 
-            elif len(item) == min(highest_score_list, key=len):
-                # winning_list.append(item)
-                return highest_score(item)
-            else: 
-                winning_list.append(highest_score_list[0])
-                winning_list.append(score_word(highest_score_list[0]))
-                # return tuple(winning_list) 
+            if len(item) == len(shortest):
+                    return highest_score(item)
+            # if item != shortest and len(item) != 10:
+            #     winning_list.append(highest_score_list[0])
+            #     winning_list.append(score_word(highest_score_list[0]))
+            #     return tuple(winning_list) 
+
             
 def highest_score(word):
     winning_list=[]
