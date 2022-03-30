@@ -37,25 +37,6 @@ import random
 #     return True
 
 # print(uses_available_letters("ABCD", letters))
-
-
-# def get_highest_word_score(word_list):
-#     highest_word = ""
-#     highest_score = 0
-
-#     for word in word_list:
-#         score = score_word(word)
-
-#         if score > highest_score:
-#             highest_score = score
-#             highest_word = word
-#         elif score == highest_score:
-#             if len(word) == 10 and len(highest_word) != 10:
-#                 highest_word == word
-#             elif len(word) < len(highest_word):
-#                 highest_word = word
-#             else:
-#                 continue
         
 #     return highest_word, highest_score
 
@@ -76,44 +57,26 @@ import random
 #     return score
 # print(uses_available_letters("ABCD", letters))
 
-def word_score(word):
-    letter_score = {
-        "A": 1, 
-        "E": 1, 
-        "I": 1, 
-        "O": 1,
-        "U": 1, 
-        "L": 1, 
-        "N": 1, 
-        "R": 1,
-        "S": 1,
-        "T": 1, 
-        "D": 2, 
-        "G": 2, 
-        "B": 3,
-        "C": 3,
-        "M": 3,
-        "P": 3, 
-        "F": 4, 
-        "H": 4, 
-        "V": 4,
-        "W": 4,
-        "Y": 4,
-        "K": 5,
-        "J": 8,
-        "X": 8,
-        "Q": 10,
-        "Z": 10
-    }
+{"cat": 5, "if": 5, "doggy": 5, "cat": 5, "hamburgers": 5}
 
-    extra_points= {8: [7, 8, 9, 10]}
-    total = 0
-    
-    if len(word) in extra_points.values():
-        total += 8
-    for letter in word:
-        total += letter_score[letter]
-        #can't return a tuple here- (i.e. total, word)
-    return total
+# def get_highest_word_score(word_list):
+#     word_score_list = []
+#     highest_word_score = 0
 
-print(word_score("cat"))
+#     for word in word_list:
+#         word_score = word_score[word]
+#         word_score_list.append(word_score)
+#         #len word_score_list and word_list equal size 
+#     # max_scores = max(word_score_list)
+#     # print(max_scores) 
+
+#     # for i in len(word_score_list):
+#         if word_score_list[i] >= highest_word_score:
+#             w
+
+#     #     if len(word_list[i]) == 10:
+#     #         x, y = word_list[i], word_score[i] 
+#     #         return x, y
+#     #     elif:
+
+
