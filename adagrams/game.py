@@ -58,7 +58,56 @@ def uses_available_letters(word, letter_bank):
 
 
 def score_word(word):
-    pass
+
+    letters_and_point_values = {
+        "A": 1,
+        "B": 3, 
+        "C": 3, 
+        "D": 2, 
+        "E": 1, 
+        "F": 4, 
+        "G": 2, 
+        "H": 4, 
+        "I": 1, 
+        "J": 8, 
+        "K": 5, 
+        "L": 1, 
+        "M": 3, 
+        "N": 1, 
+        "O": 1, 
+        "P": 3, 
+        "Q": 10, 
+        "R": 1, 
+        "S": 1, 
+        "T": 1, 
+        "U": 1, 
+        "V": 4, 
+        "W": 4, 
+        "X": 8, 
+        "Y": 4, 
+        "Z": 10
+    }
+
+    if not word:
+        return 0 
+
+    # list comprehension to separate the word into separate chars and store them in list obj
+    sep_into_single_letters = [letter for letter in word.upper()]
+
+    points_for_each_letter = []
+    for letter in sep_into_single_letters: # loops through each letter in the list
+        if letter in letters_and_point_values: # conditional that checks if any of the letters are also in dictionary
+            letter_vals = letters_and_point_values[letter] # stores each value of each letter found in word list and dictionary and assigns that value to letter_vals 
+            points_for_each_letter.append(letter_vals) # appends the value of the letter to list 
+
+    # take sum of points
+    total_points = sum(points_for_each_letter)
+    # checks to see if len of word is equal to 7 - 10 
+    if len(word) >= 7 and len(word) <= 10:
+        total_points += 8
+
+    return total_points
+
 
 def get_highest_word_score(word_list):
     pass
