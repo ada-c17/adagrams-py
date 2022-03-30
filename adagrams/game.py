@@ -187,7 +187,6 @@ def get_highest_word_score(word_list):
     for word in word_list: 
         word_scores[word] = score_word(word)
     print(word_scores)
-    
 # evaluates dictionary for highest score - record integer
     highest = max(word_scores.values())
     # goes through every every key, accesses value--> when value is the same as the high score, add to list 
@@ -201,7 +200,7 @@ def get_highest_word_score(word_list):
     elif len(highest_score_list) == 1:
         the_list = [highest_score_list[0], score_word(highest_score_list[0])]
         return tuple(the_list)
-        # when the length of the list is greater than one, meaning 
+        # when the length of the list is greater than one, meaning ties
     elif len(highest_score_list) > 1:
         shortest = min(highest_score_list, key=len)
         for item in highest_score_list: 

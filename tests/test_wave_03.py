@@ -60,3 +60,12 @@ def test_score_extra_points_for_seven_or_longer():
     assert result_2 == 72
     assert result_3 == 80
     
+
+def test_all_same_letters():
+    # arrange 
+    word= "BBBBBB"
+    # Act
+    result = score_word(word)
+
+    # Assert
+    assert result == 18
