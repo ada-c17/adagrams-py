@@ -14,7 +14,9 @@ def create_letter_pool():
 def draw_letters():
 
     letter_pool = create_letter_pool()
+    # shuffle method from random module allows us to randomize the list in-place
     shuffle(letter_pool)
+    # once the list is shuffled, we slice the first 10 items to use as the user's letter bank
     letter_bank = letter_pool[0:10]
 
     return letter_bank
@@ -51,22 +53,21 @@ def score_word(word):
 
 
 def get_highest_word_score(word_list):
-    high_scores = [] # [("XXXX", 10), ("XX", 10),]
-    highest_score = 0
+    max_score = 0
+    high_score_word = None
 
     for word in word_list:
         word_score = score_word(word)
-        if word_score >= highest_score:
-            highest_score = word_score
-            high_scores.append((word, word_score))
+        if word_score > max_score:
+            max_score = word_score
+            high_score_word = word
+        elif word_score == max_score:
+            word_len = len(word)
+            high_score_word_len = len(high_score_word)
+            # if the high score word length is not 10 AND current word length is 10 OR
+            # if high score word length is not 10 AND current word length is less than high score word length
+            # current word is the highest scoring word
+            if high_score_word_len != 10 and (word_len == 10 or word_len < high_score_word_len):
+                high_score_word = word
 
-    # max function is returning the first instance tuple with the highest score from high scores list
-    highest_tuple = max(high_scores)
-    # we are removing the tuple with the highest score from high scores list to check for other instances
-    high_scores.remove(highest_score)
-
-    # for score in high_scores:
-    #     if score == highest_score:
-    #         if len() == 10:
-
-    return highest_score
+    return (high_score_word, max_score)
