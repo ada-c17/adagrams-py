@@ -29,7 +29,7 @@ LETTER_POOL = {
     'Z': 1
 }
 
-
+##----------- WAVE 1 ----------- ##
 def draw_letters():
     letter_pool = copy.deepcopy(LETTER_POOL)
     chosen_letters = []
@@ -38,13 +38,20 @@ def draw_letters():
         if letter_pool[random_letter] > 0:
             chosen_letters.append(random_letter)
             letter_pool[random_letter] -= 1
-    
-    print(chosen_letters)
     return chosen_letters
 
-#random_letter = [random.choice(list(LETTER_POOL)) for i in range(10)]
+
+##----------- WAVE 2 ----------- ##
 def uses_available_letters(word, letter_bank):
-    pass
+    letter_bank_copy = copy.deepcopy(letter_bank)
+    new_word = word.upper()
+    for letter in new_word:
+        if letter not in letter_bank_copy:
+            return False
+        else:
+            letter_bank_copy.remove(letter)
+    return True
+
 
 def score_word(word):
     pass
