@@ -59,7 +59,7 @@ LETTER_SCORES = {
     'Z': 10
 }
 
-def draw_letters(LETTER_POOL):
+def draw_letters():
     letter_list = []
     copy_dict = copy.copy(LETTER_POOL)
 
@@ -85,7 +85,31 @@ def uses_available_letters(word, letter_bank):
     return True
 
 def score_word(word):
-    pass
+    total = 0
+    word = word.upper()
+    
+    if len(word) >= 7:
+        total += 8
+    for letter in word:
+        total += LETTER_SCORES[letter]
+    return total
 
 def get_highest_word_score(word_list):
-    pass
+    highest_scoring_word = ""
+    highest_score = 0    
+    
+    for word in word_list:
+        word_score = score_word(word)
+        if word_score > highest_score:
+            highest_score = word_score
+            highest_scoring_word = word
+        elif word_score == highest_score:
+            if len(highest_scoring_word) == 10:
+                continue
+            elif len(word) == 10:
+                highest_scoring_word = word
+            elif len(word) < len(highest_scoring_word):
+                highest_scoring_word = word
+                print(highest_scoring_word)
+            
+    return highest_scoring_word , highest_score
