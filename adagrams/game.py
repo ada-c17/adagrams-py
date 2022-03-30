@@ -1,3 +1,5 @@
+import random
+import string
 def draw_letters():
     #create a list with the pool of letters
     letter_quantity = {"A":9, "B":2, "C":2, "D":4, "E":12 , "F":2, "G":3, "H":2, "I":9, "J":1,
@@ -7,28 +9,43 @@ def draw_letters():
     
     letter_bank = []
     #choose 10 random letters
-    while i in range(10): # Use a while loop
-        # Get random number with randrange (hint ord())
-        i = random.randrange(1,13)
-        # Get the letter associated with that random number A-Z (hint ascii)
-        if i != 0 and i in letter_quantity.values():
-            list_of_letters.append(letter_quality[i])
+    counter = 10
+    while counter > 0: # Use a while loop
+        # Get random number with randrange
+        rand_i = random.randrange(ord("A"), ord("Z"))
+        # Get the letter associated with that random number A-Z
+        letter = chr(rand_i)
         # Get letter from dict
+        value = letter_quantity[letter]
         # if the value is > 0
             # decrement the quantity
             # add to list of randomly chosen letters
             # decrement your counter
-        # else
-            # We haven't found a letter available
+        if value <= 0:
+            continue
+        letter_quantity[letter] -=1
+        letter_bank.append(letter)
+        counter -= 1
+        
+    # return a list of 10 letters   
+    return letter_bank
     
-    # return a list of 10 letters
 
 def uses_available_letters(word, letter_bank):
-    pass
+    list_letters = set(letter_bank[:])
+    for letter in word:
+        if letter.upper() in list_letters:
+            list_letters.remove(letter.upper())
+        else:
+            return False
+        
+    return True
+
 
 def score_word(word):
     #create a dictionary of letters with corresponding points
-    letter_points = {"A":1, "B":3, "C":3, "D": , "E":, "F":, "G":, }
+    #letter_points = {"A":1, "B":3, "C":3, "D": , "E":, "F":, "G":, }
+    pass
 
 def get_highest_word_score(word_list):
     pass
