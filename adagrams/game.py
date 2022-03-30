@@ -72,6 +72,7 @@ def draw_letters():
     output = sample(letters, k=10)
     return output
 
+
 # create a helper function
 def get_letter_count(sequence):
     """Returns a dictionary that contains the frequency of each letter from a sequence"""
@@ -83,12 +84,13 @@ def get_letter_count(sequence):
 
     return frequency_dict
 
+
 def uses_available_letters(word, letter_bank):
     """Returns True if word uses only letters from letter_bank
     Returns False if word uses letters not from letter_bank"""
     word = word.upper()
 
-    # get the counts of each character
+    # get the counts of all characters
     word_count_dict = get_letter_count(word)
     letter_bank = get_letter_count(letter_bank)
 
@@ -97,6 +99,7 @@ def uses_available_letters(word, letter_bank):
             return False
 
     return True
+
 
 def score_word(word):
     # check empty word
@@ -116,6 +119,7 @@ def score_word(word):
         score += 8
     return score
 
+
 def get_highest_word_score(word_list):
     highest_score = 0
     highest_score_word = None
@@ -128,7 +132,6 @@ def get_highest_word_score(word_list):
             highest_score = current_score
             highest_score_word = word
             continue
-
 
         elif current_score == highest_score:
             # if the current highest_score_word has 10 letters, continue
