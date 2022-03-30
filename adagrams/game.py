@@ -85,26 +85,33 @@ def score_word(word):
         "Z": 10
     }
 
-    if not word:
-        return 0 
+    # if not word:
+    #     return 0 
 
-    # list comprehension to separate the word into separate chars and store them in list obj
-    sep_into_single_letters = [letter for letter in word.upper()]
+    # # list comprehension to separate the word into separate chars and store them in list obj
+    # sep_into_single_letters = [letter for letter in word.upper()]
 
-    points_for_each_letter = []
-    for letter in sep_into_single_letters: # loops through each letter in the list
-        if letter in letters_and_point_values: # conditional that checks if any of the letters are also in dictionary
-            letter_vals = letters_and_point_values[letter] # stores each value of each letter found in word list and dictionary and assigns that value to letter_vals 
-            points_for_each_letter.append(letter_vals) # appends the value of the letter to list 
+    # points_for_each_letter = []
+    # for letter in sep_into_single_letters: # loops through each letter in the list
+    #     if letter in letters_and_point_values: # conditional that checks if any of the letters are also in dictionary
+    #         letter_vals = letters_and_point_values[letter] # stores each value of each letter found in word list and dictionary and assigns that value to letter_vals 
+    #         points_for_each_letter.append(letter_vals) # appends the value of the letter to list 
 
     # take sum of points
-    total_points = sum(points_for_each_letter)
-    # checks to see if len of word is equal to 7 - 10 
-    if len(word) >= 7 and len(word) <= 10:
-        total_points += 8
+    # total_points = sum(points_for_each_letter)
+    # # checks to see if len of word is equal to 7 - 10 
+    # if len(word) >= 7 and len(word) <= 10:
+    #     total_points += 8
 
-    return total_points
+    # return total_points
 
+    bonus = 8
+    points_for_each_letter = [letters_and_point_values[letter] for letter in word.upper()]
+
+    if len(word.upper()) >= 7 and len(word.upper()) <= 10:
+        return (sum(points_for_each_letter)+bonus)
+    else:
+        return sum(points_for_each_letter)
 
 def get_highest_word_score(word_list):
     scores = [score_word(word) for word in word_list]
