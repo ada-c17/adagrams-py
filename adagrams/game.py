@@ -108,9 +108,6 @@ def score_word(word):
         'Z': 10
     }
 
-    # for char in word:
-    #     if  in values_dict:
-    #         if len(word) in extra_point:
 
     for letter in word:
         if letter.isalpha():
@@ -125,6 +122,7 @@ def score_word(word):
 
 
 def get_highest_word_score(word_list):
+<<<<<<< HEAD
     """
     Finds highest scoring word and returns a tuple with winning word and score
     In case of a tie:
@@ -169,3 +167,44 @@ def get_highest_word_score(word_list):
                 shortest_word = word
         return (shortest_word, high_score,)
                 
+=======
+    #["cat", "dog", "goose"]
+    # ("goose", 7)
+    '''
+    prefer word with fewest letters
+    prefer the word with the fewest letters...
+    -unless one word has 10 letters. 
+    -If the top score is tied between multiple words 
+    and one is 10 letters long, choose the one with 
+    10 letters over the one with fewer tiles
+    - If the there are multiple words that are the 
+    same score and the same length, pick the first one 
+    in the supplied list
+
+    '''
+
+    #####OTHER-OPTION########
+    # dict_of_score_words = {}
+    # for word in word_list:
+    #     each_score = score_word(word)
+    #     dict_of_score_words[word] = each_score
+
+    # current_highest_score = dict_of_score_words[word_list[0]]
+    # current_highest_word =  word_list[0]
+    # for word in dict_of_score_words:
+    #     if dict_of_score_words[word] > current_highest_score:
+    #         current_highest_score = dict_of_score_words[word]
+    #         current_highest_word = word
+    #     elif dict_of_score_words[word] == current_highest_score:
+    #         if len(word) == 10:
+    #             current_highest_score = dict_of_score_words[word]
+    #             current_highest_word = word
+    #             return (current_highest_word, current_highest_score) 
+    #         elif len(word) < len(current_highest_word):
+    #             current_highest_score = dict_of_score_words[word]
+    #             current_highest_word = word
+    # return (current_highest_word, current_highest_score) 
+        
+    
+    
+>>>>>>> fb917bfcfd0bdbb627d30d7f18eea1e662635310
