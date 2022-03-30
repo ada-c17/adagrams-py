@@ -111,6 +111,8 @@ def score_word(word):
 
 def get_index_tie_break(word_list):
     '''
+    Finds the winner to break a tie with rules: 10 letters > fewest letters > first word 
+    Not sure why, but range(len(word_list)-1) didn't iterate over the loop properly. 
     '''
     highest_index = 0
     for i in range(len(word_list)): # I would skip the first item but we need to check if it is the shortest or 10 letters long. 
