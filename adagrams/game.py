@@ -44,6 +44,12 @@ def draw_letters():
         repeat_num = LETTER_POOL[letter]
         letter_list.extend(letter*repeat_num)
     print(letter_list)
+    '''
+    Could delete the entire section above, because we're checking the count of letters below.
+    Could change line 58 to "letter = random.choice(LETTER_POOL.keys()) to select any letter,
+    then the next section makes sure it doesn't exceed its maximum count.
+    If we make this change, should rename "new_letter_list" variable to just "letter_list"
+    '''
 
     new_letter_list = []
     count_dict = {}
@@ -67,19 +73,22 @@ def draw_letters():
 
 def uses_available_letters(word, letter_bank):
     word = word.upper()
-
+# delete previous line and change below line to "for letter in word.upper()"?
     for letter in word:
         keep_checking = True
+        # move above line to above the for loop?
         if letter in letter_bank:
             letter_count = word.count(letter)
             letter_list_count = letter_bank.count(letter)
             if letter_count <= letter_list_count:
                 keep_checking
+                # change above line to "continue"?
             else:
                 keep_checking = False
                 break
         else:
             return False
+            # change above line to "keep_checking = False"?
     return keep_checking
 
 # -----test_wave_03-----------
@@ -128,6 +137,8 @@ def score_word(word):
 
 
 def get_highest_word_score(word_list):
+
+    # Create list of dictionaries storing each word and its score
     scores = []
     for word in word_list:
         score = score_word(word)
@@ -135,21 +146,33 @@ def get_highest_word_score(word_list):
             "word": word,
             "score": score
         })
+
+    # Create list of dictionaries storing word and score for top-scoring word(s)
     top_words = []
     for word in scores:
         if word["score"] == max(word["score"] for word in scores):
             top_words.append(word)
+
+    # If there is only one top word, return info for that one
     if len(top_words) == 1:
         return top_words[0]["word"], top_words[0]["score"]
+
+    # If there is less than one top word, error has occured, return None
     elif len(top_words) < 1:
         return None
+
+    # If there is more than one top word, make a list of each word's length
     elif len(top_words) > 1:
         top_word_lengths = []
         for word in top_words:
             top_word_lengths.append(len(word["word"]))
+
+    # If there is a word with length 10, return info for that one
         if 10 in top_word_lengths:
             ten_char_word = top_words[top_word_lengths.index(10)]
             return ten_char_word["word"], ten_char_word["score"]
+
+    # If there is not a 10-character word, return info for the shortest word
         else:
             min_len_word = top_words[top_word_lengths.index(
                 min(top_word_lengths))]
