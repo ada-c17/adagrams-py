@@ -63,7 +63,6 @@ def test_letter_not_selected_too_many_times():
                 letter_freq[letter] += 1
             else:
                 letter_freq[letter] = 1
-        print(letter_freq)
         # Assert
         for letter in letters:
             assert letter_freq[letter] <= LETTER_POOL[letter]
