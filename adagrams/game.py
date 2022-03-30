@@ -1,7 +1,4 @@
-# from tests.test_wave_01 import LETTER_POOL
 from random import randint
-
-
 from copy import deepcopy
 
 LETTER_POOL = [
@@ -82,4 +79,23 @@ def score_word(word):
     return word_score
 
 def get_highest_word_score(word_list):
-    pass
+   
+    best_word = {
+        "word" : "",
+        "score" : 0
+    }
+
+    for word in word_list:
+        score = score_word(word)
+        if score > best_word["score"]:
+            best_word["score"] = score
+            best_word["word"] = word
+        elif score == best_word["score"]:
+            if len(word) == 10 and len(best_word["word"]) != 10:
+                best_word["score"] = score
+                best_word["word"] = word
+            elif len(word) < len(best_word["word"]) and len(best_word["word"]) != 10:
+                best_word["score"] = score
+                best_word["word"] = word
+
+    return (best_word["word"], best_word["score"])
