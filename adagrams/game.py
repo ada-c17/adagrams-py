@@ -148,8 +148,6 @@ def get_highest_word_score(word_list):
     highest_score = 0
     best_words = []
 
-    
-
     for word in word_list:
         # word_length= len(word)
         word_score = score_word(word)
@@ -167,11 +165,13 @@ def get_highest_word_score(word_list):
         
         if len(word) == 10: 
             highest_score_tuple = (word, highest_score)
+            return highest_score_tuple
         else: 
             ### this isn't the right way to do it! 
             ## but thought is that we have a 
             shortest_word = min(word_list, key=lambda word: len(word))
             highest_score_tuple = (shortest_word, highest_score)
+            
 
         
 
