@@ -73,28 +73,26 @@ def get_highest_word_score(word_list):
     for word in word_list:
         if score_dict[word] == max_score:
             max_score_words.append(word)
-    
-    
     # apply tiebreaking logic to determine winning word
     # rule_01 prefer the word with the fewest letters
     # rule_02 if a word is ten letters long, it wins
     # rule_03 if multiple words with same score and same length, pick first in word_list
     winning_word = []
     if len(max_score_words) == 1:
-        
         #winning_word.append(max_score)
         winning_word = [max_score_words[0], max_score]
-        # return winning_word
-    elif max(max_score_words, key=len) == 10:
+        
+    elif any(len(word) == 10 for word in max_score_words):
         for word in max_score_words:
             if len(word) == 10:
                 winning_word = [word, max_score]
-                # return winning_word
+                break
     else:
+        mini = min(max_score_words, key=len)
         for word in max_score_words:
-            if len(word) == min(max_score_words, key=len):
+            if word == mini:
                 winning_word = [word, max_score]
-                # return winning_word
+                break
                 
 
     #return a tuple with winning word and its score
