@@ -2,44 +2,23 @@ import copy
 import random
 from operator import indexOf
 
-LETTERS = {"A":9, "B":2, "C":2,"D":4, "E":12, "F":2, "G":3, "H":2,"I":9,"J":1,"K":1,"L":4,"M":2,"N":6, "O":8,"P":2,"Q":1,"R":6,"S":4,"T":6, "U":4, "V":2,"W":2,"X":1,"Y":2,"Z":1} 
-SCORE_CHART = {
-    'A' : 1,
-    'B' : 3,
-    'C' : 3,
-    'D' : 2,
-    'E' : 1,
-    'F' : 4,
-    'G' : 2,
-    'H' : 4, 
-    'I' : 1,
-    'J' : 8,
-    'K' : 5,
-    'L' : 1,
-    'M' : 3,
-    'N' : 1,
-    'O' : 1,
-    'P' : 3,
-    'Q' : 10,
-    'R' : 1,
-    'S' : 1,
-    'T' : 1,
-    'U' : 1,
-    'V' : 4,
-    'W' : 4,
-    'X' : 8,
-    'Y' : 4,
-    'Z' : 10
-}
+LETTERS = {'A': 9, 'B' : 2, 'C' : 2, 'D' : 4, 'E' : 12, 'F' : 2, 'G' : 3, 'H' : 2, 'I' : 9, 'J' : 1, 'K' : 1, 'L' : 4,
+            'M': 2, 'N' : 6, 'O' : 8, 'P' : 2, 'Q' : 1, 'R' : 6, 'S' : 4, 'T' : 6, 'U' : 4, 'V' : 2, 'W' : 2, 'X' : 1, 'Y' : 2, 'Z' : 1}
+
+SCORE_CHART = {'A' : 1, 'B' : 3, 'C' : 3, 'D' : 2, 'E' : 1, 'F' : 4, 'G' : 2, 'H' : 4, 'I' : 1, 'J' : 8, 'K' : 5, 'L' : 1, 'M' : 3, 'N' : 1,
+                'O' : 1, 'P' : 3, 'Q' : 10, 'R' : 1, 'S' : 1, 'T' : 1, 'U' : 1, 'V' : 4, 'W' : 4, 'X' : 8, 'Y' : 4, 'Z' : 10}
 
 def draw_letters():
     copied_letters = copy.deepcopy(LETTERS)
     hand = []
-    while len(hand)<10:
+    while len(hand) < 10:
+        # Get a random letter among the keys in LETTERS dictionary
         rand_letter = random.choice(list(LETTERS.keys()))
-        if copied_letters[rand_letter]>0:
+        # Add letter in hand only if we have enough number of letters in copied letter pool
+        if copied_letters[rand_letter] > 0:
             hand.append(rand_letter)
-            copied_letters[rand_letter]-=1
+            # Substract one after adding a letter to the hand
+            copied_letters[rand_letter] -= 1
     return hand
 
 def uses_available_letters(word, letter_bank):
@@ -48,6 +27,7 @@ def uses_available_letters(word, letter_bank):
         return False
     for letter in word.upper():
         if letter in copied_letter_bank:
+            # Remove letter to avoid duplicates
             copied_letter_bank.remove(letter)
         else:
             return False
@@ -55,25 +35,29 @@ def uses_available_letters(word, letter_bank):
 
 def score_word(word):
     score = 0
+    # Add 8 to the score if the length of word is 7,8,9,10
     if len(word) >= 7 and len(word) <= 10:
         score += 8
     for letter in word.upper():
+        # Add score only letters are from the alphabet, ignore non-alphabet letter
         if letter.isalpha():
             score += SCORE_CHART[letter]  
     return score
     
 def get_highest_word_score(word_list):
+    # Create list to store highet score words, to account if there are multiple words with same highest score
     highest_score_words = [word_list[0]]
     highest_score = score_word(word_list[0])
     for i in range(1,len(word_list)):
         current_score = score_word(word_list[i])
-        if current_score>highest_score:
+        if current_score > highest_score:
             highest_score = current_score
             highest_score_words = [word_list[i]]
         elif current_score == highest_score:
             highest_score_words.append(word_list[i])
     
-    if len(highest_score_words)>1:
+    # Check if there are multiple words with same highest score
+    if len(highest_score_words) > 1:
         len_of_words = get_len_of_highest_score_words(highest_score_words)
         if 10 in len_of_words:
             index = indexOf(len_of_words, 10)
@@ -85,6 +69,7 @@ def get_highest_word_score(word_list):
 
     return (highest_score_words[0], highest_score)
 
+# Helper function to get the length of each word in list
 def get_len_of_highest_score_words(highest_score_words):
     len_of_words = [len(word) for word in highest_score_words]
     return len_of_words
