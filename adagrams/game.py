@@ -1,7 +1,8 @@
 import random
+import copy 
+from adagrams.constants import LETTER_POOL
 
-#from adagrams.constants import LETTER_POOL
-
+'''
 LETTER_POOL = {
     'A': 9, 
     'B': 2, 
@@ -30,14 +31,13 @@ LETTER_POOL = {
     'Y': 2, 
     'Z': 1
 }
-
+'''
 
 # draw a letter, from the letter pool
 # put each letter in a dictionary, assign a count
 # check if count exceeds the allowed count in the LETTER_POOL
 # if the letter is good, append it to hand
 # repeat until 10 letters
-
 
 def draw_letters():
     '''
@@ -75,36 +75,23 @@ def uses_available_letters(word, hand):
     False otherwise or if char in word is not in hand.
     '''
     word = word.upper()
+    hand_copy = copy.deepcopy(hand)
     for letter in word:
-        if letter in hand:
-            hand.remove(letter)
-        elif letter not in hand:
+        if letter in hand_copy:
+            hand_copy.remove(letter)
+        elif letter not in hand_copy:
             return False
     return True
 
-
-def uses_available_letters(word, hand):
-    '''
-    input: word (a string) and hand (a list of strings, one char each)
-    output: Returns True if the frequency of each char in the word does
-    not exceed the frequency of that same char in the hand. Returns
-    False otherwise or if char in word is not in hand.
-    '''
-    word = word.upper()
-    letters_dict = {elem : hand.count(elem) for elem in set(hand)}
-    for letter in word:
-        if letter in hand:
-            if letters_dict[letter] > 0:
-                letters_dict[letter] += -1
-            elif letters_dict[letter] <= 0:
-                return False
-        else:
-            return False
-    return True
 
 
 def score_word(word):
     pass
+
+
+
+
+
 
 def get_highest_word_score(word_list):
     pass
