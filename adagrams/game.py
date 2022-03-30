@@ -1,7 +1,7 @@
 import random
 import copy
 
-# dictionary of letters and their frequency
+# dictionary of letters and their frequencies. Dictionary used for readability and easy to modify.
 LETTER_POOL = {
     'A': 9,
     'B': 2,
@@ -30,7 +30,7 @@ LETTER_POOL = {
     'Y': 2,
     'Z': 1
 }
-# dictionary of letters and their points values
+# dictionary of letters and their points values. letters are in tuples for readability 
 SCORES = {
     ("A", "E", "I", "O", "U", "L", "N", "R", "S", "T"): 1,
     ("D", "G"): 2,
@@ -64,13 +64,13 @@ def uses_available_letters(word, letter_bank):
 def score_word(word):
     sum = 0
     word = word.upper()
-    if len(word) > 6:
+    if 7<=len(word) <=10:
         sum += 8
     for letter in word:
         for key in SCORES:
-            for char in key:
-                if letter == char:
-                    sum += SCORES[key]
+            if letter in key:
+                sum += SCORES[key]
+                break
     return sum
 
 def get_highest_word_score(word_list):
