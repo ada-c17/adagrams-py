@@ -93,32 +93,27 @@ def get_highest_word_score(word_list):
     for word in word_list:
         word_scores[word] = score_word(word)
 
-    highest_word = max(word_scores, key=word_scores.get)
-    highest_score = word_scores[highest_word]
-    
-    # print(word_scores)
-    # print(highest_word)
-
-    # print(highest_score)
+    #highest_word = max(word_scores, key=word_scores.get)
+    highest_score = max(word_scores.values())
     
     top_words = []
     for word in word_scores:
         if word_scores[word] == highest_score:
             top_words.append(word)
-    print(top_words)
 
-    sorted_top_words = sorted(top_words, key=len)
-    shortest_word = min(top_words, key=len)        
+    shortest_word = min(top_words, key=len)  
+    sorted_scores = sorted(word_scores, key=len, reverse=True)
+    #print(sorted_scores)   
     
-    for word in word_scores:
-        if word in sorted_top_words:
+    for word in sorted_scores:
+        if word in top_words:
             if len(word) == 10:
-                print(word)
-                print(word_scores[word])
+                # print(word)
+                # print(word_scores[word])
                 return tuple((word, word_scores[word]))
             elif word == shortest_word:
-                print(word)
-                print(word_scores[word])
+                # print(word)
+                # print(word_scores[word])
                 return tuple((word, word_scores[word]))
 
 
