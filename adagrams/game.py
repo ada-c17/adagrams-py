@@ -33,33 +33,6 @@ def uses_available_letters(word, letter_bank):
     # pass
 uses_available_letters("alex", ["A","B","C","D"])
 def score_word(word):
-<<<<<<< HEAD
-    if not word.isupper():
-        word = word.upper()
-    score_one = {1:["A","E","I","O","U","L","N","R","S","T"],2:["D","G"],3:["B", "C", "M", "P"],4:["F", "H", "V", "W", "Y"],5: ["k"], 8:["J","X"], 10:["Q","Z"]}
-    total_score = 0
-    for letter in word:
-        for score, letters in score_one.items(): 
-            if letter in letters:
-                total_score += score
-    if 7 <= len(word) <= 10:
-        total_score += 8
-    
-    return total_score
-
-def get_highest_word_score(word_list):
-    highest_word = ""
-    highest_score = 0
-    for word in word_list:
-        score = score_word(word)
-        if score > highest_score or \
-            (score == highest_score and len(word) > len(highest_word) and len(word) == 10) or \
-            score == highest_score and len(highest_word) != 10 and len(word) < len(highest_word):
-            highest_word = word
-            highest_score = score
-    return highest_word, highest_score
-
-=======
     res=0
     if not word:
         return res
@@ -91,4 +64,3 @@ def get_highest_word_score(word_list):
                 res = (word, word_score)
             
     return res
->>>>>>> 762fac98a86a795949ca3bc5f01a46b52c751ade
