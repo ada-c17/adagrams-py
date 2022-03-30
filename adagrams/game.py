@@ -29,7 +29,26 @@ def uses_available_letters(word, letter_bank):
     return True
 
 def score_word(word):
-    pass
+    score = 0
+    for letter in word.upper():
+        score += POINT_VALUES[letter]
+    if len(word) >= 7:
+        score += 8
+    return score
 
 def get_highest_word_score(word_list):
-    pass
+    max_score = 0
+    highest_word = ""
+    for word in word_list:
+        score = score_word(word)
+        if score > max_score:
+            max_score = score
+            highest_word = word
+        elif score == max_score and len(highest_word) != 10:
+            if len(word) == 10 or len(word) < len(highest_word):
+                highest_word = word
+    winning_word = (highest_word, max_score)
+    return winning_word
+
+
+    
