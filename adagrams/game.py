@@ -88,7 +88,7 @@ def score_word(word):
         "Z": 10
     }
 
-    if not word:
+    if not word: 
         return 0 
 
     # list comprehension to separate the word into separate chars and store them in list obj
