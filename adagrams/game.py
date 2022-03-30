@@ -32,7 +32,7 @@ def draw_letters():
     'X': 1, 
     'Y': 2, 
     'Z': 1
-}
+    }
 
     letter_key_list = list(LETTER_POOL.keys())
     random.shuffle(letter_key_list)
@@ -79,11 +79,11 @@ def uses_available_letters(word, letter_bank):
         else:
             pool.remove(letter.upper())
     return True   
+ 
 
-
-
-def uses_available_letters(word, letter_bank):
-    pass
+#======another example============
+# def uses_available_letters(word, letter_bank):
+#     pass
 #     letter_bank_dict = {}
 #     for letter in letter_bank:
 #         if letter not in letter_bank_dict:
@@ -107,42 +107,72 @@ def uses_available_letters(word, letter_bank):
 
 
 def score_word(word):
-    pass
-#     list_1 = ["A", "E", "I", "O", "U", "L", "N", "R", "S", "T"]
-#     list_2 = ["D", "G"]
-#     list_3 = ["B", "C", "M", "P"]
-#     list_4 = ["F", "H", "V", "W", "Y"]
-#     list_5 = ["K"]
-#     list_6 = ["J", "X"]
-#     list_7 = ["Q", "Z"]
     
-#     total_points = 0
+    list_1 = ["A", "E", "I", "O", "U", "L", "N", "R", "S", "T"]
+    list_2 = ["D", "G"]
+    list_3 = ["B", "C", "M", "P"]
+    list_4 = ["F", "H", "V", "W", "Y"]
+    list_5 = ["K"]
+    list_6 = ["J", "X"]
+    list_7 = ["Q", "Z"]
     
-#     for letter in word:
-#         if letter.upper() in list_1:
-#             total_points += 1
-#         elif letter.upper() in list_2:
-#             total_points += 2
-#         elif letter.upper() in list_3:
-#             total_points += 3
-#         elif letter.upper() in list_4:
-#             total_points += 4
-#         elif letter.upper() in list_5:
-#             total_points += 5
-#         elif letter.upper() in list_6:
-#             total_points += 8
-#         elif letter.upper() in list_7:
-#             total_points += 10
+    total_points = 0
     
-#     if  6 < len(word) < 11:
-#         total_points += 8
-        
-#     return total_points
+    for letter in word:
+        if letter.upper() in list_1:
+            total_points += 1
+        elif letter.upper() in list_2:
+            total_points += 2
+        elif letter.upper() in list_3:
+            total_points += 3
+        elif letter.upper() in list_4:
+            total_points += 4
+        elif letter.upper() in list_5:
+            total_points += 5
+        elif letter.upper() in list_6:
+            total_points += 8
+        elif letter.upper() in list_7:
+            total_points += 10
+    
+    if  len(word)>=7 and len(word)<=10:
+        total_points+=8
+ 
+    return total_points
 
 
 def get_highest_word_score(word_list):
-    pass
-#     pass
+    dict_of_words={}
+    for word in word_list:
+        score =score_word(word)
+        dict_of_words[word]=score   
+
+    highest_score=0
+    highest_score_words=[]
+
+    for k,v in dict_of_words.items():
+        if v>highest_score:
+            highest_score=v
+            highest_score_words.clear()
+            highest_score_words.append(k)
+        elif v==highest_score:
+            highest_score_words.append(k)
+
+    highest_score_word=highest_score_words[0]
+    for e in highest_score_words:
+         if len(e) >=10:
+            highest_score_word=e
+            break       
+         elif len(e)<len(highest_score_word):
+            highest_score_word=e
+       
+    result=tuple([highest_score_word,highest_score])    
+    return result    
+
+
+
+           
+
+        
 
 
 
