@@ -1,6 +1,5 @@
 import random
-import copy
-from re import L
+
 LETTER_POOL = {
     'A': 9, 
     'B': 2, 
@@ -35,18 +34,23 @@ SCORE_CHART = {
     ("D", "G"): 2,
     ("B", "C", "M", "P"): 3,
     ("F", "H", "V", "W", "Y"): 4,
-    ("K"): 5,
+    ("K", ): 5,
     ("J", "X"): 8,
     ("Q", "Z"): 10
 }
 
 def draw_letters():
-
-    letter_pool_copy = copy.deepcopy(LETTER_POOL)   # shallow copy should work in this case? it's faster than deep copy, deep copy complexity is varied
-    drawn_letters = []                              
-
+    # Create a copy of LETTER_POOL so it won't change the original data
+    letter_pool_copy = LETTER_POOL.copy()   
+    drawn_letters = []                           
+    
     for i in range(10):
+        # Choose a random letter 10 times
         letter = random.choice(list(letter_pool_copy.keys()))
+
+        # Check letter qty, updating the LETTER_POOL_copy to reflect the distribution 
+        #   if qty == 1 remove it from the copy so it won't be chosen again
+        #   if qty > 1, decrease the qty by 1
         if letter_pool_copy[letter] == 1:
             del letter_pool_copy[letter]       
         else:
@@ -55,45 +59,58 @@ def draw_letters():
     return drawn_letters
 
 def uses_available_letters(word, letter_bank):
-    letter_bank_copy = copy.deepcopy(letter_bank)   # 2nd thought: we might use a dictionary to store the letter data? key:value --> letter:freq
-    for char in word:                               # checking an item in dictionary is O(1), checking an item in list is O(n)
-        char = char.capitalize()                    # the good thing is, we only have 10 letters so the space complextiy will be O(1) no matter what
+    # Create a copy of letter_bank so it won't change the original data
+    letter_bank_copy = letter_bank.copy()  
+    word = word.upper() 
+    
+    # Check if each single character exists in leeter_bank_copy:
+    #   if not, return False. 
+    #   if yes, remove it from letter_bank_copy
+    # If all letters in the letter_bank_copy, return True
+    for char in word:                               
         if char not in letter_bank_copy:        
-            return False            # Switch the order of the return and remove
-        letter_bank_copy.remove(char)               # list.remove method time complexity is O(n), update the value in dict is O(1) in the most cases
+            return False            
+        letter_bank_copy.remove(char)               
     return True
 
 def score_word(word):
     score = 0
     word = word.upper()
-    for letter in word:                            # still thinking might use update the SCORE_CHART ----> single_letter:score
-        for char, value in SCORE_CHART.items():    # it reduce the time complexity from n^2 to n, and it won't take too many space because there're
-            if letter in char:                     # 26 letters at the most, how do you think :)
+    
+    # Check each character in the word to find it's score in SCORE_CHART:
+        # sum the score of each chacracter
+    for letter in word:                            
+        for char, value in SCORE_CHART.items():    
+            if letter in char:                     
                 score += value
 
-    if len(word) >= 7:
+    # If the lenght of the word more than 6 characters, add 8 to the total score
+    if len(word) > 6:
         score += 8
 
     return score
 
 
 def get_highest_word_score(word_list):
-
     words_score = {}
-    words_max_value = []
+    max_value = 0
 
-    for word in word_list:                          # line 85 to 88 can be combined. Within one iteration, we can get the score and max_value. 
-        words_score[word] = score_word(word)       
-                            
-    max_value = max(words_score.values())
+    # Create a dictionary of word: score. Find the highest score between current and previous word.
+    for word in word_list:  
+        words_score[word] = score_word(word)
+        max_value = max(max_value, words_score[word]) 
 
-    for word, score in words_score.items():
-        if score == max_value:
-            words_max_value.append(word)
+    # Create a list of all words that have the highest score.
+    words_max_value = [word for word, score in words_score.items() if score == max_value]
 
-    if len(words_max_value) > 1:
+    # Check if words_max_value list has more than 1 word:
+        # sort the list of words based on it's length
+        # if the lenght of the word 10 letters:
+            # return the first word with the lenght 10 letters and it's score
+        # in all other cases return the first word in the list words_max_value as it has the fewest letters.
+    if len(words_max_value) > 1: 
         words_max_value = sorted(words_max_value, key=len)
         for word in words_max_value:
             if len(word) == 10:
-                return word, max_value    
+                return word, max_value  
     return words_max_value[0], max_value
