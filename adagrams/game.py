@@ -29,7 +29,7 @@ LETTER_POOL = {
     'Z': 1
 }
 
-score_chart = {
+SCORE_CHART = {
     'A': 1, 
     'B': 3, 
     'C': 3, 
@@ -87,7 +87,7 @@ def uses_available_letters(word, letter_bank):
 def score_word(word):
     total_score = 0
     for char in word.upper():
-        total_score += score_chart[char]
+        total_score += SCORE_CHART[char]
     if len(word) > 6:
         total_score += 8
     return total_score
