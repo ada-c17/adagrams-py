@@ -30,6 +30,7 @@ LETTER_POOL = {
 }
 
 
+
 SCORE_DICT = {
     'A': 1,
     'B': 3,
@@ -62,27 +63,23 @@ SCORE_DICT = {
 
 def draw_letters():
     # create the list of letters from dictionary according quantity
-    list = []
-    for value, keys in LETTER_POOL.items():
-        for k in range(keys):
-            list.append(value)
+    letters = []
+    for letter, frequency in LETTER_POOL.items():
+        for k in range(frequency):
+            letters.append(letter)
 
     # create with rundom function list of 10 elements according list of letters with sample function
-    output = sample(list, k=10)
+    output = sample(letters, k=10)
     return output
 
-
-def get_letter_count(seq):
+# create a helper function
+def get_letter_count(sequence):
     """Returns a dictionary that contains the frequency of each letter from a sequence"""
 
     frequency_dict = {}
 
-    for char in seq:
-    #     if char in frequency_dict:
-    #         frequency_dict[char] += 1
-    #     else:
-    #         frequency_dict[char] = 1
-        frequency_dict[char] = frequency_dict.get(char, 0) + 1
+    for character in sequence:
+        frequency_dict[character] = frequency_dict.get(character, 0) + 1
 
     return frequency_dict
 
@@ -95,8 +92,8 @@ def uses_available_letters(word, letter_bank):
     word_count_dict = get_letter_count(word)
     letter_bank = get_letter_count(letter_bank)
 
-    for char, count in word_count_dict.items():
-        if count > letter_bank.get(char, 0):
+    for character, count in word_count_dict.items():
+        if count > letter_bank.get(character, 0):
             return False
 
     return True
@@ -105,7 +102,6 @@ def score_word(word):
     # check empty word
     if len(word) == 0:
         return 0
-    
     # make letter in upper case
     word = word.upper()
     
@@ -121,26 +117,4 @@ def score_word(word):
     return score
 
 def get_highest_word_score(word_list):
-    highest_score = 0
-    highest_score_word = None
-
-    for word in word_list:
-        current_score = score_word(word)
-
-        # In case the score is strictly better
-        if current_score > highest_score:
-            highest_score = current_score
-            highest_score_word = word
-            continue
-
-
-        elif current_score == highest_score:
-            # if the current highest_score_word has 10 letters, continue
-            if len(highest_score_word) == 10:
-                continue
-
-            # update highest_score_word to a better "option"
-            if len(word) == 10 or len(word) < len(highest_score_word):
-                highest_score_word = word
-
-    return (highest_score_word, highest_score)
+    pass
