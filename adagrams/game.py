@@ -1,6 +1,5 @@
 from itertools import repeat
 import random 
-from collections import Counter
 
 def draw_letters():
     # Returns an array of ten strings - letters should be randomly drawn from a pool of letters
@@ -54,11 +53,48 @@ def uses_available_letters(word, letter_bank):
             copy_letter_bank.remove(letter)
     
     return True 
-        
-
 
 def score_word(word):
-    pass
+
+    letters_and_point_values = {
+    "A": 1,
+    "B": 3, 
+    "C": 3, 
+    "D": 2, 
+    "E": 1, 
+    "F": 4, 
+    "G": 2, 
+    "H": 4, 
+    "I": 1, 
+    "J": 8, 
+    "K": 5, 
+    "L": 1, 
+    "M": 3, 
+    "N": 1, 
+    "O": 1, 
+    "P": 3, 
+    "Q": 10, 
+    "R": 1, 
+    "S": 1, 
+    "T": 1, 
+    "U": 1, 
+    "V": 4, 
+    "W": 4, 
+    "X": 8, 
+    "Y": 4, 
+    "Z": 10
+    }
+
+    bonus = 8
+    points_for_each_letter = [letters_and_point_values[letter] for letter in word.upper()]
+
+    if len(word.upper()) >= 7 and len(word.upper()) <= 10:
+        return (sum(points_for_each_letter)+bonus)
+    else:
+        return sum(points_for_each_letter)
 
 def get_highest_word_score(word_list):
-    pass
+    scores = [score_word(word) for word in word_list]
+    word_and_score = sorted(list(zip(word_list, scores)), reverse = True)
+
+    return word_and_score[0]
