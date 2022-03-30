@@ -113,7 +113,7 @@ def get_index_tie_break(word_list):
     '''
     '''
     highest_index = 0
-    for i in range(len(word_list)-1): # I would skip the first item but we need to check if it is the shortest or 10 letters long. 
+    for i in range(len(word_list)): # I would skip the first item but we need to check if it is the shortest or 10 letters long. 
         if len(word_list[i]) == 10: 
             # highest_index = i # maybe return i at this point? otherwise, highest_rated will get overwritten by shorter words later.
             return i
