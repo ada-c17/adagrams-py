@@ -44,12 +44,6 @@ def draw_letters():
         repeat_num = LETTER_POOL[letter]
         letter_list.extend(letter*repeat_num)
     print(letter_list)
-    '''
-    Could delete the entire section above, because we're checking the count of letters below.
-    Could change line 58 to "letter = random.choice(LETTER_POOL.keys()) to select any letter,
-    then the next section makes sure it doesn't exceed its maximum count.
-    If we make this change, should rename "new_letter_list" variable to just "letter_list"
-    '''
 
     new_letter_list = []
     count_dict = {}
@@ -72,27 +66,22 @@ def draw_letters():
 
 
 def uses_available_letters(word, letter_bank):
-    word = word.upper()
-# delete line 75 and change below line to "for letter in word.upper()"?
+    word=word.upper()
+    keep_checking = True
     for letter in word:
-        keep_checking = True
-        # move line 79 to above the for loop? does not need to be re-declared with each loop
         if letter in letter_bank:
             letter_count = word.count(letter)
             letter_list_count = letter_bank.count(letter)
             if letter_count <= letter_list_count:
-                keep_checking
-                # change line 84 to "continue" for clarity?
+                continue            
             else:
                 keep_checking = False
                 break
         else:
-            return False
-            # change line 90 to "keep_checking = False" for consistency?
+            keep_checking = False          
     return keep_checking
 
 # -----test_wave_03-----------
-
 
 score_dict = {
     'A': 1,
@@ -152,6 +141,7 @@ def get_highest_word_score(word_list):
     for word in scores:
         if word["score"] == max(word["score"] for word in scores):
             top_words.append(word)
+    print(top_words)
 
     # If there is only one top word, return info for that one
     if len(top_words) == 1:
