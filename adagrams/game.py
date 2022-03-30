@@ -31,14 +31,44 @@ LETTER_POOL = {
     'Y': 2, 
     'Z': 1}
 
+SCORE_DICT= {
+    'A': 1,
+    'B': 3,
+    'C': 3,
+    'D': 2,
+    'E': 1,
+    'F': 4,
+    'G': 2,
+    'H': 4,
+    'I': 1,
+    'J': 8,
+    'K': 5,
+    'L': 1,
+    'M': 3,
+    'N': 1,
+    'O': 1,
+    'P': 3,
+    'Q': 10,
+    'R': 1,
+    'S': 1,
+    'T': 1,
+    'U': 1,
+    'V': 4,
+    'W': 4,
+    'X': 8,
+    'Y': 4,
+    'Z': 10}
+
+
 def draw_letters():
     pool_list = []
+    # we are creating a pool list to make sure we stick to the right frequency
     for letter, frequency in LETTER_POOL.items():
-        for i in range(frequency):
-            pool_list.append(letter)
+        pool_list += letter * frequency
     
     random_letters_list = random.sample(pool_list, 10)
     return random_letters_list
+
 
 def uses_available_letters(word, letter_bank):
     letter_bank_copy = copy.deepcopy(letter_bank)
@@ -50,15 +80,30 @@ def uses_available_letters(word, letter_bank):
             return False
     return True
 
+
 def score_word(word):
-    score_dict = {'A': 1, 'B': 3, 'C': 3, 'D': 2, 'E': 1, 'F': 4, 'G': 2, 'H': 4, 'I': 1, 'J': 8, 'K': 5, 'L': 1, 'M': 3, 'N': 1, 'O': 1, 'P': 3, 'Q': 10, 'R': 1, 'S': 1, 'T': 1, 'U': 1, 'V': 4, 'W': 4, 'X': 8, 'Y': 4, 'Z': 10}
-    sum = 0
+    sum_scores = 0
     word = word.upper()
     for letter in word:
-        sum += score_dict[letter]
+        sum_scores += SCORE_DICT[letter]
     if len(word) == 7 or len(word) == 8 or len(word) == 9 or len(word) == 10:
-        sum += 8
-    return sum
+        sum_scores += 8
+    return sum_scores
+
 
 def get_highest_word_score(word_list):
-    pass
+    
+    max_score = 0
+    max_score_word = None
+    for word in word_list:
+        score = score_word(word)
+        if score > max_score:
+            max_score = score
+            max_score_word = word
+        elif score == max_score and len(max_score_word) != 10:
+            if len(word) < len(max_score_word):
+                max_score_word = word
+            elif len(word) == 10:
+                max_score_word = word
+                
+    return max_score_word, max_score
