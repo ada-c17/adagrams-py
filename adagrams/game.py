@@ -39,35 +39,6 @@ SCORE_CHART = {
     ("Q","Z") : 10,
 }
 
-# ALTERNATE SCORE_CHART:
-# SCORE_CHART = {
-#     "A": 1,
-#     "E": 1,
-#     "I": 1,
-#     "O": 1, 
-#     "U": 1, 
-#     "L": 1, 
-#     "N": 1, 
-#     "R": 1, 
-#     "S": 1, 
-#     "T": 1,
-#     "D": 2, 
-#     "G": 2,
-#     "B": 3, 
-#     "C": 3, 
-#     "M": 3, 
-#     "P": 3,
-#     "F": 4, 
-#     "H": 4, 
-#     "V": 4, 
-#     "W": 4, 
-#     "Y": 4,
-#     "K": 5,
-#     "J": 8, 
-#     "X": 8,
-#     "Q": 10, 
-#     "Z": 10,
-# }
 
 def draw_letters():
     '''
@@ -129,7 +100,7 @@ def score_word(word):
     '''
     score = 0
     word_uppercase = word.upper()
-    if len(word_uppercase) >= 7 and len(word_uppercase) <= 10: # chaining inequalities like I had earlier should work, but why didn't it?
+    if len(word_uppercase) >= 7 and len(word_uppercase) <= 10: 
         score += 8
     for letter in word_uppercase:
         for k in SCORE_CHART:
@@ -154,6 +125,9 @@ def get_highest_word_score(word_list):
     6) if score > highested_score, overwrite the list with highest_   score_words, overwrite the highest_score with the score
     7) elif score == highested_score, add it to the highested_scoring_words
     8) if length of highested_scoring_words > 1, tie break function?
+    9) Tie-break should return the index of the highested scoring word
+    10) the a tuple of highest_scoring_words the first element and
+    the score
     '''
 
     pass
