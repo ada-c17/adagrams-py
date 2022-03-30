@@ -1,5 +1,4 @@
 import random
-import copy
 
 LETTER_POOL = {
     'A': 9, 
@@ -44,14 +43,11 @@ LETTER_VALUES = {
 LONG_WORD_BONUS = 8
 LONG_WORD_RANGE = (7, 8, 9, 10)
 
+DRAW_POOL = [key for key, value in LETTER_POOL.items() for value in range(value)]
+
 # build a hand of 10 letters
 def draw_letters():
-    draw_pool = []
-    # create a list based on LETTER_POOL
-    for key, value in LETTER_POOL.items():
-        draw_pool.extend([key]*value)
-    # create hand with sample of random letters from draw_pool
-    hand = random.sample(draw_pool, 10)
+    hand = random.sample(DRAW_POOL, 10)
     return hand
 
 def uses_available_letters(word, letter_bank):
