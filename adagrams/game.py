@@ -64,7 +64,7 @@ def uses_available_letters(word, letter_bank):
 def score_word(word):
     sum = 0
     word = word.upper()
-    if 7<=len(word) <=10:
+    if len(word)>6:
         sum += 8
     for letter in word:
         for key in SCORES:
