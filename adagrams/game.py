@@ -180,29 +180,28 @@ def get_highest_word_score(word_list):
     # returns tuple
 
 
-
-
     word_scores = {}
     highest_score_list = []
     winning_list = []
-    
+    # Goes thru each word and adds word as key and score as value to dictionary
     for word in word_list: 
-        word_scores[word] = score_word(word) 
-
-
-# Goes thru each word and adds word as key and score as value to dictionary
+        word_scores[word] = score_word(word)
+    print(word_scores)
+    
+# evaluates dictionary for highest score - record integer
     highest = max(word_scores.values())
-
-
+    # goes through every every key, accesses value--> when value is the same as the high score, add to list 
     for word, score in word_scores.items():
         if score == highest:
             highest_score_list.append(word)
-
+# if no elements in list return none
     if not highest_score_list:
         return None
+    # when the length of the list is 1, return the tuple of the word and score
     elif len(highest_score_list) == 1:
         the_list = [highest_score_list[0], score_word(highest_score_list[0])]
         return tuple(the_list)
+        # when the length of the list is greater than one, meaning 
     elif len(highest_score_list) > 1:
         shortest = min(highest_score_list, key=len)
         for item in highest_score_list: 
