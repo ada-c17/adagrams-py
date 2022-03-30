@@ -1,4 +1,5 @@
 import random
+import copy
 
 def draw_letters():
     
@@ -38,7 +39,6 @@ def draw_letters():
         for i in range(v):
             letter_pool.append(k)
 
-
     while len(hand) < 10:
         letter = random.choice(letter_pool)
         letter_pool.remove(letter)
@@ -51,6 +51,7 @@ def uses_available_letters(word, letter_bank):
 
     letter_bank_copy = copy.deepcopy(letter_bank)
     uppercase_word = word.upper()
+    
     for letter in uppercase_word: 
         if letter not in letter_bank_copy:
             return False
@@ -68,6 +69,7 @@ def uses_available_letters(word, letter_bank):
     # remember to use .upper()
 
 def score_word(word):
+    
     letter_points = {
     'A': 1, 
     'B': 3, 
@@ -96,8 +98,10 @@ def score_word(word):
     'Y': 4, 
     'Z': 10
     }
+
     total_score = 0 
     uppercase_word = word.upper()
+    
     for letter in uppercase_word: 
         total_score += letter_points[letter]
     
@@ -140,11 +144,11 @@ def get_highest_word_score(word_list):
         shortest_length_of_word = 10
         index_of_shortest_word = 0
 
-        for i in range(len(best_words): # iterates over the list
-            if len(best_word[i][0]) == 10: # look at "word" part of tuple: ("word", score)
-                return best_word[i] # return whole tuple
-            elif len(best_word[i][0]) < shortest_length_of_word: #look at "word" part of tuple
-                shortest_length_of_word = len(best_word[i][0])
+        for i in range(len(best_words)): # iterates over the list
+            if len(best_words[i][0]) == 10: # look at "word" part of tuple: ("word", score)
+                return best_words[i] # return whole tuple
+            elif len(best_words[i][0]) < shortest_length_of_word: #look at "word" part of tuple
+                shortest_length_of_word = len(best_words[i][0])
                 index_of_shortest_word = i
         return best_words[index_of_shortest_word]
 
