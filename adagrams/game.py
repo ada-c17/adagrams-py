@@ -73,22 +73,22 @@ def draw_letters():
 
 def uses_available_letters(word, letter_bank):
     word = word.upper()
-# delete previous line and change below line to "for letter in word.upper()"?
+# delete line 75 and change below line to "for letter in word.upper()"?
     for letter in word:
         keep_checking = True
-        # move above line to above the for loop?
+        # move line 79 to above the for loop? does not need to be re-declared with each loop
         if letter in letter_bank:
             letter_count = word.count(letter)
             letter_list_count = letter_bank.count(letter)
             if letter_count <= letter_list_count:
                 keep_checking
-                # change above line to "continue"?
+                # change line 84 to "continue" for clarity?
             else:
                 keep_checking = False
                 break
         else:
             return False
-            # change above line to "keep_checking = False"?
+            # change line 90 to "keep_checking = False" for consistency?
     return keep_checking
 
 # -----test_wave_03-----------
