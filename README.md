@@ -95,8 +95,8 @@ $ pip install -r requirements.txt
 Summary of one-time project setup:
 
 One person:
-- [ ] Fork the project respository
-- [ ] Invite team members to the respository
+- [X] Fork the project respository
+- [X] Invite team members to the respository
 
 All team members:
 - [ ] `cd` into your `projects` folder
@@ -205,7 +205,7 @@ If, after you and your pair have taken some time to think through the problem an
 Your first task is to build a hand of 10 letters for the user. To do so, implement the function `draw_letters` in `game.py`. This method should have the following properties:
 
 - No parameters
-- Returns an array of ten strings
+- Returns an list of ten strings
   - Each string should contain exactly one letter
   - These represent the hand of letters that the player has drawn
 - The letters should be randomly drawn from a pool of letters
@@ -216,6 +216,10 @@ Your first task is to build a hand of 10 letters for the user. To do so, impleme
   - Imagine that the user returns their hand to the pool before drawing new letters
 
 #### Distribution of Letters
+
+letter_pool = ["a", "a", "a", "a", "b", "b', "c"]
+
+pool_index = random integer in the range(len(letter_pool))
 
 | Letter : Qty. | Letter : Qty. |
 |:------:|:-----:|
