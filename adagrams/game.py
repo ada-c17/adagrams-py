@@ -83,8 +83,8 @@ def get_highest_word_score(word_list):
     words_max_value = []
 
     for word in word_list:                          # line 85 to 88 can be combined. Within one iteration, we can get the score and max_value. 
-        words_score[word] = score_word(word)        # and we can get length as well. but I couldn't think about an effiency data structure to store
-                                                    # that many information at once without using nested array :(
+        words_score[word] = score_word(word)       
+                            
     max_value = max(words_score.values())
 
     for word, score in words_score.items():
@@ -97,25 +97,3 @@ def get_highest_word_score(word_list):
             if len(word) == 10:
                 return word, max_value    
     return words_max_value[0], max_value
-
-
-def wave4(word_list):
-    word_list = sorted(word_list, key = len)
-    max_value = 0
-    words_max_value = []
-    words_score = {}
-
-    for word in word_list:
-        cur_score = score_word(word)
-        words_score[word] = cur_score
-        max_value = max(max_value, cur_score)
-    
-    for i in range(len(words_score)-1, -1, -1):
-        cur_word = words_score[i]
-        if len(cur_word) != 10 or i == 0:
-            return words_score[0], max_value
-        elif len(words_score[i-1]) != 10:
-            return words_score[i], max_value
-
-
-print(wave4(["XXX", "XXXX", "XX", "X"]))
