@@ -74,6 +74,27 @@ def score_word(word):
 
 
 def get_highest_word_score(word_list):
-    pass
+    scored_words = {}
+    tied_words = []
+
+    for word in word_list:
+        scored_words[word] = score_word(word)
+    highest_score = max(scored_words.values())
+
+    for word, score in scored_words.items():
+        if score == highest_score:
+            tied_words.append(word)
+
+    shortest_word = min(tied_words, key = len)
+    for element in tied_words:
+        if len(element) == 10:
+            highest_score = (element, scored_words[element])
+            break
+        else:
+            highest_score = (shortest_word, scored_words[shortest_word])
+
+    return highest_score
+
 
 # print(uses_available_letters("DOG", ["D", "O", "C", "D", "E", "F", "X", "H", "I", "J"]))
+# print(get_highest_word_score(["AAAAAAAAAA", "BBBBBB"]))
