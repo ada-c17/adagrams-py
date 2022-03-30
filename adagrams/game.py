@@ -41,17 +41,76 @@ def draw_letters():
 
     while len(hand) < 10:
         letter = random.choice(letter_pool)
-        if hand.count(letter) < letter_frequency[letter]:
-            hand.append(letter)
+        letter_pool.remove(letter)
+        hand.append(letter)
 
     return hand
 
 
 def uses_available_letters(word, letter_bank):
-    pass
+
+    letter_bank_copy = copy.deepcopy(letter_bank)
+    uppercase_word = word.upper()
+    for letter in uppercase_word: 
+        if letter not in letter_bank_copy:
+            return False
+        else: 
+            letter_bank_copy.remove(letter)
+
+    return True
+
+    #copy letter bank 
+    # loop thru word and delete from letter_bank_copu
+    # if not in letter_bank return false 
+    
+    # returns true if all letters available in letter_bank in right quantities
+    # otherwise return false 
+    # remember to use .upper()
 
 def score_word(word):
-    pass
+    letter_points = {
+    'A': 1, 
+    'B': 3, 
+    'C': 3, 
+    'D': 2, 
+    'E': 1, 
+    'F': 4, 
+    'G': 2, 
+    'H': 4, 
+    'I': 1, 
+    'J': 8, 
+    'K': 5, 
+    'L': 1, 
+    'M': 3, 
+    'N': 1, 
+    'O': 1, 
+    'P': 3, 
+    'Q': 10, 
+    'R': 1, 
+    'S': 1, 
+    'T': 1, 
+    'U': 1, 
+    'V': 4, 
+    'W': 4, 
+    'X': 8, 
+    'Y': 4, 
+    'Z': 10
+    }
+    total_score = 0 
+    uppercase_word = word.upper()
+    for letter in uppercase_word: 
+        total_score += letter_points[letter]
+    
+    if len(word) >= 7:
+        total_score += 8
+    
+    return total_score
+
+#word parameter is a string 
+#sum points for each letter 
+#word len of 7 8 9 or 10 get 8 bonus points
+#returns score, which is an integer
+
 
 def get_highest_word_score(word_list):
     
@@ -84,7 +143,7 @@ def get_highest_word_score(word_list):
         for i in range(len(best_words): # iterates over the list
             if len(best_word[i][0]) == 10: # look at "word" part of tuple: ("word", score)
                 return best_word[i] # return whole tuple
-            elif len(best_word[i][0]) < highest_length_of_word: #look at "word" part of tuple
+            elif len(best_word[i][0]) < shortest_length_of_word: #look at "word" part of tuple
                 shortest_length_of_word = len(best_word[i][0])
                 index_of_shortest_word = i
         return best_words[index_of_shortest_word]
