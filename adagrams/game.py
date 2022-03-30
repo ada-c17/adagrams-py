@@ -97,7 +97,11 @@ def get_highest_word_score(word_list):
     for word in word_list:
         score = score_word(word)
         if score == highest_word[1]:
-            if len(word) == len(highest_word[0]):
+            if len(word) == len(highest_word[0]) and word != highest_word[0]:
+            # without the second conditional, the above if statement will
+            # break when the iterator reaches the same word. we want
+            # to break the tie by returning the earlier word in the list
+            # only when we compare different words, hence the != conditional.
                 break
             elif len(word) == 10:
                 highest_word = (word, score)
