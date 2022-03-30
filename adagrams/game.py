@@ -117,4 +117,26 @@ def score_word(word):
     return score
 
 def get_highest_word_score(word_list):
-    pass
+    highest_score = 0
+    highest_score_word = None
+
+    for word in word_list:
+        current_score = score_word(word)
+
+        # In case the score is strictly better
+        if current_score > highest_score:
+            highest_score = current_score
+            highest_score_word = word
+            continue
+
+
+        elif current_score == highest_score:
+            # if the current highest_score_word has 10 letters, continue
+            if len(highest_score_word) == 10:
+                continue
+
+            # update highest_score_word to a better "option"
+            if len(word) == 10 or len(word) < len(highest_score_word):
+                highest_score_word = word
+
+    return (highest_score_word, highest_score)
