@@ -29,16 +29,15 @@ LETTER_POOL = {
     'Z': 1
 }
 
-
-#isolate the keys into thier own list
-#isolate the values into their own list
-#mulitply the two lists together
-#import random
-# use random sampling off the new list to choose the 10 letters
-# return 10 letters
-
-
 def draw_letters():
+    '''Function draw_letters returns 10 randomly drawn letters (aka letter_bank) based on the contraints laid out within the LETTER_POOL dictionary /
+    (i.e. letters and quantity of letters available).
+
+    No parameters passed
+
+    Returns:
+    letter_bank (list): a list of 10 strings characters representing 10 randomly drawn letters
+    '''
     letters = list(LETTER_POOL.keys())
     
     letter_quantity = list(LETTER_POOL.values())
@@ -59,6 +58,16 @@ def draw_letters():
             
 
 def uses_available_letters(word, letter_bank):
+    '''Function uses_available_letters has two parameters (word and letter_bank) and returns either True or False.
+
+    Parameters: 
+    word (string): a word composed of letters within the letter_bank
+    letter_bank (list): a list of 10 string characters representing 10 randomly drawn letters
+
+    Returns:
+    boolean: True if all letters in word are in the letter_bank, False if not
+    '''
+
     if isinstance(word, str) and len(word) <= 10:
         word_up = word.upper()
         bank_dict = {}
@@ -86,12 +95,15 @@ def uses_available_letters(word, letter_bank):
     return False
 
 
-#List1 all of the letters for each point
-# for letter in word if in list
-
-
-
 def score_word(word):
+    '''Function score_word has one parameter (word) and returns the score of that word as defined by the Adagrams game (see below score chart).
+
+    Parameters: 
+    word (string): a word composed of letters within the letter_bank
+
+    Returns:
+    score (int): the cumulative point value of the word based on the score chart and word length, where applicable
+    '''
     score = 0
 
     one_point = ["A", "E", "I", "O", "U", "L", "N", "R", "S", "T"]
@@ -126,8 +138,17 @@ def score_word(word):
 
     return score
 
-#
 def get_highest_word_score(word_list):
+    '''Function get_highest_word_score has one parameter (word_list) and returns the highest scoring word. Furthermore, the function also dictates /
+    what word would win in the case of a tie.
+
+    Parameters:
+    word_list (list): a list of strings representing all of the words that the user was able to create given each letter_bank drawn.
+
+    Return:
+    word, score (tuple): word, a string, represents the word that earned the most points and score, an integer, represents the cumulative /
+    point value of the highest scoring word based on the score chart and word length, where applicable
+    '''
     tie_score_check = 0
     score_per_word = {}
 
