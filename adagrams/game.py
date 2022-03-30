@@ -108,10 +108,23 @@ def score_word(word):
                 score += SCORE_CHART[k]
     return score
 
+
+def get_tie_break(word_list):
+    pass
+
+
 def get_highest_word_score(word_list):
     '''
     ties: 
-        10 letters > fewest letters > first word
+        10 letters > fewest letters > first word 
+    1) initialize an empty list variable for the highested_scoring_words
+    2) initialize highested_score variable
+    3) iterate over the word in word_list
+    4) call score_word on each of the words
+    5) store all of the highested scoring words into call score_word on each of the words
+    6) if score > highested_score, overwrite the list with highest_   score_words, overwrite the highest_score with the score
+    7) elif score == highested_score, add it to the highested_scoring_words
+    8) if length of highested_scoring_words > 1, tie break function?
     '''
 
     pass
