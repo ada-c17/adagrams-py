@@ -100,13 +100,13 @@ def score_word(word):
     'Z': 10}
 
     score = 0
-    number_of_letters = 0 #track number of letters because punctuation can be in the string
+    number_of_letters = 0 #track number of letters because punctuation could be in the string
 
     for letter in word.upper():
 
         try: 
             score += score_chart[letter]
-        except KeyError:
+        except KeyError: #if the char is not a letter of the alphabet move on to the next one
 
             continue
         else: 
@@ -120,25 +120,25 @@ def score_word(word):
 
 def get_highest_word_score(word_list):
     
-    high_score = 0
+    high_score = 0 #initialize high score at zero
     
 
     for word in word_list:
 
         word_score = score_word(word)
 
-        if word_score > high_score:
+        if word_score > high_score: 
 
             highest_scoring_word = word
             high_score = word_score
-
-        elif word_score == high_score and len(highest_scoring_word) != 10:
-
-            if len(word) == 10:
+        # != 10 because we want to return the first value we find if there's a tie and both have 10 letters
+        elif word_score == high_score and len(highest_scoring_word) != 10: 
+            #if the word has 10 letters and the other doesn't, that breaks the tie
+            if len(word) == 10: 
                 
                 highest_scoring_word = word
                 high_score = word_score
-
+            #if neither word has 10 letters, the shortest word wins
             elif len(word) < len(highest_scoring_word):
 
                 highest_scoring_word = word
