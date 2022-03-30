@@ -1,5 +1,6 @@
 import pytest
 
+
 from adagrams.game import draw_letters
 
 LETTER_POOL = {
@@ -30,14 +31,16 @@ LETTER_POOL = {
     'Y': 2, 
     'Z': 1
 }
-
+# @pytest.mark.skip()
 def test_draw_letters_draws_ten():
     # Arrange/Act
     letters = draw_letters()
-
+    
     # Assert
     assert len(letters) == 10
 
+
+# @pytest.mark.skip()
 def test_draw_letters_is_list_of_letter_strings():
     # Arrange/Act
     letters = draw_letters()
@@ -49,6 +52,7 @@ def test_draw_letters_is_list_of_letter_strings():
         assert type(elem) == str
         assert len(elem) == 1
 
+# @pytest.mark.skip()
 def test_letter_not_selected_too_many_times():
 
     for i in range(1000):
