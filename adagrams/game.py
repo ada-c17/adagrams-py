@@ -6,11 +6,21 @@ LETTER_POOL = {"A": 9, "B": 2, "C": 2, "D": 4, "E": 12, "F": 2, "G": 3,
     "P": 2, "Q": 1, "R": 6, "S": 4, "T": 6, "U": 4, "V": 2, "W": 2, "X": 1,
     "Y": 2, "Z": 1}
 LETTERS = ["A","B","C","D","E","F","G","H","I","J","K","L", "M", "N","O","P","Q","R","S","T","U","V","W","X","Y","Z"]
+
+SCORE_CHART = {
+    1: ["A", "E", "I", "O", "U", "L", "N", "R", "S", "T"],
+    2: ["D", "G"],
+    3: ["B", "C", "M", "P"],
+    4: ["F", "H", "V", "W", "Y"],
+    5: ["K"],
+    8: ["J", "X"],
+    10: ["Q", "Z"]
+}
 def draw_letters():
-    letters = copy.copy(LETTERS)
-    # letters = LETTERS.copy()
-    letter_pool = copy.copy(LETTER_POOL)
-    # letter_pool = LETTER_POOL.copy()
+    # letters = copy.copy(LETTERS)
+    letters = LETTERS.copy()
+    # letter_pool = copy.copy(LETTER_POOL)
+    letter_pool = LETTER_POOL.copy()
     hand = []
     while len(hand) < 10:
         letter = random.choice(letters)
@@ -22,8 +32,6 @@ def draw_letters():
 
 
 def uses_available_letters(word, letter_bank):
-    #letter_bank_copy = copy.copy(letter_bank)
-    #letter_bank_copy = letter_bank.copy()
     # no need to create a copy as we are not modifying the letter bank
     # we ARE touching it, but that's okay!! We're not adding or removing
     # anything to the list. 
@@ -75,20 +83,38 @@ def uses_available_letters(word, letter_bank):
         return False
             
 
-# Has two parameters:
-# word, the first parameter, describes some input word, and is a string
-# letter_bank, the second parameter, describes an array of drawn 
-# letters in a hand. You can expect this to be an array of ten strings, 
-# with each string representing a letter
-# Returns either True or False
-# Returns True if every letter in the input word is available 
-# (in the right quantities) in the letter_bank
-# Returns False if not; if there is a letter in input that 
-# is not present in the letter_bank or has too much of compared 
-# to the letter_bank
 
 def score_word(word):
-    pass
+    # change word to uppercase in case it's not 
+    word = word.upper()
+    # iterate through each letter in the word, iterate through score chart
+    # and use .items to access both the key(points) and value(letters),
+    # if letter from word is in the score chart value(letters)
+    # add the key(points) to the score
+    score = 0
+    for letter in word:
+        for points, letters in SCORE_CHART.items():
+            if letter in letters:
+                score += points
+    # check length of word to calculate bonus score
+    if len(word) >= 7:
+        score += 8
+    return score
+
 
 def get_highest_word_score(word_list):
-    pass
+    scores = {}
+    for word in word_list:
+        scored_word = score_word(word)
+        scores[word] = scored_word
+    highest_scoring_word = max(scores, key=scores.get)
+    highest_score = max(scores.values())
+    return (highest_scoring_word, highest_score)
+
+# In the case of tie in scores, use these tie-breaking rules:
+# prefer the word with the fewest letters...
+# ...unless one word has 10 letters. If the top score is tied 
+# between multiple words and one is 10 letters long, choose the 
+# one with 10 letters over the one with fewer tiles
+# If the there are multiple words that are the same score and 
+# the same length, pick the first one in the supplied list
