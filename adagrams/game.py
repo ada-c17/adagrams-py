@@ -1,4 +1,5 @@
 import random 
+
 available_letters = {
     'A': [9, 1],
     'B': [2,3], 
@@ -28,62 +29,65 @@ available_letters = {
     'Z': [1,10]
 }
 def draw_letters():
+    """Draws a hand of 10 letters"""
+    
     letter_hand = []
+
     while len(letter_hand) < 10:
         picked_letter = random.choice(list(available_letters.keys()))
-        # check frequency
+        # check that letter hasn't exceeded available letter count
         if letter_hand.count(picked_letter) < available_letters[picked_letter][0]:
             letter_hand.append(picked_letter)
+    
     return letter_hand    
 
-print(draw_letters())
 
 def uses_available_letters(word, letter_bank):
+    """Checks that word can be made with letters in letter_bank"""
     letter_bank_copy = letter_bank[:]
-    word_uppercase = word.upper()
 
-    for letter in word_uppercase:
+    for letter in word.upper():
         if letter in letter_bank_copy:
             letter_bank_copy.remove(letter)
         else:
             return False
     return True
 
+
 def score_word(word):
+    """Adds up score for each letter in word and returns total score"""
     score = 0
-    word_uppercase = word.upper()
-    for letter in word_uppercase:
+
+    for letter in word.upper():
         score += available_letters[letter][1]
-    if len(word_uppercase) >= 7:
+    
+    if len(word) >= 7:
         score += 8
+    
     return score
 
-# print(score_word("aaaaaax"))
 
 def get_highest_word_score(word_list):
-    # words = ["X", "XX", "XXX", "XXXX"]
-    # make empty list of scores
-    # loop through word_list and call score_word and pass in each word
-        #add score of each word to list of scores
-        #max [1, 2, 4, 4, 4] = 4 
+    """Returns the winning word and top score"""
     scores = []
+    top_scoring_words = []
+
     for word in word_list:
         word_score = score_word(word)
         scores.append(word_score)
     
     max_score = max(scores)
 
-    top_scoring_words = []
-
+    #makes list of all words with the top score
     for i in range(len(scores)):
         if scores[i] == max_score:
             top_scoring_words.append(word_list[i])
 
-    max_word = max(top_scoring_words, key=len)
+    longest_word = max(top_scoring_words, key=len)
     
-    if len(max_word) == 10:
-        return [max_word, max_score]
+    if len(longest_word) == 10:
+        return [longest_word, max_score]
     else:
-        # print min(strings, key=len)
+        #finds shortest word with top score
         top_word = min(top_scoring_words, key=len)
         return [top_word, max_score]
