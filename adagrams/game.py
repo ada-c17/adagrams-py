@@ -170,5 +170,41 @@ def get_highest_word_score(word_list):
     output: (winning word, score)
     tie-break rules: 10 letters > fewer letters  or  1st one if lenth is same
     """
-    pass
+
+    winning_words = []
+    score_dict = {}
+    winner = ""
+    for word in word_list:
+        score_dict[word] = score_word(word)
+    
+    max_score = max(score_dict.values())
+    for key, value in score_dict.items():
+        if value == max_score:
+            winning_words.append(key) 
+    # to get words with highest score include case with more than 1 highest score
+    
+    if len(winning_words) == 1:
+        winner = winning_words[0]
+    
+    else: 
+
+        for i in range(len(winning_words)):
+            if len(winning_words[i]) == 10:
+                winner = winning_words[i]
+                break
+            #when return the first word that has a lenth of 10 no matter how many lenth 10 words in the list
+
+            else:
+                min_lenth = len(winning_words[0])
+                for i in range(len(winning_words)):
+                    if len(winning_words[i]) < min_lenth:
+                        min_lenth = len(winning_words[i]) 
+                        # to deside the min leth in the winning_words list
+                        
+                if len(winning_words[i]) == min_lenth:
+                    winner = winning_words[i]
+                    break
+            # return the first min lenth word no matter how many of them in the list
+    winner_list = [winner, score_word(winner)]
+    return tuple(winner_list)    
 
