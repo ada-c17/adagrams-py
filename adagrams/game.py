@@ -104,7 +104,7 @@ score_chart = {
 
 def score_word(word):
 
-    word = ""
+    
     cap_word = word.upper()
  
     total_score = 0

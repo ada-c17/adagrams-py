@@ -32,12 +32,6 @@ SCORE_CHART = {
 
 def test_score_word_accurate():
 
-    # Arrange
-    word = "DOG"
-
-    # Act
-    score_word = score_word(word)
-
     # Assert
     assert score_word("A") == 1
     assert score_word("DOG") == 5

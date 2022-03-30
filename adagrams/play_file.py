@@ -27,7 +27,7 @@ score_chart = {
     'Z': 10
 }   
 
-word = ""
+word = "structure"
 cap_word = word.upper()
 
 def score_word(word):   
