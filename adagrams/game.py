@@ -60,10 +60,22 @@ def draw_letters():
     return hand   
 
 def uses_available_letters(word, letter_bank):
-    pass
+    # pass
+    for letter in word:
+        for element in letter_bank:
+            if element in letter:
+                return True
+            else:
+                return False
+    
+
 
 def score_word(word):
-    pass
+    point_total = 0
+    for letter in word:
+        point_total += draw_letters.get(letter)
+    return point_total
+    # pass
 
 def get_highest_word_score(word_list):
     pass
