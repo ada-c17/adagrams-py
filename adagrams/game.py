@@ -126,5 +126,32 @@ def score_word(word):
 
     return score
 
+#
 def get_highest_word_score(word_list):
-    pass
+    tie_score_check = 0
+    score_per_word = {}
+
+    for word in word_list:
+        score = score_word(word)
+        score_per_word[word] = score
+    
+    highest_scoring_word = max(score_per_word.values())
+    shortest_length_if_tie = min(len(word) for word in score_per_word if score_per_word[word] == highest_scoring_word)
+
+    for word, score in score_per_word.items():
+        if score == highest_scoring_word:
+            tie_score_check += 1
+    
+    for word, score in score_per_word.items():
+        if tie_score_check > 1:
+            if len(word) == 10 and score == highest_scoring_word:
+                return word, score
+        
+    for word, score in score_per_word.items():
+        if score == highest_scoring_word and tie_score_check == 1:
+            return word, score
+        elif score == highest_scoring_word and tie_score_check > 1:
+            if len(word) == shortest_length_if_tie:
+                return word, score
+    
+
