@@ -43,33 +43,40 @@ score_chart = {
 
 
 def draw_letters():
+    # Overall time complexity: O(n^2) + O(4) = O(n^2)
     list_of_distribution = []
 
 
-    for key, val in LETTER_POOL.items():
-        for i in range(val):
-            list_of_distribution.append(key)
+    for key, val in LETTER_POOL.items(): # O(n)
+        for i in range(val): # O(n)
+            list_of_distribution.append(key) # O(1)
     
     letters_in_hand = []
-    for i in range(1, 11):
-        letter = random.choice(list_of_distribution)
-        letters_in_hand.append(letter)
-        list_of_distribution.remove(letter)
+    for i in range(1, 11): # O(1)
+        letter = random.choice(list_of_distribution) # 0(1)
+        letters_in_hand.append(letter) # O(1)
+        list_of_distribution.remove(letter) # O(1)
     
     return letters_in_hand
 
 def uses_available_letters(word, letter_bank):
-    word = word.upper()
+    # Overall time complexity: O(n^2) + O(n) + O(n) = O(n^2 + 2n) = O(n^2)
+
+    word = word.upper() # O(n)
     found = True
-    letter_bank_copy = copy.deepcopy(letter_bank)
-    for letter in word:
-        if letter in letter_bank_copy:
-            letter_bank_copy.remove(letter)
+    letter_bank_copy = letter_bank.copy() # O(n)
+    # letter_bank_copy = copy.deepcopy(letter_bank)
+
+    for letter in word: # O(n)
+        if letter in letter_bank_copy: # O(n)
+            letter_bank_copy.remove(letter) # O(1)
         else:
             found = False
     return found
 
 # def uses_available_letters(word, letter_bank):
+# Second method --> Passes tests! 
+# Overall time complexity: O(n) + O(n) + O(n) = O(n)
 #     word = word.upper()
 #     word_dictionary = {}
 #     for letter in word:
@@ -94,33 +101,37 @@ def uses_available_letters(word, letter_bank):
 #     return True
 
 def score_word(word):
-    word = word.upper()
+    # Overall time complexity = O(n) + O(n) + O(n) = O(3n) = O(n)
+    word = word.upper() # O(n)
     score = 0
     additional_score = [7, 8, 9, 10]
 
 
-    for letter in word:
-        for key in score_chart:
-            if letter in score_chart[key]:
+    for letter in word: # O(n)
+        for key in score_chart: # O(1)
+            if letter in score_chart[key]: # O(1)
                 score += key
 
-    if len(word) in additional_score:
+    if len(word) in additional_score: # O(n)
         score += 8
     return score
 
 def get_highest_word_score(word_list):
-
+    # Overall time complexity: O(n^2) + O(n)
+    if len(word_list) == 0: # O(1)
+        return 0
+    
     result_chart = []
 
-    for word in word_list:
-        score = score_word(word)
+    for word in word_list: # O(n)
+        score = score_word(word) # O(n)
         score_tuple = (word, score)
         result_chart.append(score_tuple)
-    
+
 
     highest_word = result_chart[0]
 
-    for item in result_chart:
+    for item in result_chart: # O(n)
         if item[1] > highest_word[1]:
             highest_word = item
         elif item[1] == highest_word[1]:
@@ -132,6 +143,5 @@ def get_highest_word_score(word_list):
 
             elif len(item[0]) < len(highest_word[0]):
                 highest_word = item
-
-
+    
     return highest_word
