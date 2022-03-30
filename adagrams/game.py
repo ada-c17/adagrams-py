@@ -20,7 +20,7 @@ def draw_letters():
         # if the value is > 0
             # decrement the quantity
             # add to list of randomly chosen letters
-            # decrement your counter
+            # decrement counter
         if value <= 0:
             continue
         letter_quantity[letter] -=1
@@ -44,8 +44,19 @@ def uses_available_letters(word, letter_bank):
 
 def score_word(word):
     #create a dictionary of letters with corresponding points
-    #letter_points = {"A":1, "B":3, "C":3, "D": , "E":, "F":, "G":, }
-    pass
-
+    letter_points = {"A":1, "B":3, "C":3, "D":2, "E":1, "F":4, "G":2, "H":4, "I":1, "J":8, "K":5, "L":1,
+                     "M":3, "N":1, "O":1, "P":3, "Q":10, "R":1, "S":1, "T":1, "U":1, "V":4, "W":4, "X":8,
+                     "Y":4, "Z":10
+    }
+    total_points = 0
+    for letter in word:
+        if letter.upper() in letter_points.keys():
+            total_points += letter_points[letter]
+            if len(word) in range(7,11):
+                total_points += 8
+    return total_points
+    
+    #total_score = sum(value[letter] for letter in letter_points.keys())
+                      
 def get_highest_word_score(word_list):
     pass
