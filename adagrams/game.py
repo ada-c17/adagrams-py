@@ -106,5 +106,36 @@ def score_word(word):
     return final_score
 
 def get_highest_word_score(word_list):
-    pass
+    word_score = 0
+    max_score = [["", 0]]
+    score_tuple = tuple() # turn to tuple for [] for score in range(word_list)
 
+    for word in word_list:
+        word_score = score_word(word)
+        if word_score > max_score[0][1]:
+            max_score.clear()
+            max_score.append([word, word_score])
+        elif word_score == max_score[0][1]:
+            max_score.append([word, word_score])
+        else:
+            continue
+        
+    if len(max_score) > 1:
+        
+
+    score_tuple = tuple(max_score)
+    print(score_tuple)
+    return score_tuple
+
+
+
+word_list = ["AAAAAAAAAA",
+"EEEEEEEEEE",
+"BBBBBB", 
+"WWW", 
+"SQUID",
+"XX", 
+"X"
+]
+
+get_highest_word_score(word_list)
