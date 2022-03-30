@@ -122,7 +122,6 @@ def score_word(word):
 
 
 def get_highest_word_score(word_list):
-<<<<<<< HEAD
     """
     Finds highest scoring word and returns a tuple with winning word and score
     In case of a tie:
@@ -167,21 +166,6 @@ def get_highest_word_score(word_list):
                 shortest_word = word
         return (shortest_word, high_score,)
                 
-=======
-    #["cat", "dog", "goose"]
-    # ("goose", 7)
-    '''
-    prefer word with fewest letters
-    prefer the word with the fewest letters...
-    -unless one word has 10 letters. 
-    -If the top score is tied between multiple words 
-    and one is 10 letters long, choose the one with 
-    10 letters over the one with fewer tiles
-    - If the there are multiple words that are the 
-    same score and the same length, pick the first one 
-    in the supplied list
-
-    '''
 
     #####OTHER-OPTION########
     # dict_of_score_words = {}
@@ -207,4 +191,3 @@ def get_highest_word_score(word_list):
         
     
     
->>>>>>> fb917bfcfd0bdbb627d30d7f18eea1e662635310
