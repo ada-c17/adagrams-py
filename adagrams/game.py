@@ -104,22 +104,37 @@ def score_word(word):
     
 
 def get_highest_word_score(word_list):
-    max_word = None
     max_score = 0
+    max_word = ()
     for word in word_list:
-        word_score = score_word(word)
-        if word_score > max_score:
-            max_word, max_score = word, word_score
-        elif word_score == max_score:
-            if type(max_word) != list:
-                max_word = list(max_word)
-            max_word.append(word)
-    if type(max_word) == str:
-        return (max_word, max_score)
-    min_len, min_word = 100, None
-    for word in word_list:
-        if len(word) == 10:
-            return (word,score_word(word))
-        elif len(word) < min_len:
-            min_word, min_len = word, len(word)
-    return (min_word,score_word(min_word))
+        if score_word(word) == max_score:
+            if len(max_word) == 10:
+                continue
+            elif len(word) == 10:
+                max_word = word
+            elif len(word) < len(max_word):
+                max_word = word
+        elif score_word(word) > max_score:
+            max_score = score_word(word)
+            max_word = word
+    return (max_word, max_score)
+
+    # max_word = None
+    # max_score = 0
+    # for word in word_list:
+    #     word_score = score_word(word)
+    #     if word_score > max_score:
+    #         max_word, max_score = word, word_score
+    #     elif word_score == max_score:
+    #         if type(max_word) != list:
+    #             max_word = list(max_word)
+    #         max_word.append(word)
+    # if type(max_word) == str:
+    #     return (max_word, max_score)
+    # min_len, min_word = 100, None
+    # for word in word_list:
+    #     if len(word) == 10:
+    #         return (word,score_word(word))
+    #     elif len(word) < min_len:
+    #         min_word, min_len = word, len(word)
+    # return (min_word,score_word(min_word))
