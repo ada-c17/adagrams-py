@@ -1,10 +1,6 @@
 from random import shuffle
 from collections import Counter
 
-# get a random num between 0-25
-# use random number to locate letter from letter pool - where the letter corresponds w/index
-# add letter to hand and update letter pool minus letter from letter pool
-# repeat process 10x (or until letter hand has 10)- while
 LETTER_POOL = {
     'A': 9, 
     'B': 2, 
@@ -34,8 +30,8 @@ LETTER_POOL = {
     'Z': 1
 }
 
-
-POINT_SCALE = {'A': 1, 
+POINT_SCALE = {
+    'A': 1, 
     'B': 3, 
     'C': 3, 
     'D': 2, 
@@ -63,19 +59,19 @@ POINT_SCALE = {'A': 1,
     'Z': 10}
 
 def draw_letters():
-
     letters = []
-
+    # Create a new list of all the elements of letter pool by their count
     letter_bag = list(Counter(LETTER_POOL).elements())
+    # Randomly reorganize the letters in letter_bag
     shuffle(letter_bag)
 
-    for letter in range(10):
+    while len(letters) < 10: 
         letters.append(letter_bag.pop())
+    
     return letters
 
 
 def uses_available_letters(word, letter_bank):
-
     letter_bank_copy = letter_bank.copy()
     for letter in word.upper():
         if letter not in letter_bank_copy:
@@ -85,37 +81,32 @@ def uses_available_letters(word, letter_bank):
     return True
 
 
-
 def score_word(word):
-
     total = 0
     for letter in word:
         total += POINT_SCALE[letter.upper()]
     if len(word) >= 7:
         total += 8
-
     return total
 
 
 def get_highest_word_score(word_list):
     word_scores = {}
+    top_words = []
+    # Create a dictionary of the words from word_list and their scores 
     for word in word_list:
         word_scores[word] = score_word(word)
 
     highest_score = max(word_scores.values())
     
-    top_words = []
     for word in word_scores:
         if word_scores[word] == highest_score:
             top_words.append(word)
 
     shortest_word = min(top_words, key=len)  
-<<<<<<< HEAD
+    # Sorts our dictionary of the words and their score by the words length,
+    # in descending order
     sorted_scores = sorted(word_scores, key=len, reverse=True)
-
-=======
-    sorted_scores = sorted(word_scores, key=len, reverse=True) 
->>>>>>> c37068c6aa1b1b6085ab19288117b132f2167d2e
     
     for word in sorted_scores:
         if word in top_words:
