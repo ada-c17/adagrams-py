@@ -67,7 +67,6 @@ def draw_letters():
 
     while len(letters) < 10: 
         letters.append(letter_bag.pop())
-    
     return letters
 
 
