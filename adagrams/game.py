@@ -1,12 +1,14 @@
 import random
 
 def draw_letters():
-    letter_pool =["A", "A", "A", "A", "A", "A", "A", "A", "A", "B", "B", "C", "C", "D", "D", "D", "D", \
-        "E", "E", "E", "E", "E", "E", "E", "E", "E", "E", "E", "E", "F", "F", "G", "G", "G", "H", "H", \
-        "I", "I", "I", "I", "I", "I", "I", "I", "I", "J", "K", "L", "L", "L", "L", "M", "M", "N", \
-        "N", "N", "N", "N", "N", "O", "O", "O", "O", "O", "O", "O", "O", "P", "P", "Q", "R", \
-        "R", "R", "R", "R", "R", "S", "S", "S", "S", "T", "T", "T", "T", "T", "T", "U", \
-        "U", "U", "U", "V", "V", "W", "W", "X", "Y", "Y", "Z"]
+    letter_pool =["A", "A", "A", "A", "A", "A", "A", "A", "A", "B", "B", "C", \
+        "C", "D", "D", "D", "D", "E", "E", "E", "E", "E", "E", "E", "E", "E", \
+        "E", "E", "E", "F", "F", "G", "G", "G", "H", "H", "I", "I", "I", "I", \
+        "I", "I", "I", "I", "I", "J", "K", "L", "L", "L", "L", "M", "M", "N", \
+        "N", "N", "N", "N", "N", "O", "O", "O", "O", "O", "O", "O", "O", "P", \
+        "P", "Q", "R", "R", "R", "R", "R", "R", "S", "S", "S", "S", "T", "T", \
+        "T", "T", "T", "T", "U", "U", "U", "U", "V", "V", "W", "W", "X", "Y", \
+        "Y", "Z"]
     
     letter_bank = []
 
@@ -14,20 +16,25 @@ def draw_letters():
     
     return letter_bank
 
-def uses_available_letters(word, letter_bank):
-    is_valid = False
+def make_word_upper_list(word):
     user_input_list = []
     word = word.upper()
     for letter in word:
         user_input_list.append(letter)
-    for element in user_input_list:
+    return user_input_list
+
+def uses_available_letters(word, letter_bank):
+    is_valid = False
+
+    user_input = make_word_upper_list(word)
+
+    for element in user_input:
         if element in letter_bank:
-            if user_input_list.count(element) <= letter_bank.count(element):
+            if user_input.count(element) <= letter_bank.count(element):
                 is_valid = True
         else:
             is_valid = False
     return is_valid
-
 
 def score_word(word):
     total_points = 0
@@ -59,19 +66,17 @@ def score_word(word):
     'Y': 4, 
     'Z': 10
 }
-    user_input_list = []
-    word = word.upper()
-    for letter in word:
-        user_input_list.append(letter)
-    for element in user_input_list:
+
+    user_input = make_word_upper_list(word)
+    
+    for element in user_input:
         if element in score_chart.keys():
             total_points += score_chart[element]
     
-    if 7 <= len(user_input_list) <= 10:
+    if 7 <= len(user_input) <= 10:
         total_points += 8
     
     return total_points
-
 
 def get_highest_word_score(word_list):
     scored_words = {}
@@ -91,6 +96,3 @@ def get_highest_word_score(word_list):
             return (element, scored_words[element])
     return (shortest_word, highest_score)
 
-
-# print(uses_available_letters("DOG", ["D", "O", "C", "D", "E", "F", "X", "H", "I", "J"]))
-# print(get_highest_word_score(["AAAAAAAAAA", "BBBBBB"]))
