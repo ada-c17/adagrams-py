@@ -32,7 +32,15 @@ LETTER_POOL = {
 
 
 def draw_letters():
-    
+    """
+    Creates a list of letters based on frequency table, then randomly selects 10 letters
+
+        Parameters:
+                None
+
+        Returns:
+                returned_letters (list): list of 10 randomly chosen letters
+    """
     letter_list = []
     returned_letters = []
     for letter, number in LETTER_POOL.items():
@@ -46,6 +54,16 @@ def draw_letters():
     
 
 def uses_available_letters(word, letter_bank):
+    """
+    Checks if the provided word utilizes letters only found in letter bank
+
+        Parameters:
+                word (str): the played word
+                letter_bank (list): bank of randomly assigned letters
+
+        Returns:
+                boolean value based on word validity
+    """
     letter_dict = Counter(letter_bank)
 
     for letter in word.upper():
