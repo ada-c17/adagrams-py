@@ -117,4 +117,16 @@ def get_highest_word_score(word_list):
     scores = [score_word(word) for word in word_list]
     word_and_score = sorted(list(zip(word_list, scores)), reverse = True)
 
+    # # ****** idea for last 3 tests. Don't know how to return, though, lol. And still fails first test judging by print stmt *******
+
+    # for score in word_and_score: # looping through word_and_score list
+    #     if score[1] == score[1]: # checking to see if any of the scores are the same
+    #         if len(score[0]) == 10: # seeing if any of the lens are equal to 10 **** doesn't work***** whyyy? works on replit TT
+    #             print(score[0]) # testing - this fails and prints out "BBBBBB"
+    #         elif len(score[0]) > len(score[0]): # checking to see which word has fewer letters
+    #             print(score[0]) # seems to work
+    #         elif len(score[0]) == len(score[0]): # seems to work
+    #             print(score[:1][0]) # print only the first element of the first tuple in the list
+
     return word_and_score[0]
+    
