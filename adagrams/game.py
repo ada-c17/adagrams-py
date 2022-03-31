@@ -1,5 +1,6 @@
 from collections import Counter
 import random
+from collections import Counter
 
 LETTER_POOL = {
     'A': 9, 
@@ -73,26 +74,25 @@ POINT_SYSTEM = {
 
 def draw_letters():
     # copy a dictionary so that we don't change the data, it's constant
-    LETTER_POOL_COPY = LETTER_POOL.copy()
+    letter_pool_copy = LETTER_POOL.copy()
     letters_drawn = []
     while len(letters_drawn) < 10:
-        letter_drawn = random.choice(list(LETTER_POOL_COPY)) 
-        if LETTER_POOL_COPY[letter_drawn] >= 1: 
+        letter_drawn = random.choice(list(letter_pool_copy)) 
+        if letter_pool_copy[letter_drawn] >= 1: 
             letters_drawn.append(letter_drawn) 
-            LETTER_POOL_COPY[letter_drawn] -= 1 
+            letter_pool_copy[letter_drawn] -= 1 
     return letters_drawn
 
 
 def uses_available_letters(word, letter_bank):
     upper_word = word.upper()
-    copy_letter_bank = letter_bank.copy()
+    char_counts = Counter(letter_bank)
     for char in upper_word:
-        if char not in copy_letter_bank:
+        if not char_counts[char]:
             return False
-        else:
-            copy_letter_bank.remove(char) 
+        char_counts[char] -= 1
     return True
-    
+        
 
 def score_word(word):
     points = 0
@@ -105,7 +105,7 @@ def score_word(word):
 
 def get_highest_word_score(word_list):
     max_score = 0
-    max_word = ()
+    max_word = None
     for word in word_list:
         if score_word(word) == max_score:
             if len(max_word) == 10:
@@ -118,23 +118,3 @@ def get_highest_word_score(word_list):
             max_score = score_word(word)
             max_word = word
     return (max_word, max_score)
-
-    # max_word = None
-    # max_score = 0
-    # for word in word_list:
-    #     word_score = score_word(word)
-    #     if word_score > max_score:
-    #         max_word, max_score = word, word_score
-    #     elif word_score == max_score:
-    #         if type(max_word) != list:
-    #             max_word = list(max_word)
-    #         max_word.append(word)
-    # if type(max_word) == str:
-    #     return (max_word, max_score)
-    # min_len, min_word = 100, None
-    # for word in word_list:
-    #     if len(word) == 10:
-    #         return (word,score_word(word))
-    #     elif len(word) < min_len:
-    #         min_word, min_len = word, len(word)
-    # return (min_word,score_word(min_word))
