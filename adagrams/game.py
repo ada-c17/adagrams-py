@@ -104,13 +104,9 @@ def uses_available_letters(word, letter_bank):
 def score_word(word):
     """
 Wave 3: score_word
-Now you need a function returns the score of a given word as defined by the Adagrams game.
+Returns the score of a given word as defined by the Adagrams game.
 
-Implement the function score_word in game.py. This method should have the following properties:
-
-Has one parameter: word, which is a string of characters
-Returns an integer representing the number of points
-Each letter within word has a point value. The number of points of each letter is summed up to represent the total score of word
+The number of points of each letter is summed up to represent the total score of word
 Each letter's point value is described in the table below
 If the length of the word is 7, 8, 9, or 10, then the word gets an additional 8 points
 
@@ -125,32 +121,31 @@ If the length of the word is 7, 8, 9, or 10, then the word gets an additional 8 
         word_score += 8
     for letter in input_word:
         word_score += SCORE_CHART[letter]
-      
+
     return word_score
     
 
 def get_highest_word_score(word_list):
     best_word_list = []
-
 # Translating word list and scores into a dictionary and finding highest word score in dictionary:
     for word in word_list:
-        word_score_dict = {word: score_word(word) for word in word_list}      #Dictionary comprehension 
+        word_score_dict = {word: score_word(word) for word in word_list}    #Dictionary comprehension 
         highest_word_score = max(word_score_dict.values())
 
-
-# Max only returns the first match so we need to check which if any other values == highest score
+# Max only returns the first match so we need to check 
+# which if any other values == highest score
 # Once clear append the keys for those highest_scores values to the best_word_list.
     for word in word_score_dict:
         if word_score_dict[word] == highest_word_score:
             best_word_list.append(word)
 
-#Conditional check to see if length is more than 1 then apply tie-breaker logic (see below)    
+#Conditional check to see if length is more than 1 then apply tie-breaker logic (see helper function)    
     best_word = best_word_list[0] if len(best_word_list) == 1 else tie_breaker(best_word_list)
 
     return (best_word, word_score_dict[best_word])
         
-#Appy tie-breaker logic 
 
+#Appy tie-breaker logic 
 def tie_breaker(best_word_list):
     for word in best_word_list: 
         if len(word) == 10:
@@ -158,43 +153,6 @@ def tie_breaker(best_word_list):
         else:
             return min(best_word_list, key=len)
         
-
-        # highest_score_list.append(highest_score) # Not sure if I will use this yet
-        
-        # Remember the .items method returns tuples of key value pairs!
-        # for word, word_score  in word_score_dict.items:
-        #     max_word_score_dict = max(word_score_dict.keys(), key = lambda find_max: word_score_dict[word])
-        #     if word_score == max_word_score_dict:
-        #         if word_score in...
-        # pass 
-                    
-        
-        #Maybe try a zip function 
-
-
-
-
-# Oh darn...Tuples are immutable lists. 
-# No sorting, etc. Looking up tuple methods again. 
-#I will likely work with a dictionary instead 
-# and return the expected tuple in the end. 
-
-        # word_score = score_word(word)
-        # word_list_scores.append(word_score)
-        # highest_score = max(word_list_scores)
-        # word_score_pairs = (word, word_score)
-        # if word_score_pairs[1] == highest_score:
-        #     best_word.append(word_score_pairs[0])
-        #     best_word[0] = word_score_pairs[0] 
-        #     if len(best_word) > 0:
-        #         holding_spot = []
-        #         best_word = holding_spot.append(word)
-
-# ^^^^^I was working on this earlier until I realized Tuples are immutable.
-#I am pseudo-coding and rewriting everything now. Everything below is old code. 
-# I broke it up with bits of docstring to make it easier to process.  
-##################################
-
 
 """ Everything below is from the previous version that got us to 4 passed tests. """       
     # for word in word_list:
@@ -235,8 +193,6 @@ pick the first one in the supplied list"""
     #         highest_score_tuple = (shortest_word, highest_score)        
                     
     # return highest_score_tuple
-
-
 
 """
 Wave 4:
