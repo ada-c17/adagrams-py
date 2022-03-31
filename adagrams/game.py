@@ -31,13 +31,15 @@ LETTER_POOL = {
 }
 
 def draw_letters():
+    i = 0
     ten_letters = []
     no_change_letters = LETTER_POOL.copy()
-    for i in range(10):
+    while i in range(10):
         random_letter = random.choice(list(LETTER_POOL))
         if no_change_letters[random_letter] > 0:
             ten_letters.append(random_letter)
             no_change_letters[random_letter] -= 1
+            i += 1
     return ten_letters
      
 def uses_available_letters(word, letter_bank):
