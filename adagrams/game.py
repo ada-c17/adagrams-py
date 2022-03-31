@@ -110,8 +110,12 @@ def get_highest_word_score(word_list):
             top_words.append(word)
 
     shortest_word = min(top_words, key=len)  
+<<<<<<< HEAD
     sorted_scores = sorted(word_scores, key=len, reverse=True)
 
+=======
+    sorted_scores = sorted(word_scores, key=len, reverse=True) 
+>>>>>>> c37068c6aa1b1b6085ab19288117b132f2167d2e
     
     for word in sorted_scores:
         if word in top_words:
