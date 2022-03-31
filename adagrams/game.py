@@ -63,7 +63,8 @@ def draw_letters():
     letter_list = []
     copy_dict = copy.copy(LETTER_POOL)
 
-    for i in range(10):
+    #_ to represent unused iterator variable in for-loop executing 10X
+    for _ in range(10):
         letter = random.choice(list(copy_dict))
         copy_dict[letter] -= 1
         letter_list.append(letter)
@@ -71,6 +72,7 @@ def draw_letters():
             copy_dict.pop(letter)
 
     return letter_list
+
 
 def uses_available_letters(word, letter_bank):
     list_copy = letter_bank.copy()
@@ -84,6 +86,7 @@ def uses_available_letters(word, letter_bank):
     
     return True
 
+
 def score_word(word):
     total = 0
     word = word.upper()
@@ -92,7 +95,9 @@ def score_word(word):
         total += 8
     for letter in word:
         total += LETTER_SCORES[letter]
+        
     return total
+
 
 def get_highest_word_score(word_list):
     highest_scoring_word = ""
@@ -110,6 +115,5 @@ def get_highest_word_score(word_list):
                 highest_scoring_word = word
             elif len(word) < len(highest_scoring_word):
                 highest_scoring_word = word
-                print(highest_scoring_word)
             
     return highest_scoring_word , highest_score
