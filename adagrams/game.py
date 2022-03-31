@@ -2,12 +2,6 @@ import random
 import copy 
 from adagrams.constants import LETTER_POOL, LETTER_SCORE_DICT
 
-# draw a letter, from the letter pool
-# put each letter in a dictionary, assign a count
-# check if count exceeds the allowed count in the LETTER_POOL
-# if the letter is good, append it to hand
-# repeat until 10 letters
-
 def draw_letters():
     '''
     input: none
@@ -30,12 +24,6 @@ def draw_letters():
     return(hand)
         
 
-# iterate over each letter in the word
-# check if letter is in the hand
-# if letter is in the hand remove a copy of that letter from the hand
-# if letter is not in the hand return False
-# move to the next letter
-
 def uses_available_letters(word, hand):
     '''
     input: word (a string) and hand (a list of strings, one char each)
@@ -51,17 +39,6 @@ def uses_available_letters(word, hand):
             return False
     return True
 
-
-# assert score_word("A") == 1
-# assert score_word("DOG") == 5
-# assert score_word("WHIMSY") == 17
-
-# make score = 0
-# iterate over each letter in the word
-# find the score of each letter in the score dictionary
-#  If the length of the word is 7, 8, 9, or 10, then the word gets an additional 8 points
-# add the score of the letter to the existing score
-# return score
 
 def score_word(word):
     '''
@@ -81,27 +58,22 @@ def score_word(word):
     return score
 
 
-# go through the word list
-# identify highest scoring word
-# if a tie
-    # 10 letter words -> return automatically
-    # if len(word1) is less than len(word2), pick word1 (a tie breaker for score)
-    # if score AND length tie, pick the first (a tie breaker for score and length)
-# create a tuple with the first entry as the word, second entry as the score
-
-def get_highest_word_score(word_list):        
+def get_highest_word_score(word_list):  
+    '''
+    input: list of strings representing each word user has created
+    output: returns tuple with highest scoring word and score. If tied: 
+    shortest length word is preferred, unless length is 10 char
+    '''      
     played_word_dict = {}
     for word in word_list:
         score = score_word(word)
         played_word_dict[word] = score
 
-    best_word_list = [key for key, value in played_word_dict.items()\
-        if value == max(played_word_dict.values())]
     highest_score = max(played_word_dict.values())
+    best_word_list = [key for key, value in played_word_dict.items()\
+        if value == highest_score]
 
-    if len(best_word_list) == 1:
-        return (best_word_list[0], highest_score)
-    elif len(best_word_list) > 1:
+    if len(best_word_list) > 1:
         for word in best_word_list:
             if len(word) == 10:
                 return word, highest_score
