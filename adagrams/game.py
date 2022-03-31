@@ -32,8 +32,13 @@ LETTER_POOL = [
 
 
 def draw_letters():
+    # create a copy of letter pool so we don't alter original list
     letter_pool_copy = deepcopy(LETTER_POOL)
     drawn_letters = []
+    
+    # until the length of drawn_letters is 10, keep generating
+    # a random index to pop off from the letter pool 
+    # and append popped element to drawn_letters
     while len(drawn_letters) < 10:
         rand_index = randint(0, len(letter_pool_copy)-1)
         drawn_letters.append(letter_pool_copy.pop(rand_index))
