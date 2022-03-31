@@ -88,12 +88,8 @@ def get_highest_word_score(word_list):
     shortest_word = min(tied_words, key = len)
     for element in tied_words:
         if len(element) == 10:
-            highest_score = (element, scored_words[element])
-            break
-        else:
-            highest_score = (shortest_word, scored_words[shortest_word])
-
-    return highest_score
+            return (element, scored_words[element])
+    return (shortest_word, highest_score)
 
 
 # print(uses_available_letters("DOG", ["D", "O", "C", "D", "E", "F", "X", "H", "I", "J"]))
