@@ -46,10 +46,11 @@ def draw_letters():
 
 
 def uses_available_letters(word, letter_bank):
+    # create a copy of letter bank so we don't alter original list
     letter_bank_copy = deepcopy(letter_bank)
     word = word.upper()
     valid_word = True
-
+    # check all letters in word are available in correct quantity
     for letter in word:
         if letter not in letter_bank_copy:
             valid_word = False
@@ -94,6 +95,7 @@ def get_highest_word_score(word_list):
         score = score_word(word)
         if score > best_word["score"]:
             update_best_word(best_word, word, score)
+        # check for ties using word length guidelines
         elif score == best_word["score"]:
             if len(word) == 10 and len(best_word["word"]) != 10:
                 update_best_word(best_word, word, score)
