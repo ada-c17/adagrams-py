@@ -1,90 +1,3 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 import random
 import copy
 LETTER_POOL = {
@@ -145,6 +58,7 @@ LETTER_SCORE = {
 }
 OUR_POOL = copy.deepcopy(LETTER_POOL)
 
+#Wave 1
 def draw_letters():
     '''
     make an list to keep letters from the word if that letters is in the pool
@@ -169,30 +83,47 @@ def draw_letters():
     return array_of_letters
     
 
-def uses_available_letters(word, letter_bank):
-    '''
-    if letter from the word is not in the bank return False
-    if letter from the word is in the bank, replace that letter
-    with True in the bank
-
-    Count True in the letter bank
-    if count of True in the bank is equal to length of word return True
-    otherwise return False
-    '''
-    our_bank = copy.deepcopy(letter_bank)
-    word1 = word.upper()
-
-    for i in range (len(word1)):
-        if word1[i] in our_bank:
-            index_of_letter = our_bank.index(word1[i]) #take extra time to get the index
-            our_bank[index_of_letter] = True
-    
-    if our_bank.count(True) == len(word1):
+#Wave 2 (Bahareh) 
+def uses_available_letters(word,letter_bank):
+    copied_word=copy.deepcopy(word).upper()
+    copied_bank = copy.deepcopy(letter_bank)
+    empty_list=[]
+    for i in copied_word:
+       if i in copied_bank:
+            empty_list.append(i)
+            copied_bank.remove(i)
+            
+    if len(empty_list)==len(word):
         return True
-    else:
+    else: 
         return False
-    
 
+# Wave 2 (Anya)  **** Alternative, takes more time ******
+# def uses_available_letters(word, letter_bank):
+#     '''
+#     if letter from the word is not in the bank return False
+#     if letter from the word is in the bank, replace that letter
+#     with True in the bank
+
+#     Count True in the letter bank
+#     if count of True in the bank is equal to length of word return True
+#     otherwise return False
+#     '''
+#     our_bank = copy.deepcopy(letter_bank)
+#     word1 = word.upper()
+
+#     for i in range (len(word1)):
+#         if word1[i] in our_bank:
+#             index_of_letter = our_bank.index(word1[i]) #take extra time to get the index
+#             our_bank[index_of_letter] = True
+    
+#     if our_bank.count(True) == len(word1):
+#         return True
+#     else:
+#         return False
+
+    
+# Wave 3 (Anya)
 def score_word(word):
     '''
     if length of word greater than 6, set initial score to 8, otherwise to 0
@@ -205,8 +136,23 @@ def score_word(word):
         score += LETTER_SCORE[letter]
     
     return score
-print(score_word("CUCUmber"))
 
+
+#Waive 3 (Bahareh)
+# def score_word(word):
+#     score_chart={"A":1, "E":1, "I":1, "O":1, "U":1, "L":1, "N":1, "R":1, "S":1, "T":1, "D":2,"G":2, "B":3,"C":3,"M":3,"P":3,"F":4,"H":4,"V":4, "W":4, "Y":4,"K": 5, "J":8,"X":8,"Q":10,"Z":10}
+#     result=[]
+#     copied_word=copy.deepcopy(word).upper()
+    
+#     for i in copied_word:
+#         if i in score_chart:
+#             result.append(score_chart[i])
+#     if len(copied_word)==8 or len(copied_word)==9 or len(copied_word)==10 or len(copied_word)==7:
+#             result.append(8)
+#     score =sum(result)
+#     return score
+
+# Wave 4
 def get_highest_word_score(word_list):
     '''
     # set highest score to the score of the first word
@@ -233,4 +179,4 @@ def get_highest_word_score(word_list):
     min_len_word = min((word for word in list_of_highest_score_words if word), key=len)
     
     return [ten_len_word[0], highest_score] if ten_len_word else [min_len_word, highest_score]
-    
+       
