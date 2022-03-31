@@ -103,7 +103,7 @@ def is_in_list(word, letter_bank):
 
 def score_word(word):
     score_chart = {
-        1:["A","B","I","O","U","L","N","R","S","T"],
+        1:["A","I","E","O","U","L","N","R","S","T"],
         2:["D","G"],
         3:["B","C","M","P"],
         4:["F","H","V","W","Y"],
@@ -171,11 +171,14 @@ def get_highest_word_score(word_list):
         # when the length of the list is greater than one, meaning ties
     elif len(highest_score_list) > 1:
         shortest = min(highest_score_list, key=len)
-        for item in highest_score_list: 
-            if len(item) == 10:
-                return highest_score(item)
-            if len(item) == len(shortest):
-                    return highest_score(item)
+        longest_word = max(highest_score_list, key=len)
+        if len(longest_word) == 10:
+            return highest_score(longest_word) 
+        else:
+            for item in highest_score_list: 
+                if len(item) == len(shortest):
+                        return highest_score(item)
+            return highest_score(item)
             # if item != shortest and len(item) != 10:
             #     winning_list.append(highest_score_list[0])
             #     winning_list.append(score_word(highest_score_list[0]))
