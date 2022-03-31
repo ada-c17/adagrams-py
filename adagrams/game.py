@@ -140,6 +140,7 @@ def get_highest_word_score(word_list):
         # when the length of the list is greater than one, meaning ties
     elif len(highest_score_list) > 1:
         shortest = min(highest_score_list, key=len)
+<<<<<<< HEAD
         longest_word = max(highest_score_list, key=len)
         if len(longest_word) == 10:
             return highest_score(longest_word) 
@@ -148,6 +149,19 @@ def get_highest_word_score(word_list):
                 if len(item) == len(shortest):
                         return highest_score(item)
             return highest_score(item) 
+=======
+        for item in highest_score_list:
+            if len(item) == 10:
+                return highest_score(item)
+            elif len(item) != 10:
+                if len(item) == len(shortest):
+                    return highest_score(item)
+            # return highest_score(item)
+            # if item != shortest and len(item) != 10:
+            #     winning_list.append(highest_score_list[0])
+            #     winning_list.append(score_word(highest_score_list[0]))
+            #     return tuple(winning_list) 
+>>>>>>> c7d43f1a3c7594eddb8ec32339aab6d01baed3db
 
             
 def highest_score(word):
