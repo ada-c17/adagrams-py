@@ -1,5 +1,6 @@
 from random import sample
 
+
 LETTER_POOL = {
     'A': 9, 
     'B': 2, 
@@ -28,7 +29,6 @@ LETTER_POOL = {
     'Y': 2, 
     'Z': 1
 }
-
 
 
 SCORE_DICT = {
@@ -62,20 +62,17 @@ SCORE_DICT = {
 
 
 def draw_letters():
-    # create the list of letters from dictionary according quantity
-    letters = []
-    for letter, frequency in LETTER_POOL.items():
-        for k in range(frequency):
-            letters.append(letter)
+    """Returns a list of 10 random letters from LETTER_POOL"""
 
-    # create with rundom function list of 10 elements according list of letters with sample function
-    output = sample(letters, k=10)
-    return output
+    letters = LETTER_POOL.keys()
+    frequency = LETTER_POOL.values()
+    
+    return sample(letters, counts=frequency, k=10)
 
 
-# create a helper function
+# Helper function
 def get_letter_count(sequence):
-    """Returns a dictionary that contains the frequency of each letter from a sequence"""
+    """Returns a dictionary containing the frequency of each character from a sequence"""
 
     frequency_dict = {}
 
@@ -88,10 +85,8 @@ def get_letter_count(sequence):
 def uses_available_letters(word, letter_bank):
     """Returns True if word uses only letters from letter_bank
     Returns False if word uses letters not from letter_bank"""
-    word = word.upper()
 
-    # get the counts of all characters
-    word_count_dict = get_letter_count(word)
+    word_count_dict = get_letter_count(word.upper())
     letter_bank = get_letter_count(letter_bank)
 
     for character, count in word_count_dict.items():
@@ -102,44 +97,43 @@ def uses_available_letters(word, letter_bank):
 
 
 def score_word(word):
-    # check empty word
+    """Return the score of a word according to SCORE_DICT mapping"""
+    
     if len(word) == 0:
         return 0
-    # make letter in upper case
-    word = word.upper()
-    
-    # create score according dictionary values
+
     score = 0
-    for letter in word:
+    for letter in word.upper():
         if letter in SCORE_DICT:
             score += SCORE_DICT[letter]
     
-    # if the length of the word is 7, 8, 9, or 10, then the word gets an additional 8 points
+    # if the length of the word is 7, 8, 9, or 10 
+    # then the word gets an additional 8 points
     if len(word) in [7,8,9,10]:
         score += 8
+        
     return score
 
 
 def get_highest_word_score(word_list):
+    """Returns a word with the highest score & its score 
+    from a list of words.
+    """
+
     highest_score = 0
     highest_score_word = None
 
     for word in word_list:
         current_score = score_word(word)
 
-        # In case the score is strictly better
+        # when a strictly better scored word found
         if current_score > highest_score:
             highest_score = current_score
             highest_score_word = word
-            continue
 
-        elif current_score == highest_score:
-            # if the current highest_score_word has 10 letters, continue
-            if len(highest_score_word) == 10:
-                continue
-
-            # update highest_score_word to a better "option"
+        # in case of tie
+        elif current_score == highest_score and len(highest_score_word) != 10:
             if len(word) == 10 or len(word) < len(highest_score_word):
                 highest_score_word = word
 
-    return (highest_score_word, highest_score)
+    return highest_score_word, highest_score
