@@ -54,7 +54,7 @@ def uses_available_letters(word, letters):
     word_freq = collections.Counter(word.upper())
     letters_freq = collections.Counter(letters)
     for letter in word:
-        if letter not in letters:
+        if letter.upper() not in letters:
             return False
     for letter in word_freq:
         # if letter not in letters_freq[letter]:
@@ -137,4 +137,5 @@ def get_highest_word_score(words):
         if value == 10:
             return (key, score_dict[key])
         else:
-            return (shortest_word, score_dict[shortest_word])
+            result = (shortest_word, score_dict[shortest_word])
+    return result
