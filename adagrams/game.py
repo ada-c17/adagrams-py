@@ -51,8 +51,7 @@ def draw_letters():
             is_valid = False
     return random_letter
 
-    #random_letter = [random.choice(list(LETTER_POOL)) for i in range(10) if str(i) < LETTER_POOL[letter]]
-    #return random_letter
+    
 
 def uses_available_letters(word, letter_bank):
     cap_letter = word.upper()
@@ -60,8 +59,6 @@ def uses_available_letters(word, letter_bank):
         if cap_letter.count(letter) <= letter_bank.count(letter):
             if letter in letter_bank:
                 continue
-            else:
-                return False
         else:
             return False
     return True
@@ -79,21 +76,28 @@ def score_word(word):
     return score
 
 def get_highest_word_score(word_list):
+
     highest_score = 0
     highest_word = ()
     for word in word_list:
         if score_word(word) == highest_score:
             if len(highest_word) == 10:
                 continue
-            elif len(word) == 10:
-                highest_word = word
-            elif len(word) < len(highest_word):
+            elif len(word) == 10 or len(word) < len(highest_word):
                 highest_word = word
         else:
             if score_word(word) > highest_score:
                 highest_score = score_word(word)
-                highest_word = word  
+                highest_word = word 
+
     return (highest_word, highest_score) 
+
+    
+
+    
+
+
+
     
 
 
