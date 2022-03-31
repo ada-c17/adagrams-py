@@ -31,6 +31,7 @@ LETTER_POOL = {
     'Z': 1
 }
 
+# Test 1
 def test_draw_letters_draws_ten():
     # Arrange/Act
     letters = draw_letters()
@@ -38,6 +39,7 @@ def test_draw_letters_draws_ten():
     # Assert
     assert len(letters) == 10
 
+# Test 2
 def test_draw_letters_is_list_of_letter_strings():
     # Arrange/Act
     letters = draw_letters()
@@ -49,6 +51,7 @@ def test_draw_letters_is_list_of_letter_strings():
         assert type(elem) == str
         assert len(elem) == 1
 
+# Test 3
 def test_letter_not_selected_too_many_times():
 
     for i in range(1000):
@@ -56,6 +59,7 @@ def test_letter_not_selected_too_many_times():
         letters = draw_letters()
 
         letter_freq = {}
+        #for each letter in your hand, count how many times it shows up
         for letter in letters:
             if letter in letter_freq:
                 letter_freq[letter] += 1
