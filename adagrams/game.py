@@ -1,5 +1,4 @@
 import random
-import copy
 
 LETTER_POOL = {"A": 9, "B": 2, "C": 2, "D": 4, "E": 12, "F": 2, "G": 3, 
     "H": 2, "I": 9, "J": 1, "K": 1, "L": 4, "M": 2, "N": 6, "O": 8,
@@ -17,10 +16,10 @@ SCORE_CHART = {
     10: ["Q", "Z"]
 }
 def draw_letters():
-    # letters = copy.copy(LETTERS)
+    # make copy of the letter bank and letter pool constants
     letters = LETTERS.copy()
-    # letter_pool = copy.copy(LETTER_POOL)
     letter_pool = LETTER_POOL.copy()
+    # initiate hand empty list
     hand = []
     while len(hand) < 10:
         letter = random.choice(letters)
@@ -48,7 +47,6 @@ def uses_available_letters(word, letter_bank):
     
     #all checks to see if everything in list is truthy
     if all(boolean_list):
-    #so this is for the third test mostly
     #counts the amount of times that each letter appears in each list,
     #and if it's greater than the count of the letters in the letter bank, return False
         letter_count_guessed_letters = {}
@@ -59,24 +57,23 @@ def uses_available_letters(word, letter_bank):
             count += 1
             letter_count_guessed_letters[letter] = count
 
-    #reinit count just in case of anything crazy.....
+    #reinit count
         count = 0
         for letter in letter_bank:
             count += 1
             letter_count_letter_bank[letter] = count
     
-    #does the comparison stuff
+    # comparison of count of letters in letter bank
         for letter, count in letter_count_guessed_letters.items():
             if count > letter_count_letter_bank[letter]:
                 return False
             else:
                 return True
 
-    #this is from the if statement above, returns false if the all() function doesn't return True
+    # returns false if the all() function doesn't return True
     else:
         return False
             
-
 
 def score_word(word):
     # change word to uppercase in case it's not 
