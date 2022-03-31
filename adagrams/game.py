@@ -66,25 +66,7 @@ def draw_letters():
     return letter_bank
 
 
-'''
-Next, you need a way to check if an input word (a word a player submits) 
-only uses characters that are contained within a collection (or hand) of drawn letters. 
-Essentially, you need a way to check if the word is an anagram of some or all of the given 
-letters in the hand.
 
-To do so, implement the function called `uses_available_letters` in `game.py`. 
-This function should have the following properties:
-
-- Has two parameters:
-   - `word`, the first parameter, describes some input word, and is a string
-   - `letter_bank`, the second parameter, describes an array of drawn letters in a hand. 
-   You can expect this to be an array of ten strings, with each string representing a letter
-- Returns either `True` or `False`
-- Returns `True` if every letter in the `input` word is available (in the right quantities) 
-in the `letter_bank`
-- Returns `False` if not; if there is a letter in `input` that is not present in the 
-`letter_bank` or has too much of compared to the `letter_bank`
-'''
 
 def uses_available_letters(word, letter_bank):
 #    return true or false if the word has the correct letter quantities in the word bank
@@ -121,7 +103,7 @@ def is_in_list(word, letter_bank):
 
 def score_word(word):
     score_chart = {
-        1:["A","E","I","O","U","L","N","R","S","T"],
+        1:["A","B","I","O","U","L","N","R","S","T"],
         2:["D","G"],
         3:["B","C","M","P"],
         4:["F","H","V","W","Y"],
@@ -155,20 +137,6 @@ def score_word(word):
     return total_score
 
 
-"""### Wave 4: get_highest_word_score
-
-After several hands have been drawn, words have been submitted, checked, scored, and played, you need a way to find the highest scoring word. This function looks at the list of `word_list` and calculates which of these words has the highest score, applies any tie-breaking logic, and returns the winning word in a special data structure.
-
-Implement a function called `get_highest_word_score` in `game.py`. This method should have the following properties:
-
-- Has one parameter: `word_list`, which is a list of strings
-- Returns a tuple that represents the data of a winning word and it's score.  The tuple must contain the following elements:
-  - index 0 ([0]): a string of a word
-  - index 1 ([1]): the score of that word
-- In the case of tie in scores, use these tie-breaking rules:
-    - prefer the word with the fewest letters...
-    - ...unless one word has 10 letters. If the top score is tied between multiple words and one is 10 letters long, choose the one with 10 letters over the one with fewer tiles
-    - If the there are multiple words that are the same score and the same length, pick the first one in the supplied list"""
 
 def get_highest_word_score(word_list):
 
