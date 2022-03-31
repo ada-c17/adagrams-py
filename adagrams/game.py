@@ -33,9 +33,13 @@ def draw_letters():
     import copy
 
     user_hand = []
+    # deepcopy makes a copy that has its own reference in memory so that we don't
+    # overwrite the original list
     temp_dict = copy.deepcopy(LETTER_POOL)
 
     while len(user_hand) < 10:
+        # random.choice selects a random letter from the string we give it and then
+        # string.ascii_uppercase gives us a string of all 26 letters in upper case form
         letter = random.choice(string.ascii_uppercase)
         letter_count = temp_dict[letter]
         if letter_count == 0:
@@ -48,8 +52,10 @@ def draw_letters():
 
 
 def uses_available_letters(word, letter_bank):
+    # .upper returns a string where all characters are uppercase
     word = word.upper()
     for letter in word:
+        # .count returns the number of times the letter is found within that word
         letter_count = word.count(letter)
         bank_count = letter_bank.count(letter)
         if letter in letter_bank:
@@ -63,38 +69,38 @@ def uses_available_letters(word, letter_bank):
 
 def score_word(word):
     letter_vals = {
-        "a": 1, 
-        "b": 3, 
-        "c": 3, 
-        "d": 2, 
-        "e": 1, 
-        "f": 4, 
-        "g": 2, 
-        "h": 4, 
-        "i": 1, 
-        "j": 8, 
-        "k": 5, 
-        "l": 1, 
-        "m": 3, 
-        "n": 1, 
-        "o": 1, 
-        "p": 3, 
-        "q": 10, 
-        "r": 1, 
-        "s": 1, 
-        "t": 1, 
-        "u": 1, 
-        "v": 4, 
-        "w": 4, 
-        "x": 8, 
-        "y": 4, 
-        "z": 10 }
+        "A": 1, 
+        "B": 3, 
+        "C": 3, 
+        "D": 2, 
+        "E": 1, 
+        "F": 4, 
+        "G": 2, 
+        "H": 4, 
+        "I": 1, 
+        "J": 8, 
+        "K": 5, 
+        "L": 1, 
+        "M": 3, 
+        "N": 1, 
+        "O": 1, 
+        "P": 3, 
+        "Q": 10, 
+        "R": 1, 
+        "S": 1, 
+        "T": 1, 
+        "U": 1, 
+        "V": 4, 
+        "W": 4, 
+        "X": 8, 
+        "Y": 4, 
+        "Z": 10 }
 
     final_score = 0
     letter_count = 0
     length = len(word)
 
-    word = word.lower()
+    word = word.upper()
 
     for char in word:
         letter_count = letter_vals[char]
@@ -103,39 +109,76 @@ def score_word(word):
     if 7 <= length <= 10:
         final_score += 8   
 
+
+
     return final_score
+
+def tie_breaker(max_score):
+    tie = []
+    counter = 1000
+    length = len(max_score)
+
+    for i in range(length):
+        if length == 10:
+            tie.append(max_score[i])
+            return tie
+        else: 
+            if counter == length:
+                continue
+            else:
+                counter = length
+                tie.append(max_score[i])
+
+def tie_breaker(max_score):
+    tie = ["", 0]
+    smallest_word_len = 1000
+    
+
+    for i in range(len(max_score)):
+        word = max_score[i][0]
+        score = max_score[i][1]
+        length = len(word)
+
+        if length == 10:
+            # .clear() method removes all elements  from a list
+            tie.clear()
+            tie.append(word)
+            tie.append(score)
+            break
+        elif length < smallest_word_len:
+            smallest_word_len = length
+            tie.clear()
+            tie.append(word)
+            tie.append(score)
+        else:
+            continue           
+
+    return tie
 
 def get_highest_word_score(word_list):
     word_score = 0
+    winner_list = []
     max_score = [["", 0]]
-    score_tuple = tuple() # turn to tuple for [] for score in range(word_list)
+    score_tuple = tuple() 
 
     for word in word_list:
+        i = 0
         word_score = score_word(word)
-        if word_score > max_score[0][1]:
+        if word_score > max_score[i][1]:
             max_score.clear()
             max_score.append([word, word_score])
-        elif word_score == max_score[0][1]:
+        elif word_score == max_score[i][1]:
             max_score.append([word, word_score])
         else:
             continue
-        
+        i += 1
+    
     if len(max_score) > 1:
-        
+        tie = tie_breaker(max_score)
+        score_tuple = tuple(tie)
+    else:
+        winner_list.append(max_score[0][0])
+        winner_list.append(max_score[0][1])
+        score_tuple = tuple(winner_list)
 
-    score_tuple = tuple(max_score)
-    print(score_tuple)
     return score_tuple
-
-
-
-word_list = ["AAAAAAAAAA",
-"EEEEEEEEEE",
-"BBBBBB", 
-"WWW", 
-"SQUID",
-"XX", 
-"X"
-]
-
-get_highest_word_score(word_list)
