@@ -121,7 +121,7 @@ def is_in_list(word, letter_bank):
 
 def score_word(word):
     score_chart = {
-        1:["A","B","I","O","U","L","N","R","S","T"],
+        1:["A","E","I","O","U","L","N","R","S","T"],
         2:["D","G"],
         3:["B","C","M","P"],
         4:["F","H","V","W","Y"],
