@@ -43,7 +43,7 @@ def draw_letters():
         letter_list.remove(current_letter)
 
     return returned_letters
-    pass
+    
 
 def uses_available_letters(word, letter_bank):
     letter_dict = Counter(letter_bank)
@@ -69,6 +69,51 @@ def score_word(word):
 
 
 def get_highest_word_score(word_list):
+
+    scores = []
+    lowest = ()
+
+#gets the scores of all words and keeps track
+#of only the highest scores.
+#adds the word and the score as a tuple to a list
+
+    for word in word_list:
+        current_word_score = score_word(word)
+        if not scores: 
+            scores.append((word, current_word_score))
+        elif current_word_score > scores[0][1]:
+            scores = [(word, current_word_score)]
+        elif current_word_score == scores[0][1]:
+            scores.append((word, current_word_score))
+            
+#if we don't have a tie all we need to do is return 
+#the only item in the list
+
+    if len(scores) == 1:
+        return scores[0]
+
+#for tie scenarios. As soon as we come across the
+#first word w a length of 10, we can end and
+#return that word and score.
+#we then define a lowest variable to get the shortest
+#word in the list 
+
+    for word, top_score in scores:
+        word_length = len(word)
+        if word_length == 10:
+            return word, top_score
+        elif not lowest:
+            lowest = (word, top_score, word_length)
+        elif word_length < lowest[2]:
+            lowest = (word, top_score, word_length)
+
+    return lowest[0], lowest[1]
+
+
+'''
+this is the code we had previously for reference:
+
+
     word_scores = {}
     highest_score = 0
     highest_scoring_words = []
@@ -101,14 +146,4 @@ def get_highest_word_score(word_list):
         else:
             return highest_scoring_words[1], word_scores[highest_scoring_words[1]]
 
-    
-
-
-# letters = {
-#     "a" : 5,
-#     "b" : 4
-# }
-# letter_list = []
-# for letter, number in letters.items():
-#     letter_list += letter * number
-# print(letter_list)
+'''
