@@ -36,14 +36,6 @@ def draw_letters():
 
 
 def uses_available_letters(word, letter_bank):
-#    return true or false if the word has the correct letter quantities in the word bank
-#  Check if word is valid 
-# Loop through word to append to list. List for element in the word
-# - Helper function if letter is in list- 
-# - Return False if not in list
-# If letter.count in word <= letter count in list Return True,
-#  If not correct quantity return False
-    
     if not check_letters_intersecting(word,letter_bank):
         return False
     elif check_letters_intersecting(word,letter_bank):
@@ -61,10 +53,10 @@ def check_letters_intersecting(word, letter_bank):
     # guard clause
     if not word.upper(): 
         return False
-        # for each letter in word add to word set
+    # for each letter in word add to word set
     for letter in word.upper(): 
         word_set.add(letter)
-        # compares set with intersection for overlapping letters
+    # compares set with intersection for overlapping letters
     result = word_set & set(letter_bank)
     # if all the same letters in both sets they will have equal lengths
     if len(result) == len(set(word)):
@@ -139,31 +131,15 @@ def get_highest_word_score(word_list):
         return tuple(highest_score_list)
         # when the length of the list is greater than one, meaning ties
     elif len(highest_score_list) > 1:
-        shortest = min(highest_score_list, key=len)
-<<<<<<< HEAD
+        shortest_word = min(highest_score_list, key=len)
         longest_word = max(highest_score_list, key=len)
         if len(longest_word) == 10:
             return highest_score(longest_word) 
         else:
             for item in highest_score_list: 
-                if len(item) == len(shortest):
+                if len(item) == len(shortest_word):
                         return highest_score(item)
-            return highest_score(item) 
-=======
-        for item in highest_score_list:
-            if len(item) == 10:
-                return highest_score(item)
-            elif len(item) != 10:
-                if len(item) == len(shortest):
-                    return highest_score(item)
-            # return highest_score(item)
-            # if item != shortest and len(item) != 10:
-            #     winning_list.append(highest_score_list[0])
-            #     winning_list.append(score_word(highest_score_list[0]))
-            #     return tuple(winning_list) 
->>>>>>> c7d43f1a3c7594eddb8ec32339aab6d01baed3db
-
-            
+            return highest_score(item)           
 def highest_score(word):
     winning_list=[]
     winning_list.append(word)
