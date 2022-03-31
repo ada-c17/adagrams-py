@@ -104,9 +104,23 @@ def get_highest_word_score(word_list):
     score_word_dict = get_highest_dict(word_list)
     max_score = max(score_word_dict.keys())
     max_words = score_word_dict[max_score]
-    winner_word = max_words[0]
+    if len(max_words) == 1:
+        winner_word = max_words[0]
+        return winner_word, max_score
+    else:
+        num_letters = []
+        for word in max_words:
+            if len(word) == 10:
+                winner_word = word
+                return winner_word, max_score
+            else:
+                num_letters.append(len(word))
+        min_length = min(num_letters)
+        for word in max_words:
+            if len(word) == min_length:
+                winner_word = word
+                return winner_word, max_score
     
-    return (winner_word, max_score)
     #dict w/ scores as key and list of words as values
     
 
