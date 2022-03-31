@@ -134,7 +134,7 @@ def score_word(word):
     if len(word) in extra_score_chart:
         total_score += 8
 
-    return total_score
+    return total_score 
 
 
 
