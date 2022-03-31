@@ -29,6 +29,7 @@ SCORE_CHART = {
     }
 
 def draw_letters():
+    """ Draw letter from letter_pool """
     LETTER_POOL = {
     'A': 9, 
     'B': 2, 
@@ -59,17 +60,19 @@ def draw_letters():
 }
     letters = []
    
+   # Draw a random letter
     while len(letters) < 10:
         letter = random.choice(list(LETTER_POOL))
-        if LETTER_POOL[letter] == 0:
+        if LETTER_POOL[letter] == 0: # Check letter is in pool
             continue
-        else:
+        else: # Remove one letter from the letter pool
             letters.append(letter)
             LETTER_POOL[letter] -= 1
    
     return letters
 
 def uses_available_letters(word, letter_bank):
+    """ check each letter used in leter_bank_copy """
     letter_bank_copy = letter_bank[:]
     word = word.upper()
     for letter in word:
@@ -80,6 +83,7 @@ def uses_available_letters(word, letter_bank):
     return True
 
 def score_word(word):
+    """Score word using score chart and give bonus points for longer words.""" 
     word = word.upper()
     score = 0
     for letter in word:
@@ -92,22 +96,27 @@ def score_word(word):
 
 
 def get_highest_word_score(word_list):
+    """Find highest scoring word and its score."""
+    # Score each word in the input list and store word-score pairs in list of tuples
     word_and_score = []
     for word in word_list:
         score = score_word(word)
         score_tuple = (word, score)
         word_and_score.append(score_tuple)
     
+    # Create dictionary using word-score pair in each tuple as key and value
     word_and_score_dict = {}
     for word, score in word_and_score:
         word_and_score_dict[word] = score
 
     highest_score = 0
     best_word = ""
+    # Iterate through dictionary and see if new highscore is found
     for word, score in word_and_score_dict.items():
         if score > highest_score:
             highest_score = score
             best_word = word
+        # Break tie
         elif score == highest_score:
             if len(word) == 10 and len(best_word) != 10:
                 best_word = word
