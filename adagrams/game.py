@@ -152,29 +152,30 @@ If the there are multiple words that are the same score and the same length,
 pick the first one in the supplied list"""
 
     for word in word_list:
-        "This is where I am currently reworking"
         highest_score = 0
-        word_list_scores = []
-        tracking_list = []
+        # word_list_scores = []
         word_score = score_word()
-        word_list_scores.append(word_score)
-        highest_score = max(word_list_scores) #Does this require a key??
+        # word_list_scores.append(word_score)
+        # highest_score = max(word_list_scores) #Does this require a key?? As in key = lambda etc 
+        highest_score_list = []
 
     for word in word_list:
-        word_length = len(word)
-        best_word_list = [] 
-        word_score_dict = {word: score_word() for word in word_list} 
-        highest_score = max(word_score_dict[word])
-        highest_score_list.append # Not sure if I will use this yet
-        # Remember the .items method returns tuples of key value pairs!
-        for keys, values in word_score_dict.items:
-            # if word_score_dict[word] == 
-            max_word_score_dict = max(word_score_dict.keys(), key = lambda find_max: word_score_dict[word])
-            if word_score == max_word_score_dict and word_score in best_word_list:
-                for best_word in best_word_list:
-                    if word_length < len(best_word): 
-        #Maybe try a zip function 
+        word_score_dict = {word: word_score for word in word_list}      #Dictionary comprehension 
+        highest_score = max(word_score_dict[word]) #Will this return more than one value if they are equal???
+        highest_score_list.append(highest_score) # Not sure if I will use this yet
         
+        # Remember the .items method returns tuples of key value pairs!
+        for word, word_score  in word_score_dict.items:
+            max_word_score_dict = max(word_score_dict.keys(), key = lambda find_max: word_score_dict[word])
+            if word_score == max_word_score_dict:
+                if word_score in...
+        pass 
+                    
+
+
+        
+        #Maybe try a zip function 
+
 
 
 
