@@ -143,6 +143,19 @@ def score_word(word):
 
 
 def get_highest_word_score(word_list):
+    #PSEUDO CODE
+    #initialize max_score list - will tuple of word, score
+    #####
+    #variable for length of the word
+    #variable for max score 
+    ######
+    #for word in word list
+    #call score_word() function -- append word & score to max_score_list
+    #for loop to loop through max_score_list to meet requirements
+    #for tie breaker:
+    #if statement current score is equal to max store 
+
+    
     #initalize max score list which is list of tuples
     max_score_list = []
 
@@ -151,7 +164,7 @@ def get_highest_word_score(word_list):
     for word in word_list:
         word_score = score_word(word)
         max_score_list.append((word, word_score))
-    print(max_score_list)
+    # print(max_score_list)
 
     #initialize variable to track max score/current word
     max_score = 0
@@ -160,18 +173,6 @@ def get_highest_word_score(word_list):
     
     #looping through available words/scores
     for pair in max_score_list:
-        #PSEUDO CODE
-        #initialize max_score list - will tuple of word, score
-        #####
-        #variable for length of the word
-        #variable for max score 
-        ######
-        #for word in word list
-        #call score_word() function -- append word & score to max_score_list
-        #for loop to loop through max_score_list to meet requirements
-        #for tie breaker:
-        #if statement current score is equal to max store 
-        
         #scenario for if current score is greater than current max score, 
         #reassign all variables to the current word/score
         if pair[1] > max_score:
@@ -180,19 +181,15 @@ def get_highest_word_score(word_list):
             max_pair = pair
         #scenario for tie breaker 
         elif pair[1] == max_score:
-            #tie breaker bullet point 1
-            if len(pair[0]) < min_length and min_length != 10:
+            #tie breaker bullet point 1 or bullet point 2
+            if (len(pair[0]) < min_length and min_length != 10) or \
+                (len(pair[0]) == 10 and len(max_pair[0]) != 10):
                 max_pair = pair
-                # min_length = len(pair[0])
-            #tie breaker bullet point 2
-            elif len(pair[0]) == 10 and len(max_pair[0]) != 10:
-                max_pair = pair
-                # min_length = len(pair[0])
+                min_length = len(pair[0])
             #tie breaker bullet point 3 met when none of the conditions above are true
     return max_pair
 
-# print(get_highest_word_score(["Q", "A", "ADABB", "AAAAFAA", "AAAAAAAAAA", "EEEEEEEEEE"]))
-# print(get_highest_word_score(["Q", "A", "ADABB", "AAAAFAA", "AAAAAAAAAA", "EEEEEEEEEE"]))
+
     
 
 
