@@ -49,7 +49,18 @@ def draw_letters():
 
 
 def uses_available_letters(word, letter_bank):
-    pass
+    counter = 0
+    upper_word = word.upper()
+    for i in upper_word: 
+        counter += 1
+        if upper_word.count(i) == letter_bank.count(i) and counter == len(upper_word):
+            return True
+            
+        elif upper_word.count(i) > letter_bank.count(i) and counter == len(upper_word):
+            return False
+ 
+
+
 
 def score_word(word):
     pass
