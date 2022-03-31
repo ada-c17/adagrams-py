@@ -32,21 +32,22 @@ def draw_letters():
 
 
 def uses_available_letters(word, letter_bank):
-    # no need to create a copy as we are not modifying the letter bank
-    # we ARE touching it, but that's okay!! We're not adding or removing
-    # anything to the list. 
-    # I was getting a weird KeyError sometimes if I tried to break it in the 
-    # playtester (like if I was inputting "HOG" instead of "DOG" if the 
-    # letters for "DOG" where only available) after I got all the tests to run 
-    # so I put in a try/except to catch it but there is probably a much more
-    # elegant solution
-    try:
     #converts the input to uppercase
-        word = word.upper()
+    word = word.upper()
     
     #splits word into a list
-        guessed_letters = list(word)
+    guessed_letters = list(word)
 
+    #make a list of booleans for each letter, if in letter bank, return True
+    boolean_list = []
+    for letter in guessed_letters:
+        if letter in letter_bank:
+            boolean_list.append(True)
+        else:
+            boolean_list.append(False)
+    
+    #all checks to see if everything in list is truthy
+    if all(boolean_list):
     #so this is for the third test mostly
     #counts the amount of times that each letter appears in each list,
     #and if it's greater than the count of the letters in the letter bank, return False
@@ -69,17 +70,10 @@ def uses_available_letters(word, letter_bank):
             if count > letter_count_letter_bank[letter]:
                 return False
             else:
-        #all() returns True if all guessed letters are in the letter bank, False if not
-        #basically it's saying, hey here's this loop, are we getting True every time
-        #if not, we're doing to return False
-        #I also had to use a list comprehension, which is t r i c k y
-        #I tried to escape using one as they are awful to explain or understand
-        #I could not. T_T
-        
-                uses_letters = all(letter in letter_bank for letter in guessed_letters)
-                return uses_letters
-    
-    except KeyError:
+                return True
+
+    #this is from the if statement above, returns false if the all() function doesn't return True
+    else:
         return False
             
 
@@ -103,18 +97,25 @@ def score_word(word):
 
 
 def get_highest_word_score(word_list):
+    #make a dictionary of all the scores
     scores = {}
     for word in word_list:
         scored_word = score_word(word)
         scores[word] = scored_word
+    #find the highest scoring word and score
     highest_scoring_word = max(scores, key=scores.get)
     highest_score = max(scores.values())
-    return (highest_scoring_word, highest_score)
-
-# In the case of tie in scores, use these tie-breaking rules:
-# prefer the word with the fewest letters...
-# ...unless one word has 10 letters. If the top score is tied 
-# between multiple words and one is 10 letters long, choose the 
-# one with 10 letters over the one with fewer tiles
-# If the there are multiple words that are the same score and 
-# the same length, pick the first one in the supplied list
+    #make a list of the winning words
+    winning_words = []
+    for word, score in scores.items():
+        if score == highest_score:
+            winning_words.append(word)
+    #if there's more than one word, in the list, tiebreaker time
+    if len(winning_words) > 1:
+        for word in winning_words:
+            if len(word) == 10:
+                return (word, highest_score)
+        return (min(winning_words, key=len), highest_score)
+    #else just return the highest scoring word
+    else:
+        return (highest_scoring_word, highest_score)
