@@ -122,7 +122,7 @@ If the length of the word is 7, 8, 9, or 10, then the word gets an additional 8 
     if input_word == "":
         return 0
     if word_length >= 7: 
-        word_score = 8
+        word_score += 8
     for letter in input_word:
         word_score += SCORE_CHART[letter]
       
@@ -130,61 +130,46 @@ If the length of the word is 7, 8, 9, or 10, then the word gets an additional 8 
     
 
 def get_highest_word_score(word_list):
+    best_word_list = []
 
-    """
-Wave 4:
-This method should have the following properties:
-
-Has one parameter: word_list, which is a list of strings
-Returns a tuple that represents the data of a winning word and it's score. 
-
-The tuple must contain the following elements:
-index 0 ([0]): a string of a word
-index 1 ([1]): the score of that word
-
-In the case of tie in scores, use these tie-breaking rules:
-prefer the word with the fewest letters...
-...unless one word has 10 letters. 
-
-If the top score is tied between multiple words and one is 10 letters long, 
-choose the one with 10 letters over the one with fewer tiles
-If the there are multiple words that are the same score and the same length, 
-pick the first one in the supplied list"""
-
+# Translating word list and scores into a dictionary and finding highest word score in dictionary:
     for word in word_list:
-        highest_score = 0
-        # word_list_scores = []
-        word_score = score_word()
-        # word_list_scores.append(word_score)
-        # highest_score = max(word_list_scores) #Does this require a key?? As in key = lambda etc 
-        highest_score_list = []
+        word_score_dict = {word: score_word(word) for word in word_list}      #Dictionary comprehension 
+        highest_word_score = max(word_score_dict.values())
 
-    for word in word_list:
-        word_score_dict = {word: word_score for word in word_list}      #Dictionary comprehension 
-        highest_score = max(word_score_dict[word]) #Will this return more than one value if they are equal???
-        highest_score_list.append(highest_score) # Not sure if I will use this yet
+
+# Max only returns the first match so we need to check which if any other values == highest score
+# Once clear append the keys for those highest_scores values to the best_word_list.
+    for word in word_score_dict:
+        if word_score_dict[word] == highest_word_score:
+            best_word_list.append(word)
+
+#Conditional check to see if length is more than 1 then apply tie-breaker logic (see below)    
+    best_word = best_word_list[0] if len(best_word_list) == 1 else tie_breaker(best_word_list)
+
+    return (best_word, word_score_dict[best_word])
+        
+#Appy tie-breaker logic 
+
+def tie_breaker(best_word_list):
+    for word in best_word_list: 
+        if len(word) == 10:
+            return word
+        else:
+            return min(best_word_list, key=len)
+        
+
+        # highest_score_list.append(highest_score) # Not sure if I will use this yet
         
         # Remember the .items method returns tuples of key value pairs!
-        for word, word_score  in word_score_dict.items:
-            max_word_score_dict = max(word_score_dict.keys(), key = lambda find_max: word_score_dict[word])
-            if word_score == max_word_score_dict:
-                if word_score in...
-        pass 
+        # for word, word_score  in word_score_dict.items:
+        #     max_word_score_dict = max(word_score_dict.keys(), key = lambda find_max: word_score_dict[word])
+        #     if word_score == max_word_score_dict:
+        #         if word_score in...
+        # pass 
                     
-
-
         
         #Maybe try a zip function 
-
-
-
-
-
-
-
-
-    
-
 
 
 
@@ -194,16 +179,16 @@ pick the first one in the supplied list"""
 #I will likely work with a dictionary instead 
 # and return the expected tuple in the end. 
 
-        word_score = score_word(word)
-        word_list_scores.append(word_score)
-        highest_score = max(word_list_scores)
-        word_score_pairs = (word, word_score)
-        if word_score_pairs[1] == highest_score:
-            best_word.append(word_score_pairs[0])
-            best_word[0] = word_score_pairs[0] 
-            if len(best_word) > 0:
-                holding_spot = []
-                best_word = holding_spot.append(word)
+        # word_score = score_word(word)
+        # word_list_scores.append(word_score)
+        # highest_score = max(word_list_scores)
+        # word_score_pairs = (word, word_score)
+        # if word_score_pairs[1] == highest_score:
+        #     best_word.append(word_score_pairs[0])
+        #     best_word[0] = word_score_pairs[0] 
+        #     if len(best_word) > 0:
+        #         holding_spot = []
+        #         best_word = holding_spot.append(word)
 
 # ^^^^^I was working on this earlier until I realized Tuples are immutable.
 #I am pseudo-coding and rewriting everything now. Everything below is old code. 
@@ -252,3 +237,23 @@ pick the first one in the supplied list"""
     # return highest_score_tuple
 
 
+
+"""
+Wave 4:
+This method should have the following properties:
+
+Has one parameter: word_list, which is a list of strings
+Returns a tuple that represents the data of a winning word and it's score. 
+
+The tuple must contain the following elements:
+index 0 ([0]): a string of a word
+index 1 ([1]): the score of that word
+
+In the case of tie in scores, use these tie-breaking rules:
+prefer the word with the fewest letters...
+...unless one word has 10 letters. 
+
+If the top score is tied between multiple words and one is 10 letters long, 
+choose the one with 10 letters over the one with fewer tiles
+If the there are multiple words that are the same score and the same length, 
+pick the first one in the supplied list"""
