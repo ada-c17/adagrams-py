@@ -89,16 +89,20 @@ def score_word(word):
     # if score AND length tie, pick the first (a tie breaker for score and length)
 # create a tuple with the first entry as the word, second entry as the score
 
-def get_highest_word_score(word_list):
+def get_highest_word_score(word_list):        
     played_word_dict = {}
     for word in word_list:
         score = score_word(word)
         played_word_dict[word] = score
 
-    word = max(played_word_dict, key=played_word_dict.get)
+    best_word_list = [key for key, value in played_word_dict.items()\
+        if value == max(played_word_dict.values())]
     highest_score = max(played_word_dict.values())
-    best_word = word, highest_score
 
-    return best_word
-
-
+    if len(best_word_list) == 1:
+        return (best_word_list[0], highest_score)
+    elif len(best_word_list) > 1:
+        for word in best_word_list:
+            if len(word) == 10:
+                return word, highest_score
+    return min(best_word_list, key=len), highest_score

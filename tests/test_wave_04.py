@@ -27,68 +27,68 @@ def test_get_highest_word_score_accurate_unsorted_list():
     assert best_word[0] == "XXXX"
     assert best_word[1] == 32
 
-# # Test 15
-# def test_get_highest_word_tie_prefers_shorter_word():
-#     # Arrange
-#     words = ["MMMM", "WWW"]
+# Test 15
+def test_get_highest_word_tie_prefers_shorter_word():
+    # Arrange
+    words = ["MMMM", "WWW"]
 
-#     # Act
-#     best_word = get_highest_word_score(words)
+    # Act
+    best_word = get_highest_word_score(words)
 
-#     # Assert
-#     assert score_word(words[0]) == 12
-#     assert score_word(words[1]) == 12
-#     assert best_word[0] == "WWW"
-#     assert best_word[1] == 12
+    # Assert
+    assert score_word(words[0]) == 12
+    assert score_word(words[1]) == 12
+    assert best_word[0] == "WWW"
+    assert best_word[1] == 12
 
-# # Test 16
-# def test_get_highest_word_tie_prefers_shorter_word_unsorted_list():
-#     # Arrange
-#     words = ["WWW", "MMMM"]
+# Test 16
+def test_get_highest_word_tie_prefers_shorter_word_unsorted_list():
+    # Arrange
+    words = ["WWW", "MMMM"]
 
-#     # Act
-#     best_word = get_highest_word_score(words)
+    # Act
+    best_word = get_highest_word_score(words)
 
-#     # Assert
-#     assert score_word(words[0]) == 12
-#     assert score_word(words[1]) == 12
-#     assert best_word[0] == "WWW"
-#     assert best_word[1] == 12
+    # Assert
+    assert score_word(words[0]) == 12
+    assert score_word(words[1]) == 12
+    assert best_word[0] == "WWW"
+    assert best_word[1] == 12
 
-# # Test 17
-# def test_get_highest_word_tie_prefers_ten_letters():
-#     # Arrange
-#     words = ["AAAAAAAAAA", "BBBBBB"]
+# Test 17
+def test_get_highest_word_tie_prefers_ten_letters():
+    # Arrange
+    words = ["AAAAAAAAAA", "BBBBBB"]
 
-#     # Act
-#     best_word = get_highest_word_score(words)
+    # Act
+    best_word = get_highest_word_score(words)
 
-#     # Assert
-#     assert best_word[0] == "AAAAAAAAAA"
-#     assert best_word[1] == 18
+    # Assert
+    assert best_word[0] == "AAAAAAAAAA"
+    assert best_word[1] == 18
 
-# # Test 18
-# def test_get_highest_word_tie_prefers_ten_letters_unsorted_list():
-#     # Arrange
-#     words = ["BBBBBB", "AAAAAAAAAA"]
+# Test 18
+def test_get_highest_word_tie_prefers_ten_letters_unsorted_list():
+    # Arrange
+    words = ["BBBBBB", "AAAAAAAAAA"]
 
-#     # Act
-#     best_word = get_highest_word_score(words)
+    # Act
+    best_word = get_highest_word_score(words)
 
-#     # Assert
-#     assert best_word[0] == "AAAAAAAAAA"
-#     assert best_word[1] == 18
+    # Assert
+    assert best_word[0] == "AAAAAAAAAA"
+    assert best_word[1] == 18
 
-# # Test 19
-# def test_get_highest_word_tie_same_length_prefers_first():
-#     # Arrange
-#     words = ["AAAAAAAAAA", "EEEEEEEEEE"]
+# Test 19
+def test_get_highest_word_tie_same_length_prefers_first():
+    # Arrange
+    words = ["AAAAAAAAAA", "EEEEEEEEEE"]
 
-#     # Act
-#     best_word = get_highest_word_score(words)
+    # Act
+    best_word = get_highest_word_score(words)
 
-#     # Assert
-#     assert score_word(words[0]) == 18
-#     assert score_word(words[1]) == 18
-#     assert best_word[0] == words[0]
-#     assert best_word[1] == 18
+    # Assert
+    assert score_word(words[0]) == 18
+    assert score_word(words[1]) == 18
+    assert best_word[0] == words[0]
+    assert best_word[1] == 18
