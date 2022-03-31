@@ -155,11 +155,35 @@ pick the first one in the supplied list"""
         "This is where I am currently reworking"
         highest_score = 0
         word_list_scores = []
-        word_length = len(word)
+        tracking_list = []
         word_score = score_word()
         word_list_scores.append(word_score)
-        highest_score = max(word_list_scores)
-        word_score_dict = {}
+        highest_score = max(word_list_scores) #Does this require a key??
+
+    for word in word_list:
+        word_length = len(word)
+        best_word_list = [] 
+        word_score_dict = {word: score_word() for word in word_list} 
+        highest_score = max(word_score_dict[word])
+        highest_score_list.append # Not sure if I will use this yet
+        # Remember the .items method returns tuples of key value pairs!
+        for keys, values in word_score_dict.items:
+            # if word_score_dict[word] == 
+            max_word_score_dict = max(word_score_dict.keys(), key = lambda find_max: word_score_dict[word])
+            if word_score == max_word_score_dict and word_score in best_word_list:
+                for best_word in best_word_list:
+                    if word_length < len(best_word): 
+        #Maybe try a zip function 
+        
+
+
+
+
+
+
+
+    
+
 
 
 
