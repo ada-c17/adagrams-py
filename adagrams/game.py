@@ -64,7 +64,7 @@ SCORE_CHART = {
 
 
 def generate_random_letter(x,y):
-    return  chr(random.randint(ord(x),ord(y)))
+    return chr(random.randint(ord(x),ord(y)))
 
 
 def draw_letters():
@@ -73,8 +73,6 @@ def draw_letters():
     letter_pool_copy = copy.copy(LETTER_POOL)
     while count <= 10:
         random_letter = generate_random_letter("A", "Z")
-        # generates random letter from A-Z
-        # compares letter against distribution dictionary
         if letter_pool_copy[random_letter] == 0:
             continue
         else:
@@ -91,8 +89,6 @@ def uses_available_letters(word, letters):
         if letter.upper() not in letters:
             return False
     for letter in word_freq:
-        # if letter not in letters_freq[letter]:
-        #     return False
         if word_freq[letter] > letters_freq[letter]:
             return False
         else:
@@ -112,22 +108,35 @@ def score_word(word):
 
 
 def get_highest_word_score(words):
+    score_dict = build_score_dict(words)
+    max_score_word = max(score_dict, key=score_dict.get)
+    max_score = score_dict[max_score_word] 
+    max_score_words = [word for word in words if score_dict[word] >= max_score]
+    if len(max_score_words) == 1:
+        return (max_score_word, max_score)
+    return resolve_ties(max_score_words, score_dict)
+
+
+def build_score_dict(words):
     score_dict = {}
     for word in words:
         score_dict[word] = score_word(word)
-    print(score_dict)
-    max_score = max(score_dict, key= score_dict.get)
-    max_value = score_dict[max_score] 
-    max_score_words = [word for word in words if score_dict[word] >= max_value]
-    if len(max_score_words) == 1:
-        return (max_score, max_value)
-    word_lengths ={}
-    for word in max_score_words:
-        word_lengths[word] = len(word)
-    shortest_word = min(word_lengths, key= word_lengths.get)
+    return score_dict
+
+
+def resolve_ties(max_score_words, score_dict):
+    word_lengths = build_lengths_dict(max_score_words)
+    shortest_word = min(word_lengths, key=word_lengths.get)
     for key, value in word_lengths.items():
         if value == 10:
             return (key, score_dict[key])
         else:
             result = (shortest_word, score_dict[shortest_word])
     return result
+
+
+def build_lengths_dict(max_score_words):
+    word_lengths = {}
+    for word in max_score_words:
+        word_lengths[word] = len(word)
+    return word_lengths
