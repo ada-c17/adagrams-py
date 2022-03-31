@@ -52,6 +52,8 @@ def test_uses_available_letters_ignores_case():
     # Arrange
     letters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"]
 
+
+
     # Act/Assert
     assert uses_available_letters("bEd", letters)
     assert uses_available_letters("fad", letters)
