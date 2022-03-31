@@ -96,7 +96,7 @@ def score_word(word):
 def get_highest_word_score(word_list):
     scores = [score_word(word) for word in word_list]
     word_and_score = sorted(list(zip(word_list, scores)), reverse = True)
-  
+
     highest_word = word_and_score[0]
     for score in word_and_score[1:]:
         if highest_word[1] == score[1]:
