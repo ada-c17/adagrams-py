@@ -1,6 +1,8 @@
 import random
 import copy
 import collections
+# from tests.test_wave_03 import SCORE_CHART
+
 
 LETTER_POOL = {
     'A': 9, 
@@ -31,47 +33,7 @@ LETTER_POOL = {
     'Z': 1
 }
 
-def generate_random_letter(x,y):
-    return  chr(random.randint(ord(x),ord(y)))
-
-def draw_letters():
-    letters = []
-    count = 1
-    letter_pool_copy = copy.copy(LETTER_POOL)
-    while count <= 10:
-        random_letter = generate_random_letter("A", "Z")
-        # generates random letter from A-Z
-        # compares letter against distribution dictionary
-        if letter_pool_copy[random_letter] == 0:
-            continue
-        else:
-            letters.append(random_letter)
-            count += 1
-            letter_pool_copy[random_letter] -= 1
-    return letters
-
-def uses_available_letters(word, letters):
-    word_freq = collections.Counter(word.upper())
-    letters_freq = collections.Counter(letters)
-    for letter in word:
-        if letter.upper() not in letters:
-            return False
-    for letter in word_freq:
-        # if letter not in letters_freq[letter]:
-        #     return False
-        if word_freq[letter] > letters_freq[letter]:
-            return False
-        else:
-            return True
-
-
-
-
-
-
-
-
-score_chart = {
+SCORE_CHART = {
     'A': 1, 
     'B': 3, 
     'C': 3, 
@@ -98,25 +60,55 @@ score_chart = {
     'X': 8, 
     'Y': 4, 
     'Z': 10
-}   
+} 
+
+
+def generate_random_letter(x,y):
+    return  chr(random.randint(ord(x),ord(y)))
+
+
+def draw_letters():
+    letters = []
+    count = 1
+    letter_pool_copy = copy.copy(LETTER_POOL)
+    while count <= 10:
+        random_letter = generate_random_letter("A", "Z")
+        # generates random letter from A-Z
+        # compares letter against distribution dictionary
+        if letter_pool_copy[random_letter] == 0:
+            continue
+        else:
+            letters.append(random_letter)
+            count += 1
+            letter_pool_copy[random_letter] -= 1
+    return letters
+
+
+def uses_available_letters(word, letters):
+    word_freq = collections.Counter(word.upper())
+    letters_freq = collections.Counter(letters)
+    for letter in word:
+        if letter.upper() not in letters:
+            return False
+    for letter in word_freq:
+        # if letter not in letters_freq[letter]:
+        #     return False
+        if word_freq[letter] > letters_freq[letter]:
+            return False
+        else:
+            return True
 
 
 def score_word(word):
     cap_word = word.upper()
-
     total_score = 0
-
     if word == " ":
         return total_score
-
     if len(word) >= 7 and len(word) <= 10:
         total_score += 8
-
     for letter in cap_word:
-        total_score += score_chart[letter]
-    
+        total_score += SCORE_CHART[letter]
     return total_score
-    
 
 
 def get_highest_word_score(words):
