@@ -1,3 +1,33 @@
+
+word_list = ["apple", "purple", "tree", "j"]
+
+def get_highest_word_score(words):
+    score_dict = {}
+    for word in words:
+        score_dict[word] = score_word(word)
+    print(score_dict)
+    max_score = max(score_dict, key= score_dict.get)
+    max_value = score_dict[max_score]
+    # return max_value
+    max_score_words = [word for word in words if score_dict[word] >= max_value]
+    # return max_score_words
+    if len(max_score_words) == 1:
+        return (max_score, max_value)
+    word_lengths ={}
+    for word in max_score_words:
+        word_lengths[word] = len(word)
+    # return word_lengths
+    shortest_word = min(word_lengths, key= word_lengths.get)
+    for key, value in word_lengths.items():
+        if value == 10:
+            return (key, score_dict[key])
+        else:
+            return (shortest_word, score_dict[shortest_word])
+
+
+
+
+
 score_chart = {
     'A': 1, 
     'B': 3, 
@@ -27,10 +57,11 @@ score_chart = {
     'Z': 10
 }   
 
-word = "structure"
-cap_word = word.upper()
+def score_word(word):
 
-def score_word(word):   
+    
+    cap_word = word.upper()
+ 
     total_score = 0
 
     if word == " ":
@@ -42,10 +73,30 @@ def score_word(word):
     for letter in cap_word:
         total_score += score_chart[letter]
     
-    print(total_score)
+    return total_score
+
+
+print(get_highest_word_score(word_list))
+
+# word = "structure"
+# cap_word = word.upper()
+
+# def score_word(word):   
+#     total_score = 0
+
+#     if word == " ":
+#         return total_score
+
+#     if len(word) >= 7 and len(word) <= 10:
+#         total_score += 8
+
+#     for letter in cap_word:
+#         total_score += score_chart[letter]
+    
+#     print(total_score)
     
 
-score_word(word)
+# score_word(word)
     
 
 # import collections

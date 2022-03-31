@@ -121,5 +121,23 @@ def score_word(word):
     return total_score
     
 
-def get_highest_word_score(word_list):
-    pass
+
+def get_highest_word_score(words):
+    score_dict = {}
+    for word in words:
+        score_dict[word] = score_word(word)
+    print(score_dict)
+    max_score = max(score_dict, key= score_dict.get)
+    max_value = score_dict[max_score] 
+    max_score_words = [word for word in words if score_dict[word] >= max_value]
+    if len(max_score_words) == 1:
+        return (max_score, max_value)
+    word_lengths ={}
+    for word in max_score_words:
+        word_lengths[word] = len(word)
+    shortest_word = min(word_lengths, key= word_lengths.get)
+    for key, value in word_lengths.items():
+        if value == 10:
+            return (key, score_dict[key])
+        else:
+            return (shortest_word, score_dict[shortest_word])
