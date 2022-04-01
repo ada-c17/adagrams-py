@@ -152,55 +152,6 @@ def score_word(word):
 word_list = ["AAAAAAAAAA", "BBBBBB"]
 
 def get_highest_word_score(word_list):
-<<<<<<< HEAD
-    highest_score = 0
-    winning_word = ""
-
-    for word in word_list:
-        score = score_word(word)
-        if score > highest_score:
-            winning_word = word
-            highest_score = score
-        elif score == highest_score:
-            if len(winning_word) == 10:
-                continue
-            elif len(word) == 10:
-                winning_word = word
-            elif len(word) < len(winning_word):
-                winning_word = word
-    return (winning_word, highest_score)
-
-    
-    # print(f"{score=}")
-
-
-    # # ***Attempt 1***
-    # score = []
-    # highest_score = 0
-    # for word in word_list:
-    #     tuple = (word,score_word(word))
-    #     score.append(tuple)
-    #     if score_word(word) > highest_score:
-    #         highest_score = score_word(word)
-
-    # highest_pairs = score[:]
-    # best_words = []
-    # for item in score:
-    #     if item[1] < highest_score:
-    #         highest_pairs.remove(item)
-    #     else:
-    #         best_words = item[0]
-
-    # for item in highest_pairs:
-    #     if len(item[0]) < len(best_words[0]):
-    #         highest_word = item
-
-    # print(f"{score=}")
-    # print(f"{highest_score=}")
-    # print(f"{highest_pairs=}")
-    # print(f"{best_words=}")
-    # return highest_pairs[0]
-=======
     # create empty tuple
     # list_of_tuples = [("DOG", 5), ("BANANA", 10)]
     # max_score = 0
@@ -238,4 +189,3 @@ def get_highest_word_score(word_list):
     return winner
 
 print(get_highest_word_score(word_list))
->>>>>>> 3576969174aad1b6bb220e89ff982c7123cff0d2

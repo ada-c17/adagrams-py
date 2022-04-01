@@ -3,6 +3,7 @@ import pytest
 from adagrams.game import score_word
 
 def test_score_word_accurate():
+    
     # Assert
     assert score_word("A") == 1
     assert score_word("DOG") == 5
