@@ -1,9 +1,9 @@
 import pytest
 
 from adagrams.game import score_word, get_highest_word_score
-@pytest.mark.skip()
+
 def test_get_highest_word_score_accurate():
-    pass
+    
     # Arrange
     words = ["X", "XX", "XXX", "XXXX"]
 
@@ -14,9 +14,10 @@ def test_get_highest_word_score_accurate():
     # Assert
     assert best_word[0] == "XXXX"
     assert best_word[1] == 32
-@pytest.mark.skip()
+
+
 def test_get_highest_word_score_accurate_unsorted_list():
-    pass
+    
     # Arrange
     words = ["XXX", "XXXX", "XX", "X"]
 
@@ -26,9 +27,9 @@ def test_get_highest_word_score_accurate_unsorted_list():
     # Assert
     assert best_word[0] == "XXXX"
     assert best_word[1] == 32
-@pytest.mark.skip()
+
 def test_get_highest_word_tie_prefers_shorter_word():
-    pass
+    
     # Arrange
     words = ["MMMM", "WWW"]
 
@@ -40,7 +41,7 @@ def test_get_highest_word_tie_prefers_shorter_word():
     assert score_word(words[1]) == 12
     assert best_word[0] == "WWW"
     assert best_word[1] == 12
-@pytest.mark.skip()
+
 def test_get_highest_word_tie_prefers_shorter_word_unsorted_list():
     pass
     # Arrange
@@ -54,7 +55,7 @@ def test_get_highest_word_tie_prefers_shorter_word_unsorted_list():
     assert score_word(words[1]) == 12
     assert best_word[0] == "WWW"
     assert best_word[1] == 12
-@pytest.mark.skip()
+
 def test_get_highest_word_tie_prefers_ten_letters():
     pass
     # Arrange
@@ -66,7 +67,7 @@ def test_get_highest_word_tie_prefers_ten_letters():
     # Assert
     assert best_word[0] == "AAAAAAAAAA"
     assert best_word[1] == 18
-@pytest.mark.skip()
+
 def test_get_highest_word_tie_prefers_ten_letters_unsorted_list():
     pass
     # Arrange
@@ -78,7 +79,7 @@ def test_get_highest_word_tie_prefers_ten_letters_unsorted_list():
     # Assert
     assert best_word[0] == "AAAAAAAAAA"
     assert best_word[1] == 18
-@pytest.mark.skip()
+
 def test_get_highest_word_tie_same_length_prefers_first():
     pass
     # Arrange

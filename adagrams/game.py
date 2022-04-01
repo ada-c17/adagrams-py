@@ -79,7 +79,7 @@ def uses_available_letters(word, letter_bank):
             letter_bank_copy.remove(letter)
     return True
 
-##----------- WAVE 2 ----------- ##
+##----------- WAVE 3 ----------- ##
 def score_word(word):
     points = 0
     cased_word = word.upper()
@@ -90,6 +90,22 @@ def score_word(word):
     
     return points
 
-
+##----------- WAVE 4 ----------- ##
 def get_highest_word_score(word_list):
-    pass
+    champ_list = []
+    best_word = word_list[0]
+    high_score = score_word(best_word)
+    champ_list.append(best_word)
+    champ_list.append(high_score)
+    for word in word_list:
+        if score_word(word) > champ_list[1]:
+            champ_list[0] = word
+            champ_list[1] = score_word(word)
+        elif score_word(word) == champ_list[1] and len(word) < len(champ_list[0]) and len(champ_list[0]) != 10:
+            champ_list[0] = word
+            champ_list[1] = score_word(word)
+        elif score_word(word) == champ_list[1] and len(word) == 10 and len(champ_list[0]) != 10:
+            champ_list[0] = word
+            champ_list[1] = score_word(word)
+    return champ_list
+    
