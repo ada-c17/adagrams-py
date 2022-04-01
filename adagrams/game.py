@@ -1,3 +1,4 @@
+from operator import truediv
 import random
 LETTER_POOL = {
     'A': 9, 
@@ -89,24 +90,33 @@ def draw_letters():
     return hand   
 
 def uses_available_letters(word, letter_bank):
-    # pass
-    for letter in word:
-        for element in letter_bank:
-            if element in letter:
-                return True
-            else:
-                return False
+    letter_frequency = {}
+
+
+    for char in letter_bank:
+        if char in letter_frequency:
+            letter_frequency[char] += 1
+        else:
+            letter_frequency[char] = 1
+
+    for letter in word.upper():
+        # print(letter)
+        # print(letter_bank[letter])
+        if not letter in letter_bank:
+            return False
+        if letter_frequency[letter] == 0:
+            return False
+        if letter in letter_bank:
+            letter_frequency[letter] -= 1
+        else:
+            continue
     
+    return True
+
 
 
 def score_word(word):
-# <<<<<<< HEAD
-#     # point_total = 0
-#     # for letter in word:
-#     #     point_total += draw_letters.get(letter)
-#     # return point_total
-#     # # pass
-# =======
+
     points = 0
     word_all_caps = word.upper()
 
@@ -117,7 +127,33 @@ def score_word(word):
         points += LETTER_POINTS[letter]
 
     return points
-# >>>>>>> b6a6ea4c8d25365cd50e692907e88b0e25f0c81b
+
 
 def get_highest_word_score(word_list):
-    pass
+    highest_score = 0
+    highest_word = ""
+
+
+
+    for word in word_list:
+        score = score_word(word)
+        
+        if score > highest_score:
+            highest_score = score
+            highest_word = word
+        if score == highest_score:
+            if len(word) == len(highest_word):
+                continue
+            if len(word) == 10:
+                highest_word = word
+                highest_score = score
+            if len(word) < len(highest_word) and len(highest_word) < 10:
+                highest_score = score
+                highest_word = word
+    
+
+
+
+    
+    return (highest_word, highest_score)
+
