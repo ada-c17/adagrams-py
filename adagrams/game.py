@@ -87,7 +87,7 @@ def uses_available_letters(word, letter_bank):
 def score_word(word):
     score = 0
     for letter in word.upper():
-      score += LETTER_SCORE[letter]
+        score += LETTER_SCORE[letter]
     if len(word) >= 7:
         score += 8
     
