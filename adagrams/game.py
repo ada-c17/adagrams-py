@@ -117,17 +117,26 @@ If the length of the word is 7, 8, 9, or 10, then the word gets an additional 8 
 
     if input_word == "":
         return 0
-    if word_length >= 7: 
-        word_score += 8
+    # if word_length >= 7: 
+    #     word_score += 8
+
+    # for letter in input_word:
+    #     word_score += SCORE_CHART[letter]
+
+    # return word_score
 
     for letter in input_word:
         word_score += SCORE_CHART[letter]
+
+    if word_length >= 7: 
+        word_score += 8
 
     return word_score
     
 
 def get_highest_word_score(word_list):
     best_word_list = []
+    best_score_list =[]
 # Translating word list and scores into a dictionary and finding highest word score in dictionary:
     for word in word_list:
         word_score_dict = {word: score_word(word) for word in word_list}    #Dictionary comprehension 
@@ -139,6 +148,7 @@ def get_highest_word_score(word_list):
     for word in word_score_dict:
         if word_score_dict[word] == highest_word_score:
             best_word_list.append(word)
+            best_score_list.append(word_score_dict[word])
 
 #Conditional check to see if length is more than 1 then apply tie-breaker logic (see helper function)    
     best_word = best_word_list[0] if len(best_word_list) == 1 else tie_breaker(best_word_list)
@@ -148,7 +158,13 @@ def get_highest_word_score(word_list):
 #Appy tie-breaker logic 
 def tie_breaker(best_word_list):
     for word in best_word_list:
-        return word if len(word) == 10 else min(best_word_list, key = len)
+        # return word if len(word) == 10 else min(best_word_list, key = len)
+        if len(word) == 10:
+            return word
+        
+    return min(best_word_list, key = len) 
+    
+
 
 
 """
