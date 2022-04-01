@@ -107,7 +107,7 @@ def draw_letters():
     #     else:
     #         continue
 
-print(draw_letters())
+# print(draw_letters())
 
 def uses_available_letters(word, letter_bank):
     #return a boolean 
@@ -149,7 +149,10 @@ def score_word(word):
     return score
 
 
+word_list = ["AAAAAAAAAA", "BBBBBB"]
+
 def get_highest_word_score(word_list):
+<<<<<<< HEAD
     highest_score = 0
     winning_word = ""
 
@@ -197,3 +200,42 @@ def get_highest_word_score(word_list):
     # print(f"{highest_pairs=}")
     # print(f"{best_words=}")
     # return highest_pairs[0]
+=======
+    # create empty tuple
+    # list_of_tuples = [("DOG", 5), ("BANANA", 10)]
+    # max_score = 0
+    # winner_word = ""
+    # for word in word_list
+        # implament score_word(word) to get the score
+        # if score >= max_score
+            # if len(word) == 10 
+            # if len(word)< winner_word
+     #now that we have a max_score and a winner_word
+    #check if any other word shares the same max_score
+    #if so, check if the length of word is 10
+    #--> if length is 10, that is the new winner 
+    #--> if not, (else) check if length is shorter than current_winner word
+                            #--> if so, this will be the new winner_word 
+    score_list = []
+    max_score = 0
+    winning_word = ""
+    for i in range(len(word_list)):
+        score = score_word(word_list[i])
+        tup = (word_list[i], score)
+        score_list.append(tup)
+        if score > max_score:
+            max_score = score
+            winning_word = word_list[i]
+        winner = (winning_word, max_score)
+
+    for item in score_list:
+        if item[1] == max_score and len(item[0]) == 10:
+            winner = item
+            return winner
+        elif item[1] == max_score and len(item[0]) < len(winning_word):
+            winner = item
+
+    return winner
+
+print(get_highest_word_score(word_list))
+>>>>>>> 3576969174aad1b6bb220e89ff982c7123cff0d2
