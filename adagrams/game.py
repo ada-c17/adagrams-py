@@ -41,7 +41,7 @@ LETTER_POINT ={
     ("Q", "Z"): 10
 }
 
-
+# Wave 1
 def draw_letters():
     """Drawing 10 letters from a pool of letter and return a list of that letters"""
     # a list to store all letters from a pool of letter
@@ -58,7 +58,7 @@ def draw_letters():
     
     return letter_draw
 
-
+# Wave 2
 def uses_available_letters(word, letter_bank):
     """
     Checking each letter of word:
@@ -78,7 +78,7 @@ def uses_available_letters(word, letter_bank):
             letter_bank_copy.remove(char)
     return True
 
-
+# Wave 3
 def score_word(word):
     """
     Sum score of each character of input
@@ -90,7 +90,7 @@ def score_word(word):
     # create a variable to sum score for all valid input
     total_score = 0
     # return 0 if input is empty or not string
-    if (len(word) == 0) or (type(word) != str):
+    if (len(word) == 0) or (type(word) != str) or word.isnumeric():
         return 0
 
     # loop over char_point dictionary to get key and value for comparing
@@ -106,7 +106,7 @@ def score_word(word):
         total_score += 8
     return total_score
 
-
+# Wave 4
 def get_highest_word_score(word_list):
     """Finding higest score and return the word and score in Tuple."""
 
