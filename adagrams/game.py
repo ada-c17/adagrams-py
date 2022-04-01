@@ -1,5 +1,9 @@
 from operator import truediv
 import random
+# Imported random library to utilize random.choice() method
+# choice() method returns a randomly selected element from a specified sequencee
+# Used choice() to randomly select a letter from the letter pool
+
 LETTER_POOL = {
     'A': 9, 
     'B': 2, 
