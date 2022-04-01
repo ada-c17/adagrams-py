@@ -1,6 +1,5 @@
-import copy
-"""Explain why later"""
 import random
+from unittest import TestResult
 """Explain why later"""
 import string 
 """Explain why later"""
@@ -82,18 +81,17 @@ def draw_letters():
     player_hand = []
     random_letter = ""
 
-    letter_count = len(player_hand)
-    print(letter_count)
-    while letter_count < 10:
-        string.ascii_letters
-        random_letter = random.choice(string.ascii_uppercase)
-        
+    # letter_count = len(player_hand) #TAKEN OUT BY JANDE
+    # print(letter_count) #TAKEN OUT BY JANDE
+    while len(player_hand) < 10:
+        # string.ascii_letters #TAKEN OUT BY JANDE
+        random_letter = random.choice(string.ascii_uppercase)        
         if LETTER_POOL[random_letter] == 0:
             continue
         else:
             player_hand.append(random_letter)
             LETTER_POOL[random_letter] -= 1
-            letter_count += 1
+            # letter_count += 1 #TAKEN OUT BY JANDE
         
     return player_hand
 
@@ -118,19 +116,19 @@ def uses_available_letters(word, letter_bank):
     #-->if letter is in letter_bank
     #return true
     #-> else false
-    uppercase_word = word.upper()
-    list_of_letter = copy.deepcopy(letter_bank)
+    # uppercase_word = word.upper() # TAKEN OUT BY JANDE
+    list_of_letters = letter_bank[:]
     bool_set = set()
-    for letter in uppercase_word:
-        if letter in list_of_letter:
+    for letter in word.upper(): # removed variable and replaced with upper method
+        if letter in list_of_letters:
             bool_set.add(True)
-            list_of_letter.remove(letter)
+            list_of_letters.remove(letter)
         else:
             bool_set.add(False)
 
 
-    result = all(bool_set)
-    if result:
+    # result = all(bool_set) # TAKEN OUT BY JANDE
+    if bool_set == {True}: # Realized if we check if bool_set == {True} we can get rid of the variable
         return True
     else:
         return False
@@ -152,13 +150,50 @@ def score_word(word):
 
 
 def get_highest_word_score(word_list):
-    # create empty tuple
-    # list_of_tuples = [("DOG", 5), ("BANANA", 10)]
-    # max_score = 0
-    # winner_word = ""
-    # for word in word_list
-        # implament score_word(word) to get the score
-        # if score >= max_score
-            # if len(word) == 10 
-            # if len(word)< winner_word
-    pass
+    highest_score = 0
+    winning_word = ""
+
+    for word in word_list:
+        score = score_word(word)
+        if score > highest_score:
+            winning_word = word
+            highest_score = score
+        elif score == highest_score:
+            if len(winning_word) == 10:
+                continue
+            elif len(word) == 10:
+                winning_word = word
+            elif len(word) < len(winning_word):
+                winning_word = word
+    return (winning_word, highest_score)
+
+    
+    # print(f"{score=}")
+
+
+    # # ***Attempt 1***
+    # score = []
+    # highest_score = 0
+    # for word in word_list:
+    #     tuple = (word,score_word(word))
+    #     score.append(tuple)
+    #     if score_word(word) > highest_score:
+    #         highest_score = score_word(word)
+
+    # highest_pairs = score[:]
+    # best_words = []
+    # for item in score:
+    #     if item[1] < highest_score:
+    #         highest_pairs.remove(item)
+    #     else:
+    #         best_words = item[0]
+
+    # for item in highest_pairs:
+    #     if len(item[0]) < len(best_words[0]):
+    #         highest_word = item
+
+    # print(f"{score=}")
+    # print(f"{highest_score=}")
+    # print(f"{highest_pairs=}")
+    # print(f"{best_words=}")
+    # return highest_pairs[0]
