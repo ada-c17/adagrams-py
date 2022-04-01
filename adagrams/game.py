@@ -87,7 +87,7 @@ def draw_letters():
 
     return letter_list
 
-##this new way takes into account probability. It uses the provided LETTER_POOL dictionary and converts it to a list of all letters avaliable 
+# #this new way takes into account probability. It uses the provided LETTER_POOL dictionary and converts it to a list of all letters avaliable 
 
 # def draw_letters():
 #     '''
@@ -101,14 +101,14 @@ def draw_letters():
 
 #     returns: letter_list which is a list of 10 letters
 #     '''
-#     letter_list = []
+    
 #     copy_dict = copy.copy(LETTER_POOL)
 
 #     letter_pool_list = []
-#     for key in copy_dict:
-#         for i in range(copy_dict[key]):
-#             letter_pool_list.append(key)
+#     for letter, count in copy_dict.items():
+#         letter_pool_list.extend([letter] * count)
 
+#     letter_list = []
 #     for _ in range(10):
 #         letter = random.choice(letter_pool_list)
 #         letter_pool_list.remove(letter)
