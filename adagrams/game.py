@@ -47,16 +47,13 @@ def draw_letters():
     for letter,frequency in LETTER_POOL.items():
         for i in range(frequency):
             all_letters.append(letter)
+    
     hand = []
     for i in range(10):
-        # use random module to select one random
-        #letter from list 
         this_letter = random.choice(all_letters)
         hand.append(this_letter)
-        #update list to remove selected letter
-        # using .remove() method
         all_letters.remove(this_letter)
-        #repeat 10 times
+
     return hand
 
 def uses_available_letters(word, letter_bank):
@@ -75,8 +72,7 @@ def uses_available_letters(word, letter_bank):
 
 def score_word(word):
     total = 0
-    #look at each letter in word
-    #add value associated with letter in dictionary to total
+
     for letter in word.upper():
         for value, letter_list in SCORE_DICT.items():
             if letter in letter_list:
@@ -86,45 +82,41 @@ def score_word(word):
         total += 8
     return total
 
+
 def get_highest_dict(word_list):
     score_word_dict = {}
+    
     for word in word_list:
-        score = score_word(word)
+        score = score_word(word)        
         if score not in score_word_dict.keys():
-            score_word_dict[score] = []
+            score_word_dict[score] = []        
         score_word_dict[score].append(word)
+    
     return score_word_dict
-
-
-#print(get_highest_dict(["cat", "dog", "elf"]))
-
 
 
 def get_highest_word_score(word_list):
     score_word_dict = get_highest_dict(word_list)
+    
     max_score = max(score_word_dict.keys())
     max_words = score_word_dict[max_score]
+    
     if len(max_words) == 1:
         winner_word = max_words[0]
         return winner_word, max_score
+    
     else:
         num_letters = []
         for word in max_words:
             if len(word) == 10:
                 winner_word = word
                 return winner_word, max_score
+            
             else:
                 num_letters.append(len(word))
+        
         min_length = min(num_letters)
         for word in max_words:
             if len(word) == min_length:
                 winner_word = word
                 return winner_word, max_score
-    
-    #dict w/ scores as key and list of words as values
-    
-
-
-
-
-    #use max() function to get highset word
