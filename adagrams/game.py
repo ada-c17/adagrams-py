@@ -82,14 +82,15 @@ def uses_available_letters(word, letter_bank):
 def score_word(word):
     """
     Sum score of each character of input
-        - return 0 if input is empty or number, otherwise:
-        - sum point if the character of input is uppercase or lowercase and it is in table of point value
-        - if input has special character then point value is 0
+        - return 0 if input is empty, integer, float, or characters of number.
+        - otherwise,sum point if the character of input is uppercase or lowercase and it is in table of point value
+        - if input has special character then ignore that special character
         - return total score at the end
     """
     # create a variable to sum score for all valid input
     total_score = 0
-    if (len(word) == 0) or (type(word) != str):
+    # return 0 if input is empty or integer, float, or charater of number
+    if len(word) == 0 or isinstance(word, int) or isinstance(word, float) or word.isnumeric():
         return 0
 
     # loop over char_point dictionary to get key and value for comparing
@@ -107,26 +108,25 @@ def score_word(word):
 
 
 def get_highest_word_score(word_list):
-
+    """Finding higest score and return the word and score in Tuple."""
+    # find max score
     max_score = max([score_word(word) for word in word_list])
 
+    # find best scoring words
     best_scoring_words = [word for word in word_list if max_score == score_word(word)]
 
-    '''
-    The next three clauses refer to the three possible end cases for scores & ties.
-    1. If there are no ties, return the best scoring word.
-    2. If there is a tie and at least one of the words is ten letters, return the first word with ten letters.
-    3. If there is a tie and no words are ten letters long, then return the shortest word.
-    '''
+    # if there are no ties, return best scoring word and max score
     if len(best_scoring_words) == 1:
         best_scoring_word = best_scoring_words[0]
         return (best_scoring_word, max_score)
 
+    # If there is a tie and at least one of the words is ten letters, return the first word with ten letters.
     for word in best_scoring_words:
         if len(word) == 10:
             best_scoring_word = word
             return (best_scoring_word, max_score)
 
+    # If there is a tie and no words are ten letters long, then return the shortest word.
     smallest_length = min([len(word) for word in best_scoring_words])
     for word in best_scoring_words:
         if len(word) == smallest_length:
