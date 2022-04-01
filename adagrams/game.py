@@ -54,9 +54,6 @@ def check_letters_intersecting(word, letter_bank):
     else: 
         return False
 
-
-# Wave 3
-
 def score_word(word):
     score_chart = {
         1:["A","I","E","O","U","L","N","R","S","T"],
