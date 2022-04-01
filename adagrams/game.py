@@ -1,5 +1,5 @@
+
 import random
-from typing import Counter
 
 LETTER_POOL = {
     'A': 9, 
@@ -31,40 +31,47 @@ LETTER_POOL = {
 }
 
 def draw_letters():
-
     letter_list = []
-    
+
+    # Put every available letter in a list. If X is available N times, there will be N X's in the list
     for key in LETTER_POOL:
         letter_list += key * LETTER_POOL[key]
+    
+    # shuffle the list
+    random.shuffle(letter_list)
 
-    random.shuffle(letter_list) 
-
+    # pick first 10 letters from the list
     output = letter_list[:10]
-
+    
     return output
-
-
+        
 def uses_available_letters(word, letter_bank):
 
-    for letter in word.upper():
-        if word.upper().count(letter) > letter_bank.count(letter):
+    # convert word to uppercase for case insensitive operations
+    word_upper = word.upper()
+
+    # compare count of each letter in word with count of that letter in letter_bank
+    for letter in word_upper:
+        # If a letter appears more times in word than in letter_bank than return False
+        if word_upper.count(letter) > letter_bank.count(letter):
             return False
     return True
 
+SCORE_CHART = {'A': 1,'B': 3, 'C': 3, 'D': 2, 'E': 1, 'F': 4, 'G': 2, 'H': 4, 'I': 1, 'J': 8, 'K': 5, 'L': 1, 'M': 3, 'N': 1, 'O': 1, 'P': 3, 'Q': 10, 'R': 1, 'S': 1, 'T': 1, 'U': 1, 
+                'V': 4, 'W': 4, 'X': 8, 'Y': 4, 'Z': 10} 
+
 def score_word(word):
+    score = 0
 
-
-    score_chart = {"A" : 1 ,"E" : 1, "I" : 1, "O" : 1, "U": 1, "L" : 1 ,"N" : 1, "R" : 1,"S" : 1, "T": 1,"D" : 2,"G" :2 , "B" : 3,"C" :3,"M" :3,"P" :3,
-                    "F" : 4,"H" : 4, "V" : 4, "W": 4, "Y": 4, "K":5 ,"J":8 ,"X": 8,"Q":10,"Z":10}
-    score = 0 
-    for elem in word:
-        if elem.upper() in score_chart:
-            score = score + score_chart[elem.upper()]
-
+    for letter in word.upper():
+        if letter in SCORE_CHART:
+            score += SCORE_CHART[letter]
+    
+    # Add additional points if 7 <= length <=10
     if 7 <= len(word) <= 10:
-        score = score + 8
-    return score 
-  
+        score += 8
+
+    return score
 
 def get_highest_word_score(word_list):
 
@@ -88,6 +95,3 @@ def get_highest_word_score(word_list):
             elif len(word) == 10 and len(max_word) != 10 and len(word) > len(max_word):
                 max_word = word
     return max_word,max_score
-
-
-
