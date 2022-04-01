@@ -1,3 +1,20 @@
+'''
+A program to set up and run the Adagrams Game.
+The goal of the game is to create words drawn from a 
+limitted letter pool. Each word is scored based off 
+of which letters were used and based off of length.
+
+Used the random module in order to selet a random array
+of letters from the LETTER_POOL and add the to the
+letter bank.
+
+Used Counter subclass from the collections module 
+to collect the information on the remaining amount 
+of each letter in the letter bank.
+
+'''
+
+
 import random
 from collections import Counter
 
@@ -78,6 +95,17 @@ def uses_available_letters(word, letter_bank):
     return True
 
 def score_word(word):
+    ''' 
+    Scores the word based on the points in the 
+    LETTER_POOL dictionary and the additional rule
+    if the word is longer than 6 characters then it
+    will add 8 to the total score.
+
+        Parameters: 
+                word(str): the word to be scored
+        Returns: 
+                The total score of the word. (int)
+    '''
     score = 0
     for letter in word:
         score += LETTER_POOL[letter.upper()][1]
@@ -88,12 +116,34 @@ def score_word(word):
 
 def get_highest_word_score(word_list):
 
+    '''
+    Calculates the highest score in a list of words.
+
+    Analyzes high scores to check for a tie. 
+    Follows game rules for tie breaker:
+
+    Ties are judged based off of letter count:
+
+    If Their is a 12 letter word present, returns the
+    first 12 letter word that appears in the list.
+
+    For cases without a 12 letter word, returns the 
+    shortest word in the list.
+
+    If the shortest words are the same length, return
+    the one that appears first in the original list.
+
+        Parameters:
+                List of words to be scored.
+        
+        Returns: 
+                A tuple of the highest scoring word followed
+                by its point value.
+
+    '''
+
     scores = []
     lowest = ()
-
-#gets the scores of all words and keeps track
-#of only the highest scores.
-#adds the word and the score as a tuple to a list
 
     for word in word_list:
         current_word_score = score_word(word)
@@ -103,18 +153,9 @@ def get_highest_word_score(word_list):
             scores = [(word, current_word_score)]
         elif current_word_score == scores[0][1]:
             scores.append((word, current_word_score))
-            
-#if we don't have a tie all we need to do is return 
-#the only item in the list
 
     if len(scores) == 1:
         return scores[0]
-
-#for tie scenarios. As soon as we come across the
-#first word w a length of 10, we can end and
-#return that word and score.
-#we then define a lowest variable to get the shortest
-#word in the list 
 
     for word, top_score in scores:
         word_length = len(word)
@@ -126,42 +167,3 @@ def get_highest_word_score(word_list):
             lowest = (word, top_score, word_length)
 
     return lowest[0], lowest[1]
-
-
-'''
-this is the code we had previously for reference:
-
-
-    word_scores = {}
-    highest_score = 0
-    highest_scoring_words = []
-
-    for word in word_list:
-        word_scores[word] = score_word(word)
-
-    for score in word_scores.values():
-        if score > highest_score:
-            highest_score = score
-
-    for word_key, high_score in word_scores.items():
-        if high_score == highest_score:
-            highest_scoring_words.append(word_key)
-
-    if len(highest_scoring_words) == 1:
-        return highest_scoring_words[0], word_scores[highest_scoring_words[0]]
-    else:
-        if len(highest_scoring_words[0]) == len(highest_scoring_words[1]):
-            if word_list.index(highest_scoring_words[0]) > word_list.index(highest_scoring_words[1]):
-                return highest_scoring_words[1], word_scores[highest_scoring_words[1]]
-            else:
-                return highest_scoring_words[0], word_scores[highest_scoring_words[0]]
-        elif len(highest_scoring_words[0]) == 10:
-            return highest_scoring_words[0], word_scores[highest_scoring_words[0]]
-        elif len(highest_scoring_words[1]) == 10:
-            return highest_scoring_words[1], word_scores[highest_scoring_words[1]]
-        elif len(highest_scoring_words[0]) < len(highest_scoring_words[1]):
-            return highest_scoring_words[0], word_scores[highest_scoring_words[0]]
-        else:
-            return highest_scoring_words[1], word_scores[highest_scoring_words[1]]
-
-'''
