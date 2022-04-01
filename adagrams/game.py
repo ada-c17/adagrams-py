@@ -82,29 +82,58 @@ def score_word(word):
         total_score += 8
     return total_score 
 
+# def get_highest_word_score(word_list):
+#     word_scores = {}
+#     highest_score_list = []
+
+#     for word in word_list: 
+#         word_scores[word] = score_word(word)
+#     highest = max(word_scores.values())
+#     for word, score in word_scores.items():
+#         if score == highest:
+#             highest_score_list.append(word)
+#     if len(highest_score_list) == 1:
+#         highest_score_list.append(score_word(highest_score_list[0]))
+#         return tuple(highest_score_list)
+#     elif len(highest_score_list) > 1:
+#         shortest_word = min(highest_score_list, key=len)
+#         longest_word = max(highest_score_list, key=len)
+#         if len(longest_word) == 10:
+#             return highest_score(longest_word) 
+#         else:
+#             for item in highest_score_list: 
+#                 if len(item) == len(shortest_word):
+#                         return highest_score(item)
+#             return highest_score(item) 
+
 def get_highest_word_score(word_list):
     word_scores = {}
-    highest_score_list = []
+    highest_score_list = {}
 
     for word in word_list: 
         word_scores[word] = score_word(word)
     highest = max(word_scores.values())
     for word, score in word_scores.items():
         if score == highest:
-            highest_score_list.append(word)
+            highest_score_list[word] = score
+
     if len(highest_score_list) == 1:
-        highest_score_list.append(score_word(highest_score_list[0]))
-        return tuple(highest_score_list)
+        return highest_score(next(iter(highest_score_list)))
     elif len(highest_score_list) > 1:
-        shortest_word = min(highest_score_list, key=len)
-        longest_word = max(highest_score_list, key=len)
-        if len(longest_word) == 10:
+        shortest_word = min(highest_score_list)
+        # print(shortest_word)
+        longest_word = max(highest_score_list)
+        print(longest_word)
+
+        if len(shortest_word) == 10:
             return highest_score(longest_word) 
         else:
             for item in highest_score_list: 
-                if len(item) == len(shortest_word):
+                if len(item) == len(longest_word):
                         return highest_score(item)
             return highest_score(item) 
+
+
 
 def highest_score(word):
     winning_list=[]
