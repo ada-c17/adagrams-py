@@ -41,7 +41,7 @@ score_chart = {
 }
 
 
-
+# ------ WAVE 1 ------ #
 def draw_letters():
     # Overall time complexity: O(n^2) + O(4) = O(n^2)
     list_of_distribution = []
@@ -58,6 +58,9 @@ def draw_letters():
         list_of_distribution.remove(letter) # O(1)
     
     return letters_in_hand
+
+
+# ------ WAVE 2 ------ #
 
 def uses_available_letters(word, letter_bank):
     # Overall time complexity: O(n^2) + O(n) + O(n) = O(n^2 + 2n) = O(n^2)
@@ -100,8 +103,10 @@ def uses_available_letters(word, letter_bank):
 #             return False
 #     return True
 
+# ------ WAVE 3 ------ #
+
 def score_word(word):
-    # Overall time complexity = O(n) + O(n) + O(n) = O(3n) = O(n)
+    # Overall time complexity = O(n) + O(n) + O(1) = O(3n) = O(n)
     word = word.upper() # O(n)
     score = 0
     additional_score = [7, 8, 9, 10]
@@ -112,9 +117,12 @@ def score_word(word):
             if letter in score_chart[key]: # O(1)
                 score += key
 
-    if len(word) in additional_score: # O(n)
+    if len(word) in additional_score: # O(1)
         score += 8
     return score
+
+
+# ------ WAVE 4 ------ #
 
 def get_highest_word_score(word_list):
     # Overall time complexity: O(n^2) + O(n)
