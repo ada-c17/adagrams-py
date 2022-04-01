@@ -30,6 +30,8 @@ LETTER_POOL = {
     'Y': 2, 
     'Z': 1
 }
+
+
 def draw_letters():
     letter_pool = LETTER_POOL.copy()
     letters=[]
@@ -58,9 +60,6 @@ def uses_available_letters(word, letter_bank):
             
         elif upper_word.count(i) > letter_bank.count(i) and counter == len(upper_word):
             return False
- 
-# def conver_to upper_word (word):
-#     upper_word = word.upper()
 
 
 def score_word(word):
@@ -92,8 +91,8 @@ def score_word(word):
     'X': 8, 
     'Y': 4, 
     'Z': 10
-}
-
+    }
+#  allow user enter upper and lower case letters
     upper_word = word.upper()
     score = 0
     for letter in upper_word:
@@ -105,6 +104,35 @@ def score_word(word):
 
 
 
-
 def get_highest_word_score(word_list):
-    pass
+    highest_score = 0
+    best_word = ""
+    
+    for word in word_list:
+        #Use of helper function
+        total_scored = score_word(word) 
+        if total_scored > highest_score:
+            highest_score = total_scored 
+            best_word= word 
+        # conditionals with tie breaking logic below
+        elif total_scored == highest_score:
+            # Not mutable variable
+            temp_word = best_word
+            #From here highest rate is always the same as there is tie.
+            if len(word) == 10:
+                best_word = word    
+            elif len(temp_word) == 10:
+                best_word = best_word
+            elif len(temp_word) > len(word):
+               best_word = word
+
+            if len(temp_word) == len(word):
+                best_word = word_list[0]
+    # then we will return the winning word as a tuple return tuple(best_word[0], highest_score)
+    my_tuple = (best_word, highest_score)
+    return my_tuple
+           
+            
+
+        
+
