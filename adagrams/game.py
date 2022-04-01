@@ -78,11 +78,10 @@ from collections import Counter
 def uses_available_letters(word, letter_bank):
     input_word = word.upper()
     print(f"This is the value of {input_word=}")
+    #We initially explored using the Counter approach ut didnt go with it. 
+    # We left it here (commented out) to be able to discuss in our 1:1with instructors
     # word_counter = Counter(input_word)   
-    # print(f"Thisis the data type of word_counter: {type(word_counter)=}")
-    # print(f"This is the value of {word_counter=}")
     # # letter_bank_counter = Counter(letter_bank)    
-    # print(f"This is the value of letter_bank_counter: {letter_bank_counter}")
  
     for letter in input_word:  
         if letter not in letter_bank:
@@ -117,13 +116,6 @@ If the length of the word is 7, 8, 9, or 10, then the word gets an additional 8 
 
     if input_word == "":
         return 0
-    # if word_length >= 7: 
-    #     word_score += 8
-
-    # for letter in input_word:
-    #     word_score += SCORE_CHART[letter]
-
-    # return word_score
 
     for letter in input_word:
         word_score += SCORE_CHART[letter]
@@ -137,28 +129,28 @@ If the length of the word is 7, 8, 9, or 10, then the word gets an additional 8 
 def get_highest_word_score(word_list):
     best_word_list = []
     best_score_list =[]
+
 # Translating word list and scores into a dictionary and finding highest word score in dictionary:
     for word in word_list:
         word_score_dict = {word: score_word(word) for word in word_list}    #Dictionary comprehension 
         highest_word_score = max(word_score_dict.values())
 
-# Max only returns the first match so we need to check 
-# which if any other values == highest score
+# Max only returns the first match so we need to check which (if any) other values == highest score
 # Once clear append the keys for those highest_scores values to the best_word_list.
     for word in word_score_dict:
         if word_score_dict[word] == highest_word_score:
             best_word_list.append(word)
             best_score_list.append(word_score_dict[word])
 
-#Conditional check to see if length is more than 1 then apply tie-breaker logic (see helper function)    
+#Conditional check to see if length is more than 1 then apply tie-breaker logic 
+# (see helper function further below)    
     best_word = best_word_list[0] if len(best_word_list) == 1 else tie_breaker(best_word_list)
 
     return (best_word, highest_word_score)     
 
-#Appy tie-breaker logic 
+#Tie-breaker logic 
 def tie_breaker(best_word_list):
     for word in best_word_list:
-        # return word if len(word) == 10 else min(best_word_list, key = len)
         if len(word) == 10:
             return word
         
@@ -167,22 +159,3 @@ def tie_breaker(best_word_list):
 
 
 
-"""
-Wave 4:
-This method should have the following properties:
-
-Has one parameter: word_list, which is a list of strings
-Returns a tuple that represents the data of a winning word and it's score. 
-
-The tuple must contain the following elements:
-index 0 ([0]): a string of a word
-index 1 ([1]): the score of that word
-
-In the case of tie in scores, use these tie-breaking rules:
-prefer the word with the fewest letters...
-...unless one word has 10 letters. 
-
-If the top score is tied between multiple words and one is 10 letters long, 
-choose the one with 10 letters over the one with fewer tiles
-If the there are multiple words that are the same score and the same length, 
-pick the first one in the supplied list"""
