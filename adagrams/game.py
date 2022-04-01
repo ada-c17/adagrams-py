@@ -30,7 +30,7 @@ LETTER_POOL = {
     'Y': 2,
     'Z': 1
 }
-# dictionary of letters and their points values. letters are in tuples for readability 
+# dictionary of letters and their points values. letters are in tuples for readability
 SCORES = {
     ("A", "E", "I", "O", "U", "L", "N", "R", "S", "T"): 1,
     ("D", "G"): 2,
@@ -40,6 +40,7 @@ SCORES = {
     ("J", "X"): 8,
     ("Q", "Z"): 10
 }
+
 
 def draw_letters():
     # build the letter bank
@@ -61,10 +62,11 @@ def uses_available_letters(word, letter_bank):
             return False
     return True
 
+
 def score_word(word):
     sum = 0
     word = word.upper()
-    if len(word)>6:
+    if len(word) > 6:
         sum += 8
     for letter in word:
         for key in SCORES:
@@ -73,19 +75,20 @@ def score_word(word):
                 break
     return sum
 
-def get_highest_word_score(word_list):
-    score=0
-    best_word=""
-    for word in word_list:
-        if score_word(word)> score:
-            score = score_word(word)
-            best_word = word
-        elif score_word(word)== score: 
-            if len(best_word) ==10:
-                pass
-            elif len(word) ==10:
-                best_word = word 
-            elif len(best_word)>len(word):
-                best_word = word
 
-    return best_word, score
+def get_highest_word_score(word_list):
+    score = 0
+    best_answer = ""
+    for word in word_list:
+        if score_word(word) > score:
+            score = score_word(word)
+            best_answer = word
+        elif score_word(word) == score:
+            if len(best_answer) == 10:
+                pass
+            elif len(word) == 10:
+                best_answer = word
+            elif len(best_answer) > len(word):
+                best_answer = word
+
+    return best_answer, score
