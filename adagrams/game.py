@@ -1,3 +1,4 @@
+
 import random
 """ Random library is used in draw letter function to randomly draw 10 letters"""
 
@@ -82,33 +83,32 @@ def score_word(word):
         total_score += 8
     return total_score 
 
+
 def get_highest_word_score(word_list):
     word_scores = {}
-    highest_score_list = []
 
     for word in word_list: 
         word_scores[word] = score_word(word)
-    highest = max(word_scores.values())
-    for word, score in word_scores.items():
-        if score == highest:
-            highest_score_list.append(word)
-    if len(highest_score_list) == 1:
-        highest_score_list.append(score_word(highest_score_list[0]))
-        return tuple(highest_score_list)
-    elif len(highest_score_list) > 1:
-        shortest_word = min(highest_score_list, key=len)
-        longest_word = max(highest_score_list, key=len)
-        if len(longest_word) == 10:
-            return highest_score(longest_word) 
-        else:
-            for item in highest_score_list: 
-                if len(item) == len(shortest_word):
-                        return highest_score(item)
-            return highest_score(item) 
+    
+    highest_score_dict = {word:score for word, score in word_scores.items() if score == max(word_scores.values())}
 
-def highest_score(word):
-    winning_list=[]
-    winning_list.append(word)
-    winning_list.append(score_word(word))
-    return tuple(winning_list)
+    if len(highest_score_dict) == 1:
+        return convert_dict_to_tuple(highest_score_dict)
+    else:
+        for word, score in sorted(highest_score_dict.items()):
+            winning_word = {}
+            shortest_word = min(len(x) for x in highest_score_dict.keys())
+            if len(word) == 10:
+                winning_word[word] = score
+                return convert_dict_to_tuple(winning_word)
+            elif len(word) == shortest_word:
+                winning_word[word] = score
+                return convert_dict_to_tuple(winning_word)
+
+def convert_dict_to_tuple(highest_score_dict):
+    highest_score_list = []
+    for word, score in highest_score_dict.items():
+        highest_score_list.append(word)
+        highest_score_list.append(score)
+    return tuple(highest_score_list)
 
