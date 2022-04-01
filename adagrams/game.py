@@ -78,8 +78,8 @@ from collections import Counter
 def uses_available_letters(word, letter_bank):
     input_word = word.upper()
     print(f"This is the value of {input_word=}")
-    #We initially explored using the Counter approach ut didnt go with it. 
-    # We left it here (commented out) to be able to discuss in our 1:1with instructors
+    #We initially explored using the Counter approach but didnt go with it. 
+    # We left it here (commented out) to be able to discuss in our 1:1s with instructors
     # word_counter = Counter(input_word)   
     # # letter_bank_counter = Counter(letter_bank)    
  
@@ -93,6 +93,7 @@ def uses_available_letters(word, letter_bank):
                 return False       
     return True
 
+    # Remnant from initial Counter approach:
     # for (k, v), (k2, v2)  in  zip(word_counter.items(), letter_bank_counter.items()): 
     #     zip(word_counter.items(), letter_bank_counter.items()) 
     #     if k == k2 and v > v2: 
