@@ -76,8 +76,9 @@ def draw_letters():
     # copy a dictionary so that we don't change the data, it's constant
     letter_pool_copy = LETTER_POOL.copy()
     letters_drawn = []
+    letter_options = list(letter_pool_copy)
     while len(letters_drawn) < 10:
-        letter_drawn = random.choice(list(letter_pool_copy)) 
+        letter_drawn = random.choice(letter_options) 
         if letter_pool_copy[letter_drawn] >= 1: 
             letters_drawn.append(letter_drawn) 
             letter_pool_copy[letter_drawn] -= 1 
@@ -108,9 +109,7 @@ def get_highest_word_score(word_list):
     max_word = None
     for word in word_list:
         if score_word(word) == max_score and len(max_word) != 10:
-            if len(word) == 10:
-                max_word = word
-            elif len(word) < len(max_word):
+            if len(word) == 10 or len(word) < len(max_word):
                 max_word = word
         elif score_word(word) > max_score:
             max_score = score_word(word)
