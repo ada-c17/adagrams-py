@@ -119,6 +119,7 @@ If the length of the word is 7, 8, 9, or 10, then the word gets an additional 8 
         return 0
     if word_length >= 7: 
         word_score += 8
+
     for letter in input_word:
         word_score += SCORE_CHART[letter]
 
@@ -142,57 +143,13 @@ def get_highest_word_score(word_list):
 #Conditional check to see if length is more than 1 then apply tie-breaker logic (see helper function)    
     best_word = best_word_list[0] if len(best_word_list) == 1 else tie_breaker(best_word_list)
 
-    return (best_word, word_score_dict[best_word])
-        
+    return (best_word, highest_word_score)     
 
 #Appy tie-breaker logic 
 def tie_breaker(best_word_list):
-    for word in best_word_list: 
-        if len(word) == 10:
-            return word
-        else:
-            return min(best_word_list, key=len)
-        
+    for word in best_word_list:
+        return word if len(word) == 10 else min(best_word_list, key = len)
 
-""" Everything below is from the previous version that got us to 4 passed tests. """       
-    # for word in word_list:
-    #     # word_length= len(word)
-    #     word_score = score_word(word)
-    #     word_list_scores.append(word_score)
-    #     highest_score = max(word_list_scores)
-    #     if word_score == highest_score: 
-    #         best_word.append(word)
-            
-
-"""
-In the case of tie in scores, use these tie-breaking rules:
-prefer the word with the fewest letters...
-...unless one word has 10 letters. 
-"""
-    # if len(best_word) == 1: 
-    #     word = best_word[0]
-    #     highest_score_tuple = (word, highest_score)
-    #     return highest_score_tuple
-
-
-"""
-If the top score is tied between multiple words and one is 10 letters long, 
-choose the one with 10 letters over the one with fewer tiles
-If the there are multiple words that are the same score and the same length, 
-pick the first one in the supplied list"""
-
-    # for word in best_word: 
-        
-    #     if len(word) == 10: 
-    #         highest_score_tuple = (word, highest_score)
-    #         return highest_score_tuple
-    #     else: 
-    #         ### this isn't the right way to do it! 
-    #         ## but thought is that we have a 
-    #         shortest_word = min(word_list, key=lambda word: len(word))
-    #         highest_score_tuple = (shortest_word, highest_score)        
-                    
-    # return highest_score_tuple
 
 """
 Wave 4:
