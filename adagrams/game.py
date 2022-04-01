@@ -1,4 +1,3 @@
-
 import random
 """ Random library is used in draw letter function to randomly draw 10 letters"""
 
@@ -19,17 +18,13 @@ LETTER_QUANTITY_DICT = {
 
 def draw_letters():
     letter_list = []
-
     for letter, quantity in LETTER_QUANTITY_DICT.items():
         counter = 0
         while counter < quantity:
             letter_list.append(letter)
             counter += 1
-    
     letter_bank = random.sample(letter_list, 10)
-
     return letter_bank
-
 
 def uses_available_letters(word, letter_bank):
     if not check_letters_intersecting(word,letter_bank):
@@ -40,7 +35,6 @@ def uses_available_letters(word, letter_bank):
                 return True
             else: 
                 return False
-    
 
 def check_letters_intersecting(word, letter_bank):
     word_set = set()
@@ -67,7 +61,6 @@ def score_word(word):
     extra_score_chart = [7, 8, 9, 10]
     total_score = 0
     letter_list = []
-
     if word == "":
         return total_score
     for letter in word.upper():
@@ -80,15 +73,11 @@ def score_word(word):
         total_score += 8
     return total_score 
 
-
 def get_highest_word_score(word_list):
     word_scores = {}
-
     for word in word_list: 
         word_scores[word] = score_word(word)
-    
     highest_score_dict = {word:score for word, score in word_scores.items() if score == max(word_scores.values())}
-
     if len(highest_score_dict) == 1:
         return convert_dict_to_tuple(highest_score_dict)
     else:
@@ -108,4 +97,3 @@ def convert_dict_to_tuple(highest_score_dict):
         highest_score_list.append(word)
         highest_score_list.append(score)
     return tuple(highest_score_list)
-
