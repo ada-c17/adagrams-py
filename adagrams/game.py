@@ -65,7 +65,6 @@ def uses_available_letters(word, letter_bank):
         else: 
             word_bank.remove(letter)    
     else:
-    
         return True
 
 
