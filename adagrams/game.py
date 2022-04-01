@@ -89,8 +89,8 @@ def score_word(word):
     """
     # create a variable to sum score for all valid input
     total_score = 0
-    # return 0 if input is empty or integer, float, or charater of number
-    if len(word) == 0 or isinstance(word, int) or isinstance(word, float) or word.isnumeric():
+    # return 0 if input is empty or not string
+    if (len(word) == 0) or (type(word) != str):
         return 0
 
     # loop over char_point dictionary to get key and value for comparing
@@ -102,13 +102,14 @@ def score_word(word):
                 total_score += point
 
     # if length of word is from 7 to 10, add additional 8 point
-    if len(word) > 6:
+    if len(word) > 6 and len(word) < 11:
         total_score += 8
     return total_score
 
 
 def get_highest_word_score(word_list):
     """Finding higest score and return the word and score in Tuple."""
+
     # find max score
     max_score = max([score_word(word) for word in word_list])
 
