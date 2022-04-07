@@ -1,7 +1,6 @@
 import random
 
-def draw_letters():
-    letter_pool =["A", "A", "A", "A", "A", "A", "A", "A", "A", "B", "B", "C", \
+LETTER_POOL =["A", "A", "A", "A", "A", "A", "A", "A", "A", "B", "B", "C", \
         "C", "D", "D", "D", "D", "E", "E", "E", "E", "E", "E", "E", "E", "E", \
         "E", "E", "E", "F", "F", "G", "G", "G", "H", "H", "I", "I", "I", "I", \
         "I", "I", "I", "I", "I", "J", "K", "L", "L", "L", "L", "M", "M", "N", \
@@ -9,23 +8,16 @@ def draw_letters():
         "P", "Q", "R", "R", "R", "R", "R", "R", "S", "S", "S", "S", "T", "T", \
         "T", "T", "T", "T", "U", "U", "U", "U", "V", "V", "W", "W", "X", "Y", \
         "Y", "Z"]
-    
+
+def draw_letters():
     letter_bank = []
-
-    letter_bank = random.sample(letter_pool, 10)
-    
+    # randomly select 10 letters from letter pool
+    letter_bank = random.sample(LETTER_POOL, 10)
     return letter_bank
-
-def make_word_upper_list(word):
-    user_input_list = []
-    word = word.upper()
-    for letter in word:
-        user_input_list.append(letter)
-    return user_input_list
 
 def uses_available_letters(word, letter_bank):
     is_valid = False
-
+    # convert word into list with each letter as an element 
     user_input = list(word.upper())
 
     for element in user_input:
@@ -67,15 +59,15 @@ def score_word(word):
     'Z': 10
 }
 
-    user_input = make_word_upper_list(word)
-    
+    user_input = list(word.upper())
+
     for element in user_input:
         if element in score_chart.keys():
             total_points += score_chart[element]
-    
+
     if 7 <= len(user_input) <= 10:
         total_points += 8
-    
+
     return total_points
 
 def get_highest_word_score(word_list):
@@ -89,7 +81,7 @@ def get_highest_word_score(word_list):
     for word, score in scored_words.items():
         if score == highest_score:
             tied_words.append(word)
-
+            
     shortest_word = min(tied_words, key = len)
     for element in tied_words:
         if len(element) == 10:
