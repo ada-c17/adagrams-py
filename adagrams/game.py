@@ -26,7 +26,7 @@ def make_word_upper_list(word):
 def uses_available_letters(word, letter_bank):
     is_valid = False
 
-    user_input = make_word_upper_list(word)
+    user_input = list(word.upper())
 
     for element in user_input:
         if element in letter_bank:
