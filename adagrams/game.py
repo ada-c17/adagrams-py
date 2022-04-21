@@ -30,22 +30,22 @@ def draw_letters():
     return selection
 
 
-    # pass
+
 draw_letters()
 def uses_available_letters(word, letter_bank):
     """
     Turn all letters to uppercases if they are not already uppercase
     """
-    if not word.isupper():
-        word = word.upper()
+    
     """
     make a copy of the letter_bank list
     remove every letter of the word from the bank
     count the number of letters that are in the bank
     """
+
     counter = 0
     bank = letter_bank.copy()
-    for letter in word:
+    for letter in word.upper():
         if letter in bank:
             counter += 1
             bank.remove(letter)
@@ -55,6 +55,14 @@ def uses_available_letters(word, letter_bank):
     return counter == len(word)
     # pass
 uses_available_letters("alex", ["A","B","C","D"])
+my_dic = {"A": 1, "E": 1, "I": 1, "O": 1, "U": 1, "L": 1, "N": 1, "R": 1, "S": 1, "T": 1,
+          "D": 2, "G": 2,
+          "B": 3, "C": 3, "M": 3, "P": 3,
+          "F": 4, "H": 4, "V": 4, "W": 4, "Y": 4,
+          "K": 5,
+          "J": 8, "X": 8,
+          "Q": 10, "Z": 10}
+
 def score_word(word):
 
     """
@@ -71,13 +79,6 @@ def score_word(word):
     if 7 <= len(word) <= 10:
         score += 8
 
-    my_dic= { "A":1, "E":1, "I" :1, "O":1, "U" :1, "L" :1, "N" :1, "R":1, "S":1, "T" : 1,
-    "D":2, "G":2,
-    "B":3, "C":3, "M":3, "P":3,
-    "F":4, "H":4, "V":4, "W":4, "Y":4,
-    "K":5,
-    "J":8, "X":8,
-    "Q":10, "Z": 10}
     """
     loop over the word elements, find the element key in my_dic dictionary \ 
     and add the related score (related value) to the result
@@ -117,14 +118,12 @@ def get_highest_word_score(word_list):
     for word in word_list:
         word_score = score_word(word)
         if word_score > counter:
-            res = (word, word_score)
+            result = (word, word_score)
             counter = word_score
-        elif word_score == counter and len(res[0]) != 10:
-        
-            if len(word) == 10 or len(word) < len(res[0]):
-                res = (word, word_score)
-            
-    return res
+        elif word_score == counter and len(result[0]) != 10:
+            if len(word) == 10 or len(word) < len(result[0]):
+                result = (word, word_score)        
+    return result
 
     """
     Following is an alternative Approach
